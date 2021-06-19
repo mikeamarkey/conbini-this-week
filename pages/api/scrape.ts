@@ -15,7 +15,9 @@ const handler = async (_: NextApiRequest, res: NextApiResponse) => {
             .querySelector('.ly-mod-infoset4-link')
             .getAttribute('href')
             .trim()
-          const title = el.querySelector('.ly-mod-infoset4-ttl').textContent
+          const title = el
+            .querySelector('.ly-mod-infoset4-ttl')
+            .textContent.trim()
           const category = el
             .querySelector('.ly-mod-infoset4-cate')
             .textContent.trim()
