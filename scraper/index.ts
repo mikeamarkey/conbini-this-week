@@ -1,7 +1,8 @@
-import { chromium } from 'playwright-chromium'
+import { chromium, Page } from 'playwright-chromium'
 import { conbinis } from './constants'
+import { ConbiniItem } from './types'
 
-export async function scrape(conbiniName) {
+export async function scrape(conbiniName): Promise<ConbiniItem[]> {
   const conbini = conbinis[conbiniName]
   if (typeof conbini === 'undefined') {
     return []
@@ -10,9 +11,14 @@ export async function scrape(conbiniName) {
   const browser = await chromium.launch()
   const page = await browser.newPage()
   await page.goto(conbini.url)
+  const items = await scrapeFamilyMart(page)
+  return items
+}
+
+async function scrapeFamilyMart(page: Page): Promise<ConbiniItem[]> {
   const items = await page.$$eval(
     '.ly-goods-list-area .ly-mod-layout-clm',
-    (els, conbiniName) => {
+    (els) => {
       return els.map((el) => {
         const anchorElement = el.querySelector(
           '.ly-mod-infoset4-link'
@@ -34,7 +40,7 @@ export async function scrape(conbiniName) {
         const price = hasPrice && hasPrice[1] ? hasPrice[1] : ''
 
         return {
-          conbiniName,
+          conbiniName: 'familyMart' as const,
           href,
           title,
           category,
@@ -42,8 +48,7 @@ export async function scrape(conbiniName) {
           price,
         }
       })
-    },
-    conbiniName
+    }
   )
 
   return items

@@ -8,7 +8,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   try {
     const result = await scrape(conbiniName)
-
     res.status(200).json(result)
   } catch (e) {
     res.status(200).json(e)
