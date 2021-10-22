@@ -1,7 +1,13 @@
 import { chromium } from 'playwright-chromium'
-import { conbinis } from './constants'
+import { conbinis, conbiniNames, ValueOf } from './constants'
+import {
+  getStringValue,
+  getHrefValue,
+  getImgUrl,
+  getRegexStringValue,
+} from './helpers'
 
-export async function scrape(conbiniName) {
+export async function scrape(conbiniName: ValueOf<typeof conbiniNames>) {
   const conbini = conbinis[conbiniName]
   if (typeof conbini === 'undefined') {
     return []
@@ -14,24 +20,15 @@ export async function scrape(conbiniName) {
     '.ly-goods-list-area .ly-mod-layout-clm',
     (els, conbiniName) => {
       return els.map((el) => {
-        const anchorElement = el.querySelector(
-          '.ly-mod-infoset4-link'
-        ) as HTMLAnchorElement
-        const href = anchorElement.href.trim()
-        const title = el
-          .querySelector('.ly-mod-infoset4-ttl')
-          .textContent.trim()
-        const category = el
-          .querySelector('.ly-mod-infoset4-cate')
-          .textContent.trim()
-        const imageElement = el.querySelector(
-          '.ly-mod-infoset4-img > img'
-        ) as HTMLImageElement
-        const imgUrl = imageElement.src
-        const hasPrice = el
-          .querySelector('.ly-mod-infoset4-txt')
-          .textContent.match(/税込(\d+)円/)
-        const price = hasPrice && hasPrice[1] ? hasPrice[1] : ''
+        const href = getHrefValue('.ly-mod-infoset4-link', el)
+        const title = getStringValue('.ly-mod-infoset4-ttl', el)
+        const category = getStringValue('.ly-mod-infoset4-cate', el)
+        const imgUrl = getImgUrl('.ly-mod-infoset4-img > img', el)
+        const price = getRegexStringValue(
+          '.ly-mod-infoset4-txt',
+          /税込(\d+)円/,
+          el
+        )
 
         return {
           conbiniName,
