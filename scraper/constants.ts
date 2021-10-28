@@ -7,5 +7,3 @@ export const conbinis = {
     url: 'https://www.family.co.jp/goods/newgoods/nextweek.html',
   },
 } as const
-
-export type ValueOf<T> = T[keyof T]

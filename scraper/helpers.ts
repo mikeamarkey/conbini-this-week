@@ -1,6 +1,8 @@
+// currently unused, want to use these at some point if possible
+
 export function getStringValue<T>(selector: string, node?: T): string {
   if (node instanceof HTMLElement) {
-    return node?.querySelector<HTMLElement>(selector)?.textContent?.trim() ?? ''
+    return node.querySelector<HTMLElement>(selector)?.textContent?.trim() ?? ''
   }
   return ''
 }
@@ -27,7 +29,7 @@ export function getRegexStringValue<T>(
   node?: T
 ): string {
   if (node instanceof HTMLElement) {
-    const matches = node?.querySelector(selector)?.textContent?.match(pattern)
+    const matches = node.querySelector(selector)?.textContent?.match(pattern)
     return matches?.[1] ?? ''
   }
   return ''

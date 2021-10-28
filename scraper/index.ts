@@ -1,13 +1,7 @@
 import { chromium, Page } from 'playwright-chromium'
-import { conbinis, conbiniNames, ValueOf } from './constants'
-import {
-  getStringValue,
-  getHrefValue,
-  getImgUrl,
-  getRegexStringValue,
-} from './helpers'
+import { conbinis } from './constants'
 
-export async function scrape(conbiniName: ValueOf<typeof conbiniNames>) {
+export async function scrape(conbiniName: keyof typeof conbinis) {
   const conbini = conbinis[conbiniName]
   if (typeof conbini === 'undefined') {
     return []
@@ -25,18 +19,30 @@ async function scrapeFamilyMart(page: Page) {
     '.ly-goods-list-area .ly-mod-layout-clm',
     (els) => {
       return els.map((el) => {
-        const href = getHrefValue('.ly-mod-infoset4-link', el)
-        const title = getStringValue('.ly-mod-infoset4-ttl', el)
-        const category = getStringValue('.ly-mod-infoset4-cate', el)
-        const imgUrl = getImgUrl('.ly-mod-infoset4-img > img', el)
-        const price = getRegexStringValue(
-          '.ly-mod-infoset4-txt',
-          /税込(\d+)円/,
+        // replace with helpers if possible by injecting into page
+        const href =
           el
-        )
+            .querySelector<HTMLAnchorElement>('.ly-mod-infoset4-link')
+            ?.href?.trim() ?? ''
+        const title =
+          el
+            .querySelector<HTMLElement>('.ly-mod-infoset4-ttl')
+            ?.textContent?.trim() ?? ''
+        const category =
+          el
+            .querySelector<HTMLElement>('.ly-mod-infoset4-cate')
+            ?.textContent?.trim() ?? ''
+        const imgUrl =
+          el.querySelector<HTMLImageElement>('.ly-mod-infoset4-img > img')
+            ?.src ?? ''
+
+        const priceMatches = el
+          ?.querySelector<HTMLElement>('.ly-mod-infoset4-txt')
+          ?.textContent?.match(/税込([\d,]+)円/)
+        const price = priceMatches?.[1] ?? ''
 
         return {
-          conbiniName: 'familymart' as const,
+          conbiniName: 'familymart',
           href,
           title,
           category,

@@ -1,9 +1,7 @@
 import { conbinis } from './constants'
 
-export type ConbiniName = keyof typeof conbinis
-
 export type ConbiniItem = {
-  conbiniName: ConbiniName
+  conbiniName: keyof typeof conbinis
   href: string
   title: string
   category: string
