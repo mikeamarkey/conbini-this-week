@@ -3,13 +3,19 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "scrape": "ts-node index.ts"
+    "lint": "eslint . --ext ts",
+    "scrape": "ts-node index.ts",
+    "type-check": "tsc --pretty --noEmit"
   },
   "dependencies": {
     "playwright-chromium": "^1.12.2"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.1.0",
+    "@typescript-eslint/parser": "^5.1.0",
     "@types/node": "^16.11.4",
+    "eslint": "^8.1.0",
+    "eslint-config-prettier": "^8.3.0",
     "ts-node": "^10.4.0",
     "typescript": "^4.4.4"
   }

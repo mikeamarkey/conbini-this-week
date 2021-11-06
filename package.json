@@ -10,11 +10,11 @@
   },
   "scripts": {
     "client": "yarn workspace client",
-    "scraper": "yarn workspace scraper",
-    "type-check": "tsc --pretty --noEmit",
     "format": "prettier --write .",
-    "lint": "eslint . --ext ts --ext tsx --ext js",
-    "prepare": "husky install"
+    "lint": "yarn workspaces run lint",
+    "prepare": "husky install",
+    "scraper": "yarn workspace scraper",
+    "type-check": "yarn workspaces run type-check"
   },
   "lint-staged": {
     "*.@(ts|tsx)": [
@@ -23,15 +23,8 @@
     ]
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.1.0",
-    "@typescript-eslint/parser": "^5.1.0",
-    "eslint": "^8.1.0",
-    "eslint-config-next": "^11.1.2",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-react": "^7.26.1",
     "husky": "^7.0.0",
     "lint-staged": "^11.2.3",
-    "prettier": "^2.0.2",
-    "typescript": "^4.4.4"
+    "prettier": "^2.0.2"
   }
 }
