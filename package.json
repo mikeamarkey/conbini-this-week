@@ -7,6 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "scrape": "ts-node scraper/index.ts",
     "type-check": "tsc --pretty --noEmit",
     "format": "prettier --write .",
     "lint": "eslint . --ext ts --ext tsx --ext js",
@@ -44,6 +45,7 @@
     "jest-watch-typeahead": "^1.0.0",
     "lint-staged": "^11.2.3",
     "prettier": "^2.0.2",
+    "ts-node": "^10.4.0",
     "typescript": "^4.4.4"
   }
 }

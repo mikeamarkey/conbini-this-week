@@ -1,20 +1,21 @@
 import { chromium, Page } from 'playwright-chromium'
-import { conbinis } from './constants'
+import { conbiniNames, conbinis } from './constants'
 
-export async function scrape(conbiniName: keyof typeof conbinis) {
-  const conbini = conbinis[conbiniName]
-  if (typeof conbini === 'undefined') {
-    return []
-  }
-
+export async function scrape() {
   const browser = await chromium.launch()
   const page = await browser.newPage()
-  await page.goto(conbini.url)
-  const items = await scrapeFamilyMart(page)
-  return items
+  page.on('console', (message) => {
+    if (message.type() === 'error') {
+      console.error(message)
+    }
+  })
+  await scrapeFamilyMart(page)
+  await browser.close()
 }
 
 async function scrapeFamilyMart(page: Page) {
+  const conbini = conbinis[conbiniNames.FAMILYMART]
+  await page.goto(conbini.url)
   const items = await page.$$eval(
     '.ly-goods-list-area .ly-mod-layout-clm',
     (els) => {
@@ -53,5 +54,9 @@ async function scrapeFamilyMart(page: Page) {
     }
   )
 
-  return items
+  const uploadData = items.slice(0, 5)
+  // eslint-disable-next-line no-console
+  console.log(uploadData)
 }
+
+scrape()
