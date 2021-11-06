@@ -7,11 +7,11 @@ node_modules
 /coverage
 
 # next.js
-packages/client/.next/
-packages/client/out/
+packages/web/.next/
+packages/web/out/
 
 # production
-packages/client/build
+packages/web/build
 
 # misc
 .DS_Store

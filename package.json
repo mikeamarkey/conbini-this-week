@@ -9,7 +9,7 @@
     ]
   },
   "scripts": {
-    "client": "yarn workspace client",
+    "web": "yarn workspace web",
     "format": "prettier --write .",
     "lint": "yarn workspaces run lint",
     "prepare": "husky install",

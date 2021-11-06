@@ -13,6 +13,7 @@ export const Home = ({ items }: Props) => (
       <title>Conbini Scraper</title>
     </Head>
 
+    <p>{`This week's items`}</p>
     <ConbiniList items={items} />
   </>
 )
