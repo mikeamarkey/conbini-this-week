@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "module": "esnext",
+    "jsx": "preserve",
+    "allowJs": true
+  },
+  "exclude": ["node_modules", ".next", "out"]
+}
