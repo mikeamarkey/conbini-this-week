@@ -59,4 +59,4 @@ async function scrapeFamilyMart(page: Page) {
   console.log(uploadData)
 }
 
-scrape()
+// scrape()
