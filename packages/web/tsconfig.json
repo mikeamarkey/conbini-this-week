@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "module": "esnext",
+    "jsx": "preserve",
+    "allowJs": true
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules", ".next", "out"]
+}

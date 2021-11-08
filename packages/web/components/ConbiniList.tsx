@@ -1,4 +1,4 @@
-import { ConbiniItem } from '../scraper/types'
+import { ConbiniItem } from '../../scraper/types'
 
 type Props = {
   items: ConbiniItem[]

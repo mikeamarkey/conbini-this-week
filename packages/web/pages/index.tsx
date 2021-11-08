@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import ConbiniList from '../components/ConbiniList'
 // import { scrape } from '../scraper'
-import { ConbiniItem } from '../scraper/types'
+import { ConbiniItem } from '../../scraper/types'
 
 type Props = {
   items: ConbiniItem[]
@@ -13,6 +13,7 @@ export const Home = ({ items }: Props) => (
       <title>Conbini Scraper</title>
     </Head>
 
+    <p>{`This week's items`}</p>
     <ConbiniList items={items} />
   </>
 )
