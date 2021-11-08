@@ -1,7 +1,11 @@
 import { chromium, Page } from 'playwright-chromium'
 import { conbiniNames, conbinis } from './constants'
 
-export async function scrape() {
+export async function scrape(conbiniName: string) {
+  if (!(conbiniName in conbinis)) {
+    throw new Error('This is not a valid combini name.')
+  }
+
   const browser = await chromium.launch()
   const page = await browser.newPage()
   page.on('console', (message) => {
@@ -9,8 +13,16 @@ export async function scrape() {
       console.error(message)
     }
   })
-  await scrapeFamilyMart(page)
+
+  let result: any[] = []
+  switch (conbiniName) {
+    case conbiniNames.FAMILYMART:
+      result = await scrapeFamilyMart(page)
+      break
+  }
+
   await browser.close()
+  return result
 }
 
 async function scrapeFamilyMart(page: Page) {
@@ -43,7 +55,6 @@ async function scrapeFamilyMart(page: Page) {
         const price = priceMatches?.[1] ?? ''
 
         return {
-          conbiniName: 'familymart',
           href,
           title,
           category,
@@ -54,9 +65,8 @@ async function scrapeFamilyMart(page: Page) {
     }
   )
 
-  const uploadData = items.slice(0, 5)
-  // eslint-disable-next-line no-console
-  console.log(uploadData)
+  const uploadData = items.slice(0, 5).map((item) => {
+    return { ...item, conbini: conbiniNames.FAMILYMART }
+  })
+  return uploadData
 }
-
-scrape()
