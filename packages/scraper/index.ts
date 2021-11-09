@@ -1,4 +1,5 @@
 import { scrape } from './scrape'
+import 'dotenv/config'
 
 async function main() {
   const conbiniName = 'familymart'

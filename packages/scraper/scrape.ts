@@ -1,5 +1,6 @@
 import { chromium, Page } from 'playwright-chromium'
 import { conbiniNames, conbinis } from './constants'
+import { createClient } from '@supabase/supabase-js'
 
 export async function scrape(conbiniName: string) {
   if (!(conbiniName in conbinis)) {
@@ -45,7 +46,7 @@ async function scrapeFamilyMart(page: Page) {
           el
             .querySelector<HTMLElement>('.ly-mod-infoset4-cate')
             ?.textContent?.trim() ?? ''
-        const imgUrl =
+        const img =
           el.querySelector<HTMLImageElement>('.ly-mod-infoset4-img > img')
             ?.src ?? ''
 
@@ -58,7 +59,7 @@ async function scrapeFamilyMart(page: Page) {
           href,
           title,
           category,
-          imgUrl,
+          img,
           price,
         }
       })
@@ -68,5 +69,17 @@ async function scrapeFamilyMart(page: Page) {
   const uploadData = items.slice(0, 5).map((item) => {
     return { ...item, conbini: conbiniNames.FAMILYMART }
   })
-  return uploadData
+
+  const supabase = createClient(
+    process.env.SUPABASE_URL ?? '',
+    process.env.SUPABASE_KEY ?? ''
+  )
+  const { data, error } = await supabase.from('items').upsert(uploadData, {
+    onConflict: 'href',
+  })
+  if (error) {
+    throw error
+  }
+
+  return data ?? []
 }
