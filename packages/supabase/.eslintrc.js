@@ -1,7 +1,7 @@
 module.exports = {
   root: true,
   extends: ['../../.eslintrc.base.js'],
-  ignorePatterns: ['types/supabase.ts'],
+  ignorePatterns: ['db/generated.ts'],
   rules: {
     'no-console': 'off',
   },
