@@ -1,7 +1,7 @@
-import { ConbiniItem } from '../../scraper/types'
+import { Item } from '../../supabase/db/types'
 
 type Props = {
-  items: ConbiniItem[]
+  items: Item[]
 }
 
 export default function ConbiniList({ items }: Props) {

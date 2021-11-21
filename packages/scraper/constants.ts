@@ -1,9 +1,19 @@
-export const conbiniNames = {
-  FAMILYMART: 'familymart',
-} as const
+import { ConbiniName } from '../supabase/db/types'
 
-export const conbinis = {
-  [conbiniNames.FAMILYMART]: {
+export const supabaseKey = process.env.SUPABASE_PRIVATE_KEY ?? ''
+export const supabaseUrl = process.env.SUPABASE_API_URL ?? ''
+
+type Conbinis = {
+  [key in ConbiniName]: {
+    url: string
+  }
+}
+
+export const conbinis: Conbinis = {
+  familymart: {
     url: 'https://www.family.co.jp/goods/newgoods.html',
   },
-} as const
+  lawson: {
+    url: '',
+  },
+}

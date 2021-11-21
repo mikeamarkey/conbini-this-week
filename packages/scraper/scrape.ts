@@ -1,12 +1,9 @@
 import { chromium, Page } from 'playwright-chromium'
-import { conbiniNames, conbinis } from './constants'
-import { createClient } from '@supabase/supabase-js'
+import { conbinis, supabaseKey, supabaseUrl } from './constants'
+import { ConbiniName, InsertItem } from '../supabase/db/types'
+import { Client } from '../supabase/db'
 
-export async function scrape(conbiniName: string) {
-  if (!(conbiniName in conbinis)) {
-    throw new Error('This is not a valid combini name.')
-  }
-
+export async function scrape(conbiniName: ConbiniName) {
   const browser = await chromium.launch()
   const page = await browser.newPage()
   page.on('console', (message) => {
@@ -17,7 +14,7 @@ export async function scrape(conbiniName: string) {
 
   let count = 0
   switch (conbiniName) {
-    case conbiniNames.FAMILYMART:
+    case 'familymart':
       count += await scrapeFamilyMart(page)
       break
   }
@@ -27,7 +24,7 @@ export async function scrape(conbiniName: string) {
 }
 
 async function scrapeFamilyMart(page: Page) {
-  const conbini = conbinis[conbiniNames.FAMILYMART]
+  const conbini = conbinis.familymart
   await page.goto(conbini.url)
   const items = await page.$$eval(
     '.ly-goods-list-area .ly-mod-layout-clm',
@@ -53,7 +50,7 @@ async function scrapeFamilyMart(page: Page) {
         const priceMatches = el
           ?.querySelector<HTMLElement>('.ly-mod-infoset4-txt')
           ?.textContent?.match(/税込([\d,]+)円/)
-        const price = priceMatches?.[1] ?? ''
+        const price = Number(priceMatches?.[1] ?? '0')
 
         return {
           href,
@@ -66,20 +63,11 @@ async function scrapeFamilyMart(page: Page) {
     }
   )
 
-  const uploadData = items.slice(0, 5).map((item) => {
-    return { ...item, conbini: conbiniNames.FAMILYMART }
+  const uploadData: InsertItem[] = items.slice(0, 5).map((item) => {
+    return { ...item, conbini: 'familymart' }
   })
 
-  const supabase = createClient(
-    process.env.SUPABASE_URL ?? '',
-    process.env.SUPABASE_KEY ?? ''
-  )
-  const { data, error } = await supabase.from('items').upsert(uploadData, {
-    onConflict: 'href',
-  })
-  if (error) {
-    throw error
-  }
-
-  return data ? data.length : 0
+  const client = new Client(supabaseUrl, supabaseKey)
+  const uploadCount = client.insertItem(uploadData)
+  return uploadCount
 }

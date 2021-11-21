@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs'
 import openapiTS from 'openapi-typescript'
-import { codegenUrl, writeFileName } from './constants'
+import { codegenUrl, writeFileName } from '../constants'
 
 export const generateTypes = async () => {
   const output = await openapiTS(codegenUrl)
