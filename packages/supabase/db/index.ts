@@ -9,8 +9,11 @@ export class Client {
   }
 
   public getItems = async () => {
-    const items = await this.client.from<Item>('items').select('*')
-    return items
+    const { data, error } = await this.client.from<Item>('items').select()
+    if (error) {
+      throw error
+    }
+    return data
   }
 
   public insertItem = async (items: InsertItem[]) => {

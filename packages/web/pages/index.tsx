@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import ConbiniList from '../components/ConbiniList'
 import { Item } from '../../supabase/db/types'
+import { Client } from '../../supabase/db'
+import { apiUrl, publicKey } from '../constants'
 
 type Props = {
   items: Item[]
@@ -18,8 +20,8 @@ export const Home = ({ items }: Props) => (
 )
 
 export async function getStaticProps() {
-  // const items = await scrape('familymart')
-  const items = [] as Item[]
+  const client = new Client(apiUrl, publicKey)
+  const items = await client.getItems()
 
   return {
     props: { items },
