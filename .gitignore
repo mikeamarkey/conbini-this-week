@@ -31,3 +31,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# typegen
+packages/supabase/types/supabase.ts

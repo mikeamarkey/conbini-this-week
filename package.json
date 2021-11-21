@@ -14,6 +14,7 @@
     "lint": "yarn workspaces run lint",
     "prepare": "husky install",
     "scraper": "yarn workspace scraper",
+    "supabase": "yarn workspace supabase",
     "type-check": "yarn workspaces run type-check"
   },
   "lint-staged": {

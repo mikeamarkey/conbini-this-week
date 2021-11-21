@@ -1,0 +1,24 @@
+{
+  "name": "supabase",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "lint": "eslint . --ext ts",
+    "generate": "ts-node index.ts",
+    "type-check": "tsc --pretty --noEmit"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^1.27.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.7",
+    "@typescript-eslint/eslint-plugin": "^5.3.1",
+    "@typescript-eslint/parser": "^5.3.1",
+    "dotenv": "^10.0.0",
+    "eslint": "^8.2.0",
+    "eslint-config-prettier": "^8.3.0",
+    "openapi-typescript": "^4.4.0",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.4.4"
+  }
+}
