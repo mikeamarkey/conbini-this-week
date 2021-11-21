@@ -4,6 +4,6 @@ export const conbiniNames = {
 
 export const conbinis = {
   [conbiniNames.FAMILYMART]: {
-    url: 'https://www.family.co.jp/goods/newgoods/nextweek.html',
+    url: 'https://www.family.co.jp/goods/newgoods.html',
   },
 } as const
