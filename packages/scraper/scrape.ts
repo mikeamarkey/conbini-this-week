@@ -15,15 +15,15 @@ export async function scrape(conbiniName: string) {
     }
   })
 
-  let result: any[] = []
+  let count = 0
   switch (conbiniName) {
     case conbiniNames.FAMILYMART:
-      result = await scrapeFamilyMart(page)
+      count += await scrapeFamilyMart(page)
       break
   }
 
   await browser.close()
-  return result
+  return `${count} items uploaded!`
 }
 
 async function scrapeFamilyMart(page: Page) {
@@ -81,5 +81,5 @@ async function scrapeFamilyMart(page: Page) {
     throw error
   }
 
-  return data ?? []
+  return data ? data.length : 0
 }
