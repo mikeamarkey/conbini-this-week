@@ -13,6 +13,8 @@
     "format": "prettier --write .",
     "lint": "yarn workspaces run lint",
     "fix:staged-files": "yarn workspaces run fix:staged-files",
+    "deps:check": "npm-check-updates --deep --dep prod,dev,optional",
+    "deps:update": "npm-check-updates -u --deep --dep prod,dev,optional",
     "prepare": "husky install",
     "scraper": "yarn workspace scraper",
     "supabase": "yarn workspace supabase",
@@ -23,8 +25,9 @@
     "@types/shell-quote": "^1.7.1",
     "eslint": "^8.4.1",
     "husky": "^7.0.4",
-    "lint-staged": "^11.2.6",
-    "prettier": "^2.4.1",
+    "lint-staged": "^12.1.2",
+    "npm-check-updates": "^12.0.3",
+    "prettier": "^2.5.1",
     "shell-quote": "^1.7.3"
   }
 }
