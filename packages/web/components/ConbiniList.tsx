@@ -1,4 +1,4 @@
-import { Item } from '../../supabase/db/types'
+import type { Item } from '@db/types'
 
 type Props = {
   items: Item[]
@@ -13,7 +13,7 @@ export default function ConbiniList({ items }: Props) {
           <p>title: {item.title}</p>
           <p>category: {item.category}</p>
           <p>price: {item.price}</p>
-          <img src={item.imgUrl} />
+          {/* <img src={item.img} /> */}
         </li>
       ))}
     </ul>

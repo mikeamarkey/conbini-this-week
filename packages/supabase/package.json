@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "lint": "eslint . --ext ts",
+    "fix:staged-files": "lint-staged --allow-empty",
     "generate": "ts-node generate/index.ts",
     "type-check": "tsc --pretty --noEmit"
   },
@@ -17,6 +18,8 @@
     "dotenv": "^10.0.0",
     "eslint": "^8.2.0",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-import": "^2.25.3",
     "openapi-typescript": "^4.4.0",
     "ts-node": "^10.4.0",
     "typescript": "^4.4.4"

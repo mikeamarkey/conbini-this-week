@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import ConbiniList from '../components/ConbiniList'
-import { Item } from '../../supabase/db/types'
-import { Client } from '../../supabase/db'
+import type { Item } from '@db/types'
+import { Client } from '@db/db'
 import { apiUrl, publicKey } from '../constants'
 
 type Props = {

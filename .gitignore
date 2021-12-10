@@ -32,5 +32,8 @@ yarn-error.log*
 # vercel
 .vercel
 
+# build
+tsconfig.tsbuildinfo
+
 # typegen
 packages/supabase/generate/api.ts

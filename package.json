@@ -12,20 +12,17 @@
     "web": "yarn workspace web",
     "format": "prettier --write .",
     "lint": "yarn workspaces run lint",
+    "fix:staged-files": "yarn workspaces run fix:staged-files",
     "prepare": "husky install",
     "scraper": "yarn workspace scraper",
     "supabase": "yarn workspace supabase",
     "type-check": "yarn workspaces run type-check"
   },
-  "lint-staged": {
-    "*.@(ts|tsx)": [
-      "yarn lint",
-      "yarn format"
-    ]
-  },
   "devDependencies": {
+    "@types/shell-quote": "^1.7.1",
     "husky": "^7.0.4",
     "lint-staged": "^11.2.6",
-    "prettier": "^2.4.1"
+    "prettier": "^2.4.1",
+    "shell-quote": "^1.7.3"
   }
 }

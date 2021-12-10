@@ -3,6 +3,10 @@
   "exclude": ["node_modules"],
   "include": ["**/*.ts"],
   "compilerOptions": {
-    "baseUrl": "./"
+    "baseUrl": "./",
+    "paths": {
+      "@db/types": ["../../packages/supabase/db/types"],
+      "@db/db": ["../../packages/supabase/db/index"]
+    }
   }
 }
