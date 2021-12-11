@@ -4,6 +4,7 @@
   "include": ["src/**/*.ts", ".eslintrc.js", "lint-staged.config.js"],
   "compilerOptions": {
     "baseUrl": "./src",
+    "incremental": true,
     "paths": {
       "@db/types": ["../../../packages/supabase/src/db/types"],
       "@db/db": ["../../../packages/supabase/src/db/index"]
