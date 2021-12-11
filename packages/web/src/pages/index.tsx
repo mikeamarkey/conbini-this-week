@@ -1,10 +1,11 @@
 import Head from 'next/head'
 import ConbiniList from '../components/ConbiniList'
-// import { scrape } from '../scraper'
-import { ConbiniItem } from '../../scraper/types'
+import type { Item } from '@db/types'
+import { Client } from '@db/db'
+import { apiUrl, publicKey } from '../constants'
 
 type Props = {
-  items: ConbiniItem[]
+  items: Item[]
 }
 
 export const Home = ({ items }: Props) => (
@@ -19,8 +20,8 @@ export const Home = ({ items }: Props) => (
 )
 
 export async function getStaticProps() {
-  // const items = await scrape('familymart')
-  const items = [] as ConbiniItem[]
+  const client = new Client(apiUrl, publicKey)
+  const items = await client.getItems()
 
   return {
     props: { items },

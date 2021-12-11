@@ -1,13 +1,25 @@
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'],
-  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
+  parserOptions: {
+    project: ['./tsconfig.json'],
+  },
+  extends: [
+    'plugin:import/recommended',
+    'plugin:import/typescript',
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+  ],
   env: {
     es6: true,
     node: true,
   },
-  ignorePatterns: ['node_modules/*'],
+  settings: {
+    'import/resolver': {
+      typescript: {},
+    },
+  },
+  ignorePatterns: ['**/node_modules', '**/dist', '**/build'],
   rules: {
     '@typescript-eslint/explicit-module-boundary-types': 0,
     '@typescript-eslint/explicit-function-return-type': 0,
