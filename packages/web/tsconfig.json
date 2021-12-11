@@ -1,14 +1,14 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "module": "esnext",
     "jsx": "preserve",
     "allowJs": true,
     "incremental": true,
     "paths": {
-      "@db/types": ["../../packages/supabase/db/types"],
-      "@db/db": ["../../packages/supabase/db/index"]
+      "@db/types": ["../../../packages/supabase/src/db/types"],
+      "@db/db": ["../../../packages/supabase/src/db/index"]
     }
   },
   "include": [

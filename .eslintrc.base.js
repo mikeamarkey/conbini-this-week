@@ -19,7 +19,7 @@ module.exports = {
       typescript: {},
     },
   },
-  ignorePatterns: ['node_modules/*', 'lint-staged.config.js'],
+  ignorePatterns: ['**/node_modules', '**/dist', '**/build'],
   rules: {
     '@typescript-eslint/explicit-module-boundary-types': 0,
     '@typescript-eslint/explicit-function-return-type': 0,

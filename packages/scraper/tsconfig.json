@@ -1,12 +1,12 @@
 {
   "extends": "../../tsconfig.base.json",
   "exclude": ["node_modules"],
-  "include": ["**/*.ts"],
+  "include": ["src/**/*.ts", ".eslintrc.js", "lint-staged.config.js"],
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "paths": {
-      "@db/types": ["../../packages/supabase/db/types"],
-      "@db/db": ["../../packages/supabase/db/index"]
+      "@db/types": ["../../../packages/supabase/src/db/types"],
+      "@db/db": ["../../../packages/supabase/src/db/index"]
     }
   }
 }
