@@ -7,11 +7,6 @@ module.exports = {
     jest: true,
     node: true,
   },
-  settings: {
-    react: {
-      version: 'detect',
-    },
-  },
   ignorePatterns: ['out/*', '.next/*'],
   rules: {
     'react/react-in-jsx-scope': 0,
