@@ -9,15 +9,15 @@
     ]
   },
   "scripts": {
-    "web": "yarn workspace web",
+    "web": "yarn workspace conbini-this-week-web",
     "format": "prettier --write .",
     "lint": "yarn workspaces run lint",
     "fix:staged-files": "yarn workspaces run fix:staged-files",
     "deps:check": "npm-check-updates --deep --dep prod,dev,optional",
     "deps:update": "npm-check-updates -u --deep --dep prod,dev,optional",
     "prepare": "husky install",
-    "scraper": "yarn workspace scraper",
-    "supabase": "yarn workspace supabase",
+    "scraper": "yarn workspace conbini-this-week-scraper",
+    "supabase": "yarn workspace conbini-this-week-supabase",
     "type-check": "yarn workspaces run type-check"
   },
   "devDependencies": {

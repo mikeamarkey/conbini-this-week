@@ -1,4 +1,4 @@
-import type { Item } from '@db/types'
+import type { Item } from '@conbini-this-week/db/types'
 
 type Props = {
   items: Item[]
