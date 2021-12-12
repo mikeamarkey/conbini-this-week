@@ -1,12 +1,6 @@
 module.exports = {
   root: true,
-  extends: [
-    '../../.eslintrc.base.js',
-    'plugin:react/recommended',
-    // Uncomment the following lines to enable eslint-config-prettier
-    // Is not enabled right now to avoid issues with the Next.js repo
-    // "prettier",
-  ],
+  extends: ['../../.eslintrc.base.js', 'next/core-web-vitals', 'prettier'],
   env: {
     es6: true,
     browser: true,
