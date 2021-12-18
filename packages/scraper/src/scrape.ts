@@ -1,7 +1,7 @@
 import { chromium, Page } from 'playwright-chromium'
 import { conbinis, supabaseKey, supabaseUrl } from './constants'
-import type { ConbiniName, InsertItem } from '@db/types'
-import { Client } from '@db/db'
+import type { ConbiniName, InsertItem } from '@conbini-this-week/db/types'
+import { Client } from '@conbini-this-week/db'
 
 export async function scrape(conbiniName: ConbiniName) {
   const browser = await chromium.launch()

@@ -8,8 +8,8 @@
     "allowJs": true,
     "incremental": true,
     "paths": {
-      "@db/types": ["../../../packages/supabase/src/db/types"],
-      "@db/db": ["../../../packages/supabase/src/db/index"]
+      "@conbini-this-week/db/*": ["../../../packages/supabase/src/db/*"],
+      "@conbini-this-week/db": ["../../../packages/supabase/src/db/index"]
     }
   },
   "include": [
