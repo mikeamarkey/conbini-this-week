@@ -1,10 +1,21 @@
 import 'dotenv/config'
 import { scrape } from './scrape'
 import { conbinis } from './constants'
+import { ConbiniName } from '../../supabase/src/db/types'
+
+const args = process.argv.slice(2)
+const conbiniName = args[0]
+
+console.log(args)
+
+const isValidConbiniName = (
+  conbiniName: string
+): conbiniName is ConbiniName => {
+  return conbiniName in conbinis
+}
 
 async function main() {
-  const conbiniName = 'familymart'
-  if (!(conbiniName in conbinis)) {
+  if (!isValidConbiniName(conbiniName)) {
     console.log('Please provide a proper conbini name')
     return
   }
