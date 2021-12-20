@@ -134,7 +134,7 @@ export interface definitions {
      */
     id: number;
     /** enum conbini name as public.conbini */
-    conbini: "familymart" | "lawson";
+    conbini: "familymart" | "lawson" | "seveneleven";
     href: string;
     title: string;
     img: string;

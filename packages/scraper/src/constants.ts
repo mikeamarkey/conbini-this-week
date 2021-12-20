@@ -16,4 +16,7 @@ export const conbinis: Conbinis = {
   lawson: {
     url: '',
   },
+  seveneleven: {
+    url: '',
+  },
 }
