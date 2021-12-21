@@ -11,12 +11,13 @@ const conbiniNames: { [Name in ConbiniName as Uppercase<Name>]: Name } = {
 
 export const conbinis = {
   [conbiniNames.FAMILYMART]: {
-    url: 'https://www.family.co.jp/goods/newgoods.html',
+    url: () => 'https://www.family.co.jp/goods/newgoods.html',
   },
   [conbiniNames.LAWSON]: {
-    url: 'https://www.lawson.co.jp/recommend/new',
+    url: () => 'https://www.lawson.co.jp/recommend/new',
   },
   [conbiniNames.SEVENELEVEN]: {
-    url: '',
+    url: (page = 1) =>
+      `https://www.sej.co.jp/products/a/thisweek/area/hokuriku/${page}/l100/`,
   },
-}
+} as const

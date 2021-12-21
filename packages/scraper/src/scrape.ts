@@ -20,6 +20,9 @@ export async function scrape(conbiniName: ConbiniName) {
     case 'lawson':
       count += await scrapeLawson(page)
       break
+    case 'seveneleven':
+      count += await scrapeSevenEleven(page)
+      break
   }
 
   await browser.close()
@@ -28,7 +31,7 @@ export async function scrape(conbiniName: ConbiniName) {
 
 async function scrapeFamilyMart(page: Page) {
   const conbini = conbinis.familymart
-  await page.goto(conbini.url)
+  await page.goto(conbini.url())
   const items = await page.$$eval(
     '.ly-goods-list-area .ly-mod-layout-clm',
     (els) => {
@@ -53,7 +56,7 @@ async function scrapeFamilyMart(page: Page) {
         const priceMatches = el
           ?.querySelector<HTMLElement>('.ly-mod-infoset4-txt')
           ?.textContent?.match(/税込([\d,]+)円/)
-        const price = Number(priceMatches?.[1] ?? '0')
+        const price = Number(priceMatches?.[1].replace(',', '') ?? '0')
 
         return {
           href,
@@ -77,7 +80,7 @@ async function scrapeFamilyMart(page: Page) {
 
 async function scrapeLawson(page: Page) {
   const conbini = conbinis.lawson
-  await page.goto(conbini.url, {
+  await page.goto(conbini.url(), {
     waitUntil: 'networkidle',
   })
   const items = await page.$$eval(
@@ -94,7 +97,7 @@ async function scrapeLawson(page: Page) {
         const priceMatches = el
           ?.querySelector<HTMLElement>('.price')
           ?.textContent?.match(/([\d,]+)円/)
-        const price = Number(priceMatches?.[1] ?? '0')
+        const price = Number(priceMatches?.[1].replace(',', '') ?? '0')
 
         return {
           href,
@@ -108,6 +111,75 @@ async function scrapeLawson(page: Page) {
 
   const uploadData: InsertItem[] = items.slice(0, 5).map((item) => {
     return { ...item, conbini: 'lawson' }
+  })
+
+  const client = new Client(supabaseUrl, supabaseKey)
+  const uploadCount = client.insertItem(uploadData)
+  return uploadCount
+}
+
+async function scrapeSevenEleven(page: Page) {
+  const conbini = conbinis.seveneleven
+  await page.goto(conbini.url())
+
+  const pageCount = await page.$eval(
+    '.pager_ctrl .counter',
+    (el: HTMLElement) => {
+      const matches = el.innerText.trim().match(/^(\d+)件/)
+      const count = Number(matches?.[1] ?? '1')
+      return Math.ceil(count / 100)
+    }
+  )
+
+  let collectedItems: {
+    href: string
+    title: string
+    img: string
+    price: number
+  }[] = []
+
+  for (let i = 1; i <= pageCount; i++) {
+    if (i !== 1) {
+      await page.goto(conbini.url(i))
+    }
+
+    const newItems = await page.$$eval(
+      '.pbMainArea .pbNested .pbNestedWrapper .list_inner',
+      (els) => {
+        return els.map((el) => {
+          // replace with helpers if possible by injecting into page
+          const href =
+            el.querySelector<HTMLAnchorElement>('a')?.href?.trim() ?? ''
+          const title =
+            el
+              .querySelector<HTMLElement>('.detail .item_ttl')
+              ?.textContent?.trim() ?? ''
+          const img =
+            el.querySelector<HTMLImageElement>('a > img')?.dataset.original ??
+            ''
+
+          const priceMatches = el
+            ?.querySelector<HTMLElement>('.detail .item_price')
+            ?.textContent?.match(/税込([\d,.]+)円/)
+          const price = Math.ceil(
+            Number(priceMatches?.[1].replace(',', '') ?? '0')
+          )
+
+          return {
+            href,
+            title,
+            img,
+            price,
+          }
+        })
+      }
+    )
+
+    collectedItems = [...collectedItems, ...newItems]
+  }
+
+  const uploadData: InsertItem[] = collectedItems.slice(0, 5).map((item) => {
+    return { ...item, conbini: 'seveneleven' }
   })
 
   const client = new Client(supabaseUrl, supabaseKey)
