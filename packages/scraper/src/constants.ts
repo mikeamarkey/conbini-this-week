@@ -14,7 +14,7 @@ export const conbinis = {
     url: 'https://www.family.co.jp/goods/newgoods.html',
   },
   [conbiniNames.LAWSON]: {
-    url: '',
+    url: 'https://www.lawson.co.jp/recommend/new',
   },
   [conbiniNames.SEVENELEVEN]: {
     url: '',

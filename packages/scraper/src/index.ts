@@ -6,8 +6,6 @@ import { ConbiniName } from '../../supabase/src/db/types'
 const args = process.argv.slice(2)
 const conbiniName = args[0]
 
-console.log(args)
-
 const isValidConbiniName = (
   conbiniName: string
 ): conbiniName is ConbiniName => {

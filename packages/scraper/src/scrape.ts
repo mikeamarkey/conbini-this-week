@@ -17,6 +17,9 @@ export async function scrape(conbiniName: ConbiniName) {
     case 'familymart':
       count += await scrapeFamilyMart(page)
       break
+    case 'lawson':
+      count += await scrapeLawson(page)
+      break
   }
 
   await browser.close()
@@ -65,6 +68,46 @@ async function scrapeFamilyMart(page: Page) {
 
   const uploadData: InsertItem[] = items.slice(0, 5).map((item) => {
     return { ...item, conbini: 'familymart' }
+  })
+
+  const client = new Client(supabaseUrl, supabaseKey)
+  const uploadCount = client.insertItem(uploadData)
+  return uploadCount
+}
+
+async function scrapeLawson(page: Page) {
+  const conbini = conbinis.lawson
+  await page.goto(conbini.url, {
+    waitUntil: 'networkidle',
+  })
+  const items = await page.$$eval(
+    '.recommend ul.heightLineParent > li',
+    (els) => {
+      return els.map((el) => {
+        // replace with helpers if possible by injecting into page
+        const href =
+          el.querySelector<HTMLAnchorElement>('a')?.href?.trim() ?? ''
+        const title =
+          el.querySelector<HTMLElement>('.ttl')?.textContent?.trim() ?? ''
+        const img = el.querySelector<HTMLImageElement>('.img img')?.src ?? ''
+
+        const priceMatches = el
+          ?.querySelector<HTMLElement>('.price')
+          ?.textContent?.match(/([\d,]+)円/)
+        const price = Number(priceMatches?.[1] ?? '0')
+
+        return {
+          href,
+          title,
+          img,
+          price,
+        }
+      })
+    }
+  )
+
+  const uploadData: InsertItem[] = items.slice(0, 5).map((item) => {
+    return { ...item, conbini: 'lawson' }
   })
 
   const client = new Client(supabaseUrl, supabaseKey)
