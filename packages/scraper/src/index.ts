@@ -1,18 +1,20 @@
 import 'dotenv/config'
+
+import type { ConbiniNames } from './types'
 import { scrape } from './scrape'
 import { conbinis } from './constants'
-import { ConbiniName } from '../../supabase/src/db/types'
 
 const args = process.argv.slice(2)
-const conbiniName = args[0]
+const nameArg = args[0]
 
 const isValidConbiniName = (
   conbiniName: string
-): conbiniName is ConbiniName => {
+): conbiniName is ConbiniNames => {
   return conbiniName in conbinis
 }
 
 async function main() {
+  const conbiniName = nameArg.toUpperCase()
   if (!isValidConbiniName(conbiniName)) {
     console.log('Please provide a proper conbini name')
     return
