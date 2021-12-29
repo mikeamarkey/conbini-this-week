@@ -20,7 +20,7 @@ export class Client {
     const { data, error } = await this.client
       .from<InsertItem>('items')
       .upsert(items, {
-        onConflict: 'href',
+        onConflict: 'url',
       })
     if (error) {
       throw error

@@ -11,7 +11,7 @@ export const conbinis: Conbinis = {
     url: () => 'https://www.family.co.jp/goods/newgoods.html',
     selectors: {
       list: '.ly-goods-list-area .ly-mod-layout-clm',
-      href: '.ly-mod-infoset4-link',
+      url: '.ly-mod-infoset4-link',
       title: '.ly-mod-infoset4-ttl',
       category: '.ly-mod-infoset4-cate',
       img: '.ly-mod-infoset4-img > img',
@@ -25,7 +25,7 @@ export const conbinis: Conbinis = {
     gotoOptions: { waitUntil: 'networkidle' },
     selectors: {
       list: '.recommend ul.heightLineParent > li',
-      href: 'a',
+      url: 'a',
       title: '.ttl',
       img: '.img img',
       price: '.price',
@@ -45,7 +45,7 @@ export const conbinis: Conbinis = {
     },
     selectors: {
       list: '.pbMainArea .pbNested .pbNestedWrapper .list_inner',
-      href: 'a',
+      url: 'a',
       title: '.detail .item_ttl',
       img: 'a > img',
       imgDataName: 'original',

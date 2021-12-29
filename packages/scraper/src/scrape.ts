@@ -26,20 +26,14 @@ export async function scrape(conbiniName: ConbiniNames) {
 async function scrapeConbini(conbiniName: ConbiniNames, page: Page) {
   const conbini = conbinis[conbiniName]
   const collectedItems: InsertItem[] = []
-  if (!conbini.getPageCount) {
-    await page.goto(conbini.url(), { ...(conbini.gotoOptions ?? {}) })
+  await page.goto(conbini.url(), { ...(conbini.gotoOptions ?? {}) })
+  const pageCount = !conbini.getPageCount ? 1 : await conbini.getPageCount(page)
+  for (let pageNum = 1; pageNum <= pageCount; pageNum++) {
+    if (pageNum !== 1) {
+      await page.goto(conbini.url(pageNum), { ...(conbini.gotoOptions ?? {}) })
+    }
     const newItems = await collectPageItems(page, conbini)
     collectedItems.push(...newItems)
-  } else {
-    await page.goto(conbini.url(), { ...(conbini.gotoOptions ?? {}) })
-    const pageCount = await conbini.getPageCount(page)
-    for (let i = 1; i <= pageCount; i++) {
-      if (i !== 1) {
-        await page.goto(conbini.url(i), { ...(conbini.gotoOptions ?? {}) })
-      }
-      const newItems = await collectPageItems(page, conbini)
-      collectedItems.push(...newItems)
-    }
   }
   return collectedItems
 }
@@ -53,17 +47,11 @@ async function collectPageItems(
     selectors.list,
     (els, selectors) => {
       return els.map((el) => {
-        const href =
-          el.querySelector<HTMLAnchorElement>(selectors.href)?.href?.trim() ??
-          ''
+        const url =
+          el.querySelector<HTMLAnchorElement>(selectors.url)?.href?.trim() ?? ''
         const title =
           el.querySelector<HTMLElement>(selectors.title)?.textContent?.trim() ??
           ''
-        const category = !selectors.category
-          ? undefined
-          : el
-              .querySelector<HTMLElement>(selectors.category)
-              ?.textContent?.trim() ?? ''
         const img = selectors.imgDataName
           ? el.querySelector<HTMLImageElement>(selectors.img)?.dataset[
               selectors.imgDataName
@@ -75,9 +63,14 @@ async function collectPageItems(
         const price = Math.ceil(
           Number(priceMatches?.[1].replace(',', '') ?? '0')
         )
+        const category = !selectors.category
+          ? undefined
+          : el
+              .querySelector<HTMLElement>(selectors.category)
+              ?.textContent?.trim() ?? ''
 
         return {
-          href,
+          url,
           title,
           category,
           img,

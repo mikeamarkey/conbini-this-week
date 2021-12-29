@@ -10,13 +10,13 @@ export type Conbinis = {
     getPageCount?: (page: Page) => Promise<number>
     selectors: {
       list: string
-      href: string
+      url: string
       title: string
       img: string
+      imgDataName?: string
       price: string
       priceRegex: RegExp
       category?: string
-      imgDataName?: string
     }
   }
 }
