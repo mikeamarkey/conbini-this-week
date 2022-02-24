@@ -19,7 +19,7 @@ export interface paths {
           id?: parameters["rowFilter.items.id"];
           /** enum conbini name as public.conbini */
           conbini?: parameters["rowFilter.items.conbini"];
-          href?: parameters["rowFilter.items.href"];
+          url?: parameters["rowFilter.items.url"];
           title?: parameters["rowFilter.items.title"];
           img?: parameters["rowFilter.items.img"];
           created_at?: parameters["rowFilter.items.created_at"];
@@ -78,7 +78,7 @@ export interface paths {
           id?: parameters["rowFilter.items.id"];
           /** enum conbini name as public.conbini */
           conbini?: parameters["rowFilter.items.conbini"];
-          href?: parameters["rowFilter.items.href"];
+          url?: parameters["rowFilter.items.url"];
           title?: parameters["rowFilter.items.title"];
           img?: parameters["rowFilter.items.img"];
           created_at?: parameters["rowFilter.items.created_at"];
@@ -101,7 +101,7 @@ export interface paths {
           id?: parameters["rowFilter.items.id"];
           /** enum conbini name as public.conbini */
           conbini?: parameters["rowFilter.items.conbini"];
-          href?: parameters["rowFilter.items.href"];
+          url?: parameters["rowFilter.items.url"];
           title?: parameters["rowFilter.items.title"];
           img?: parameters["rowFilter.items.img"];
           created_at?: parameters["rowFilter.items.created_at"];
@@ -134,8 +134,8 @@ export interface definitions {
      */
     id: number;
     /** enum conbini name as public.conbini */
-    conbini: "familymart" | "lawson";
-    href: string;
+    conbini: "familymart" | "lawson" | "seveneleven";
+    url: string;
     title: string;
     img: string;
     created_at: string;
@@ -170,7 +170,7 @@ export interface parameters {
   "rowFilter.items.id": string;
   /** enum conbini name as public.conbini */
   "rowFilter.items.conbini": string;
-  "rowFilter.items.href": string;
+  "rowFilter.items.url": string;
   "rowFilter.items.title": string;
   "rowFilter.items.img": string;
   "rowFilter.items.created_at": string;

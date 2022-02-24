@@ -8,8 +8,8 @@ export default function ConbiniList({ items }: Props) {
   return (
     <ul>
       {items.map((item) => (
-        <li key={item.href}>
-          <p>href: {item.href}</p>
+        <li key={item.url}>
+          <p>url: {item.url}</p>
           <p>title: {item.title}</p>
           <p>category: {item.category}</p>
           <p>price: {item.price}</p>
