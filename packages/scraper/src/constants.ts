@@ -21,7 +21,7 @@ export const conbinis: Conbinis = {
   },
   LAWSON: {
     name: 'lawson',
-    url: () => 'https://www.lawson.co.jp/recommend/new',
+    url: () => 'https://www.lawson.co.jp/recommend/new/',
     gotoOptions: { waitUntil: 'networkidle' },
     selectors: {
       list: '.recommend ul.heightLineParent > li',
