@@ -1,15 +1,35 @@
 import type { Item } from '@conbini-this-week/db/types'
-import { Card, Divider, Image, styled, Text } from '@nextui-org/react'
+import {
+  Card,
+  FormElement,
+  Image,
+  Input,
+  styled,
+  Text,
+} from '@nextui-org/react'
+import { ChangeEvent, useCallback, useMemo, useState } from 'react'
+import { useDebounce } from 'react-use'
 
 type Props = {
   items: Item[]
 }
+
+const Actions = styled('div', {
+  maxWidth: '480px',
+  margin: 'auto',
+  textAlign: 'center',
+  display: 'flex',
+})
 
 const List = styled('div', {
   display: 'flex',
   flexWrap: 'wrap',
   gap: '16px',
   paddingBottom: '64px',
+
+  [`${Actions} + &`]: {
+    marginTop: '32px',
+  },
 })
 
 const StyledAnchor = styled('a', {
@@ -33,13 +53,41 @@ const StyledCard = styled(Card, {
 })
 
 export default function ConbiniList({ items }: Props) {
+  const [search, setSearch] = useState('')
+  const [debouncedSearch, setDebouncedSearch] = useState('')
+  const handleSearchChange = useCallback((e: ChangeEvent<FormElement>) => {
+    setSearch(e.target.value)
+  }, [])
+
+  useDebounce(
+    () => {
+      setDebouncedSearch(search)
+    },
+    300,
+    [search]
+  )
+
+  const filteredItems = useMemo(() => {
+    return items.filter(({ title }) => {
+      return title.toLowerCase().includes(debouncedSearch.toLowerCase())
+    })
+  }, [items, debouncedSearch])
+
   return (
     <>
-      <Text size="$sm" weight="bold">
-        New Items: {items.length}
-      </Text>
+      <Actions>
+        <Input
+          aria-label="search"
+          onChange={handleSearchChange}
+          clearable
+          fullWidth
+          bordered
+          size="lg"
+          placeholder="Search for items..."
+        />
+      </Actions>
       <List>
-        {items.map((item) => (
+        {filteredItems.map((item) => (
           <StyledAnchor
             key={item.url}
             href={item.url}

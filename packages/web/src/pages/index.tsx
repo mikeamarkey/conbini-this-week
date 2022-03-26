@@ -1,13 +1,25 @@
 import Head from 'next/head'
-import ConbiniList from '../components/ConbiniList'
+import ItemList from '../components/ItemList'
 import type { Item } from '@conbini-this-week/db/types'
 import { Client } from '@conbini-this-week/db'
 import { apiUrl, publicKey } from '../constants'
-import { Container, Text } from '@nextui-org/react'
+import { Container, styled, Text } from '@nextui-org/react'
 
 type Props = {
   items: Item[]
 }
+
+const Header = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+})
+
+const Content = styled('div', {
+  [`${Header} + &`]: {
+    marginTop: '32px',
+  },
+})
 
 export function Home({ items }: Props) {
   return (
@@ -17,8 +29,16 @@ export function Home({ items }: Props) {
       </Head>
 
       <Container fluid>
-        <Text h1>{`This week's items`}</Text>
-        <ConbiniList items={items} />
+        <Header>
+          <Text h1>{`Conbini This Week`}</Text>
+          <Text size="$sm" weight="bold">
+            {items.length} new items this week!
+          </Text>
+        </Header>
+
+        <Content>
+          <ItemList items={items} />
+        </Content>
       </Container>
     </>
   )
