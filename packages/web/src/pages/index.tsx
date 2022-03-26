@@ -16,7 +16,16 @@ export function Home({ items }: Props) {
         <title>Conbini Scraper</title>
       </Head>
 
-      <Container fluid css={{ paddingTop: '$xl', paddingBottom: '$xl' }}>
+      <Container
+        fluid
+        css={{
+          padding: '$xl $xs',
+          '@xs': {
+            // reset to default padding
+            padding: '$xl calc(2 * $sm)',
+          },
+        }}
+      >
         <Header itemCount={items.length} />
         <Box css={{ marginTop: '$xl' }}>
           <Content items={items} />
