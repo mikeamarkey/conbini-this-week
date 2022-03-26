@@ -18,8 +18,11 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <Html lang="en">
-        <Head>{CssBaseline.flush()}</Head>
+      <Html lang="ja-jp">
+        <Head>
+          <meta charSet="utf-8" />
+          {CssBaseline.flush()}
+        </Head>
         <body>
           <Main />
           <NextScript />
