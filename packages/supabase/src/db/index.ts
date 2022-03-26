@@ -8,8 +8,21 @@ export class Client {
     this.client = createClient(url, key)
   }
 
+  private getLastWeekTimestamp = () => {
+    const now = new Date()
+    const nextWeek = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate() - 7
+    )
+    return nextWeek.toISOString()
+  }
+
   public getItems = async () => {
-    const { data, error } = await this.client.from<Item>('items').select()
+    const { data, error } = await this.client
+      .from<Item>('items')
+      .select()
+      .gt('created_at', this.getLastWeekTimestamp())
     if (error) {
       throw error
     }

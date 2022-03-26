@@ -15,10 +15,8 @@ export async function scrape(conbiniName: ConbiniNames) {
   })
 
   const items = await scrapeConbini(conbiniName, page)
-  const uploadData: InsertItem[] = items.slice(0, 10)
-  console.log(items)
   const client = new Client(supabaseUrl, supabaseKey)
-  const count = await client.insertItem(uploadData)
+  const count = await client.insertItem(items)
   await browser.close()
   return `${count} items uploaded!`
 }
