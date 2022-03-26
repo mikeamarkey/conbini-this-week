@@ -18,7 +18,6 @@ const Actions = styled('div', {
   maxWidth: '480px',
   margin: 'auto',
   textAlign: 'center',
-  display: 'flex',
 })
 
 const List = styled('div', {
@@ -68,8 +67,11 @@ export default function ConbiniList({ items }: Props) {
   )
 
   const filteredItems = useMemo(() => {
-    return items.filter(({ title }) => {
-      return title.toLowerCase().includes(debouncedSearch.toLowerCase())
+    return items.filter(({ title, conbini }) => {
+      return (
+        title.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+        conbini.toLowerCase().includes(debouncedSearch.toLowerCase())
+      )
     })
   }, [items, debouncedSearch])
 
@@ -85,6 +87,9 @@ export default function ConbiniList({ items }: Props) {
           size="lg"
           placeholder="Search for items..."
         />
+        <Text css={{ marginTop: '8px' }} size="sm">
+          Currently showing {filteredItems.length} items
+        </Text>
       </Actions>
       <List>
         {filteredItems.map((item) => (
