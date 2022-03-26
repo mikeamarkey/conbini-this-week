@@ -1,14 +1,7 @@
 import type { Item } from '@conbini-this-week/db/types'
-import {
-  Card,
-  FormElement,
-  Image,
-  Input,
-  styled,
-  Text,
-} from '@nextui-org/react'
-import { ChangeEvent, useCallback, useMemo, useState } from 'react'
-import { useDebounce } from 'react-use'
+import { Card, Image, styled, Text } from '@nextui-org/react'
+import { Controls } from 'components'
+import { useMemo, useState } from 'react'
 
 type Props = {
   items: Item[]
@@ -16,21 +9,11 @@ type Props = {
 
 const Wrapper = styled('div')
 
-const Actions = styled('div', {
-  maxWidth: '480px',
-  margin: 'auto',
-  textAlign: 'center',
-})
-
 const List = styled('div', {
   display: 'flex',
   flexWrap: 'wrap',
   gap: '16px',
   paddingBottom: '64px',
-
-  [`${Actions} + &`]: {
-    marginTop: '32px',
-  },
 })
 
 const StyledAnchor = styled('a', {
@@ -53,47 +36,25 @@ const StyledCard = styled(Card, {
   height: '100%',
 })
 
-export default function ConbiniList({ items }: Props) {
-  const [search, setSearch] = useState('')
-  const [debouncedSearch, setDebouncedSearch] = useState('')
-  const handleSearchChange = useCallback((e: ChangeEvent<FormElement>) => {
-    setSearch(e.target.value)
-  }, [])
-
-  useDebounce(
-    () => {
-      setDebouncedSearch(search)
-    },
-    300,
-    [search]
-  )
+export default function Content({ items }: Props) {
+  const [filter, setFilter] = useState('')
 
   const filteredItems = useMemo(() => {
     return items.filter(({ title, conbini }) => {
       return (
-        title.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
-        conbini.toLowerCase().includes(debouncedSearch.toLowerCase())
+        title.toLowerCase().includes(filter.toLowerCase()) ||
+        conbini.toLowerCase().includes(filter.toLowerCase())
       )
     })
-  }, [items, debouncedSearch])
+  }, [items, filter])
 
   return (
     <Wrapper>
-      <Actions>
-        <Input
-          aria-label="search"
-          onChange={handleSearchChange}
-          clearable
-          fullWidth
-          bordered
-          size="lg"
-          placeholder="Search for items..."
-        />
-        <Text css={{ marginTop: '8px' }} size="sm">
-          Currently showing {filteredItems.length} items
-        </Text>
-      </Actions>
-      <List>
+      <Controls setFilter={setFilter} />
+      <Text css={{ marginTop: '8px', textAlign: 'center' }} size="sm">
+        Currently showing {filteredItems.length} items
+      </Text>
+      <List css={{ marginTop: '32px' }}>
         {filteredItems.map((item) => (
           <StyledAnchor
             key={item.url}
