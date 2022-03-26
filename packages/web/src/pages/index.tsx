@@ -8,16 +8,18 @@ type Props = {
   items: Item[]
 }
 
-export const Home = ({ items }: Props) => (
-  <>
-    <Head>
-      <title>Conbini Scraper</title>
-    </Head>
+export function Home({ items }: Props) {
+  return (
+    <>
+      <Head>
+        <title>Conbini Scraper</title>
+      </Head>
 
-    <p>{`This week's items`}</p>
-    <ConbiniList items={items} />
-  </>
-)
+      <p>{`This week's items`}</p>
+      <ConbiniList items={items} />
+    </>
+  )
+}
 
 export async function getStaticProps() {
   const client = new Client(apiUrl, publicKey)
