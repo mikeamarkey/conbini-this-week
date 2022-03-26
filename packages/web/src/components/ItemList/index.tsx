@@ -97,13 +97,19 @@ export default function ConbiniList({ items }: Props) {
             <StyledCard shadow hoverable>
               <Image src={item.img} alt={item.title} />
               <Text weight="bold">{item.title}</Text>
-              <Card.Footer>
+              <Card.Footer css={{ justifyContent: 'space-between' }}>
                 <Text size="sm" weight="bold">
                   {new Intl.NumberFormat('ja-JP', {
                     style: 'currency',
                     currency: 'JPY',
                   }).format(item.price)}
                 </Text>
+                <Image
+                  containerCss={{ margin: 0 }}
+                  width="36px"
+                  src={`/${item.conbini}.png`}
+                  alt={item.conbini}
+                />
               </Card.Footer>
             </StyledCard>
           </StyledAnchor>
