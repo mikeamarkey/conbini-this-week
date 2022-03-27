@@ -13,7 +13,7 @@ export function Home({ items }: Props) {
   return (
     <>
       <Head>
-        <title>Conbini Scraper</title>
+        <title>Conbini This Week</title>
       </Head>
 
       <Container
