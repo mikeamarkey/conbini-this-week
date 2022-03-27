@@ -1,4 +1,3 @@
-import { FormElement, Input, styled } from '@nextui-org/react'
 import {
   ChangeEvent,
   Dispatch,
@@ -6,10 +5,16 @@ import {
   useCallback,
   useState,
 } from 'react'
+import { FormElement, Input, styled } from '@nextui-org/react'
 import { useDebounce } from 'react-use'
+import { ConbiniName } from '@conbini-this-week/db/types'
+import { Box, ConbiniLogo } from 'components'
+
+const conbinis: ConbiniName[] = ['lawson', 'familymart', 'seveneleven']
 
 type Props = {
-  setFilter: Dispatch<SetStateAction<string>>
+  setConbiniFilter: Dispatch<SetStateAction<ConbiniName | undefined>>
+  setTextFilter: Dispatch<SetStateAction<string>>
 }
 
 const Wrapper = styled('div', {
@@ -17,19 +22,57 @@ const Wrapper = styled('div', {
   margin: 'auto',
 })
 
-export default function Controls({ setFilter }: Props) {
+const ClickableDiv = styled('div', {
+  cursor: 'pointer',
+  margin: '$xs',
+  padding: '$xs',
+  borderRadius: '$pill',
+  border: '2px solid $accents2',
+
+  '&:hover': {
+    backgroundColor: '$accents1',
+  },
+})
+
+const activeStyles = {
+  borderColor: '$pink500',
+}
+
+export default function Controls({ setConbiniFilter, setTextFilter }: Props) {
   const [search, setSearch] = useState('')
+  const [activeConbini, setActiveConbini] = useState<ConbiniName | undefined>(
+    undefined
+  )
 
   const handleSearchChange = useCallback((e: ChangeEvent<FormElement>) => {
     setSearch(e.target.value)
   }, [])
 
+  const handleConbiniClick = useCallback(
+    (conbiniName: ConbiniName) => {
+      if (activeConbini === conbiniName) {
+        setActiveConbini(undefined)
+      } else {
+        setActiveConbini(conbiniName)
+      }
+    },
+    [activeConbini]
+  )
+
   useDebounce(
     () => {
-      setFilter(search)
+      setTextFilter(search)
     },
     200,
     [search]
+  )
+
+  useDebounce(
+    () => {
+      setConbiniFilter(activeConbini)
+    },
+    50,
+    [activeConbini]
   )
 
   return (
@@ -43,6 +86,19 @@ export default function Controls({ setFilter }: Props) {
         size="lg"
         placeholder="Search for items..."
       />
+      <Box
+        css={{ marginTop: '$xs', display: 'flex', justifyContent: 'center' }}
+      >
+        {conbinis.map((conbini) => (
+          <ClickableDiv
+            key={conbini}
+            onClick={() => handleConbiniClick(conbini)}
+            css={activeConbini === conbini ? activeStyles : {}}
+          >
+            <ConbiniLogo conbiniName={conbini} size={30} />
+          </ClickableDiv>
+        ))}
+      </Box>
     </Wrapper>
   )
 }
