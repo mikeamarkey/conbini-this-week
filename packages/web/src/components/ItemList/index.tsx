@@ -1,6 +1,6 @@
-import { Card, Grid, Image, Text } from '@nextui-org/react'
+import { Card, Grid, Text } from '@nextui-org/react'
 import { Item } from '@conbini-this-week/db/types'
-import { Link } from 'components'
+import { ConbiniLogo, Link } from 'components'
 import { formatCurrency } from 'utils/number'
 
 type Props = {
@@ -21,7 +21,7 @@ export default function ItemList({ filteredItems, itemCount }: Props) {
 
   return (
     <>
-      <Text css={{ textAlign: 'center' }} size="sm">
+      <Text css={{ textAlign: 'center', margin: 0 }} size="sm">
         Currently showing {itemCountText} items
       </Text>
 
@@ -45,12 +45,7 @@ export default function ItemList({ filteredItems, itemCount }: Props) {
                   <Text size="sm" weight="bold">
                     {formatCurrency(item.price)}
                   </Text>
-                  <Image
-                    containerCss={{ margin: 0 }}
-                    width="36px"
-                    src={`/${item.conbini}.png`}
-                    alt={item.conbini}
-                  />
+                  <ConbiniLogo size={24} conbiniName={item.conbini} />
                 </Card.Footer>
               </Card>
             </Link>

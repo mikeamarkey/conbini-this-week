@@ -1,5 +1,5 @@
-import type { Item } from '@conbini-this-week/db/types'
-import { Controls, ItemList } from 'components'
+import type { ConbiniName, Item } from '@conbini-this-week/db/types'
+import { Box, Controls, ItemList } from 'components'
 import { useMemo, useState } from 'react'
 
 type Props = {
@@ -7,21 +7,37 @@ type Props = {
 }
 
 export default function Content({ items }: Props) {
-  const [filter, setFilter] = useState('')
+  const [conbiniFilter, setConbiniFilter] = useState<ConbiniName | undefined>(
+    undefined
+  )
+  const [textFilter, setTextFilter] = useState('')
 
   const filteredItems = useMemo(() => {
     return items.filter(({ title, conbini }) => {
-      return (
-        title.toLowerCase().includes(filter.toLowerCase()) ||
-        conbini.toLowerCase().includes(filter.toLowerCase())
-      )
+      if (conbiniFilter && conbini !== conbiniFilter) {
+        return false
+      }
+
+      if (textFilter) {
+        return (
+          title.toLowerCase().includes(textFilter.toLowerCase()) ||
+          conbini.toLowerCase().includes(textFilter.toLowerCase())
+        )
+      }
+
+      return true
     })
-  }, [items, filter])
+  }, [conbiniFilter, items, textFilter])
 
   return (
     <>
-      <Controls setFilter={setFilter} />
-      <ItemList itemCount={items.length} filteredItems={filteredItems} />
+      <Controls
+        setConbiniFilter={setConbiniFilter}
+        setTextFilter={setTextFilter}
+      />
+      <Box css={{ marginTop: '$lg' }}>
+        <ItemList itemCount={items.length} filteredItems={filteredItems} />
+      </Box>
     </>
   )
 }
