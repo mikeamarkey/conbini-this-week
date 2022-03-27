@@ -1,25 +1,13 @@
 import Head from 'next/head'
-import ItemList from '../components/ItemList'
 import type { Item } from '@conbini-this-week/db/types'
 import { Client } from '@conbini-this-week/db'
 import { apiUrl, publicKey } from '../constants'
-import { Container, styled, Text } from '@nextui-org/react'
+import { Container } from '@nextui-org/react'
+import { Box, Content, Header } from 'components'
 
 type Props = {
   items: Item[]
 }
-
-const Header = styled('div', {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-})
-
-const Content = styled('div', {
-  [`${Header} + &`]: {
-    marginTop: '32px',
-  },
-})
 
 export function Home({ items }: Props) {
   return (
@@ -28,17 +16,20 @@ export function Home({ items }: Props) {
         <title>Conbini Scraper</title>
       </Head>
 
-      <Container fluid>
-        <Header>
-          <Text h1>{`Conbini This Week`}</Text>
-          <Text size="$sm" weight="bold">
-            {items.length} new items this week!
-          </Text>
-        </Header>
-
-        <Content>
-          <ItemList items={items} />
-        </Content>
+      <Container
+        fluid
+        css={{
+          padding: '$xl $xs',
+          '@xs': {
+            // reset to default padding
+            padding: '$xl calc(2 * $sm)',
+          },
+        }}
+      >
+        <Header itemCount={items.length} />
+        <Box css={{ marginTop: '$xl' }}>
+          <Content items={items} />
+        </Box>
       </Container>
     </>
   )
