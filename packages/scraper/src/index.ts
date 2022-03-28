@@ -20,8 +20,12 @@ async function main() {
     return
   }
 
-  const result = await scrape(conbiniName)
-  console.log(result)
+  try {
+    const result = await scrape(conbiniName)
+    console.log(result)
+  } catch (e) {
+    console.error(e)
+  }
 }
 
 main()

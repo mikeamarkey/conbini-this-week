@@ -7,18 +7,23 @@ import { conbinis, supabaseKey, supabaseUrl } from './constants'
 
 export async function scrape(conbiniName: ConbiniNames) {
   const browser = await chromium.launch()
-  const page = await browser.newPage()
-  page.on('console', (message) => {
-    if (message.type() === 'error') {
-      console.error(message)
-    }
-  })
+  try {
+    const page = await browser.newPage()
+    page.on('console', (message) => {
+      if (message.type() === 'error') {
+        console.error(message)
+      }
+    })
 
-  const items = await scrapeConbini(conbiniName, page)
-  const client = new Client(supabaseUrl, supabaseKey)
-  const count = await client.insertItem(items)
-  await browser.close()
-  return `${count} items uploaded!`
+    const items = await scrapeConbini(conbiniName, page)
+    const client = new Client(supabaseUrl, supabaseKey)
+    const count = await client.insertItem(items)
+    await browser.close()
+    return `${count} items uploaded!`
+  } catch (e) {
+    await browser.close()
+    throw e
+  }
 }
 
 async function scrapeConbini(conbiniName: ConbiniNames, page: Page) {
