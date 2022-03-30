@@ -2,6 +2,7 @@ import { Card, Grid, Text } from '@nextui-org/react'
 import { Item } from '@conbini-this-week/db/types'
 import { ConbiniLogo, Link } from 'components'
 import { formatCurrency } from 'utils/number'
+import Image from 'next/image'
 
 type Props = {
   filteredItems: Item[]
@@ -35,7 +36,13 @@ export default function ItemList({ filteredItems, itemCount }: Props) {
               css={{ width: '100%', height: '100%' }}
             >
               <Card css={{ height: '100%' }} shadow hoverable>
-                <Card.Image src={item.img} alt={item.title} />
+                <Image
+                  src={item.img}
+                  alt={item.title}
+                  width="480px"
+                  height="400px"
+                  objectFit="cover"
+                />
                 <Card.Body css={{ paddingBottom: '$xs' }}>
                   <Text weight="bold">{item.title}</Text>
                 </Card.Body>

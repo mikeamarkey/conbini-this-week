@@ -8,7 +8,11 @@ const nextConfig = {
     externalDir: true,
   },
   images: {
-    domains: [],
+    domains: [
+      'www.lawson.co.jp',
+      'img.7api-01.dp1.sej.co.jp',
+      'www.family.co.jp',
+    ],
   },
 }
 
