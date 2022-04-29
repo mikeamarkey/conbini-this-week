@@ -18,12 +18,20 @@ export async function scrape(conbiniName: ConbiniNames) {
     const items = await scrapeConbini(conbiniName, page)
     const client = new Client(supabaseUrl, supabaseKey)
     const count = await client.insertItem(items)
+    console.log(`${count} items from ${conbiniName} inserted`)
     await browser.close()
-    return `${count} items uploaded!`
   } catch (e) {
     await browser.close()
     throw e
   }
+}
+
+export async function scrapeAll() {
+  const promises = Object.keys(conbinis).map((conbiniName) => {
+    // TODO: better handling of keys/names
+    return scrape(conbiniName as ConbiniNames)
+  })
+  return Promise.all(promises)
 }
 
 async function scrapeConbini(conbiniName: ConbiniNames, page: Page) {
