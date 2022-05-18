@@ -1,7 +1,7 @@
 import 'dotenv/config'
 
 import type { ConbiniNames } from './types'
-import { scrape } from './scrape'
+import { scrape, scrapeAll } from './scrape'
 import { conbinis } from './constants'
 
 const args = process.argv.slice(2)
@@ -9,8 +9,8 @@ const nameArg = args[0]
 
 const isValidConbiniName = (
   conbiniName: string
-): conbiniName is ConbiniNames => {
-  return conbiniName in conbinis
+): conbiniName is ConbiniNames | 'ALL' => {
+  return conbiniName in conbinis || conbiniName === 'ALL'
 }
 
 async function main() {
@@ -21,8 +21,12 @@ async function main() {
   }
 
   try {
-    const result = await scrape(conbiniName)
-    console.log(result)
+    if (conbiniName === 'ALL') {
+      await scrapeAll()
+    } else {
+      await scrape(conbiniName)
+    }
+    console.log('Done scraping :-)')
   } catch (e) {
     console.error(e)
   }
