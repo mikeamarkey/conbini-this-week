@@ -16,7 +16,7 @@ const Title = styled('h1', {
 export default function Header({ itemCount }: { itemCount: number }) {
   return (
     <Wrapper>
-      <Title>{`Conbini This Week`}</Title>
+      <Title>Conbini This Week</Title>
       <Text size="$sm" weight="bold">
         {itemCount} new items this week!
       </Text>
