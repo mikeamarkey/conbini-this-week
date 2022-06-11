@@ -5,7 +5,7 @@
   "scripts": {
     "fix:staged-files": "lint-staged --allow-empty",
     "lint": "eslint . --ext ts",
-    "scrape": "ts-node -r tsconfig-paths/register api/_script.ts",
+    "scrape": "ts-node -r tsconfig-paths/register src/index.ts",
     "type-check": "tsc --pretty --noEmit"
   },
   "dependencies": {
