@@ -1,8 +1,8 @@
 import { Client } from '@conbini-this-week/db'
 import type { InsertItem } from '@conbini-this-week/db/types'
-import type { ConbiniName } from './types'
-import { conbinis, supabaseKey, supabaseUrl } from './constants'
+import { conbinis, supabaseKey, supabaseUrl } from 'constant'
 import { JSDOM } from 'jsdom'
+import type { ConbiniName } from 'types'
 
 export async function scrape(name: ConbiniName) {
   const items = await scrapeConbini(name)

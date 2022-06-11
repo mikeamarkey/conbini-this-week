@@ -1,27 +1,22 @@
 import 'dotenv/config'
 
-import type { ConbiniName } from './types'
-import { scrape, scrapeAll } from './scrape'
-import { conbinis } from './constants'
+import { scrape, scrapeAll } from 'scrape'
+import { isValidConbiniName } from 'utils'
 
 const args = process.argv.slice(2)
 const nameArg = args[0]
 
-const isValidArg = (name: string): name is ConbiniName | 'all' => {
-  return name in conbinis || name === 'all'
-}
-
-async function main() {
-  if (!isValidArg(nameArg)) {
+export async function main(name: string) {
+  if (!isValidConbiniName(name)) {
     console.log('Please provide a proper conbini name')
     return
   }
 
   try {
-    if (nameArg === 'all') {
+    if (name === 'all') {
       await scrapeAll()
     } else {
-      await scrape(nameArg)
+      await scrape(name)
     }
     console.log('Done scraping :-)')
   } catch (e) {
@@ -29,4 +24,4 @@ async function main() {
   }
 }
 
-main()
+main(nameArg)
