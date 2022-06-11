@@ -1,7 +1,7 @@
 import 'dotenv/config'
 
-import { scrape, scrapeAll } from 'scrape'
-import { isValidConbiniName } from 'utils'
+import { scrape, scrapeAll } from './scrape'
+import { isValidConbiniName } from './utils'
 
 const args = process.argv.slice(2)
 const nameArg = args[0]

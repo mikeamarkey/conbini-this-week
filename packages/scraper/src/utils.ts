@@ -1,5 +1,5 @@
-import { conbinis } from 'constant'
-import { ConbiniName } from 'types'
+import { conbinis } from './constant'
+import { ConbiniName } from './types'
 
 export const isValidConbiniName = (
   name: string
