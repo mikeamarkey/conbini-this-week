@@ -27,7 +27,7 @@ export function Home({ items }: Props) {
         }}
       >
         <Header itemCount={items.length} />
-        <Box css={{ marginTop: '$xl' }}>
+        <Box css={{ marginTop: '$xl', paddingBottom: '$md' }}>
           <Content items={items} />
         </Box>
         <Box
