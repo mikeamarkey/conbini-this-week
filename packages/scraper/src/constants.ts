@@ -1,5 +1,3 @@
-import type { Page } from 'playwright-chromium'
-
 import type { Conbinis } from './types'
 
 export const supabaseKey = process.env.SUPABASE_PRIVATE_KEY ?? ''
@@ -8,7 +6,8 @@ export const supabaseUrl = process.env.SUPABASE_API_URL ?? ''
 export const conbinis: Conbinis = {
   FAMILYMART: {
     name: 'familymart',
-    url: () => 'https://www.family.co.jp/goods/newgoods.html',
+    rootUrl: 'https://www.family.co.jp',
+    listUrl: () => 'https://www.family.co.jp/goods/newgoods.html',
     selectors: {
       list: '.ly-goods-list-area .ly-mod-layout-clm',
       url: '.ly-mod-infoset4-link',
@@ -21,8 +20,8 @@ export const conbinis: Conbinis = {
   },
   LAWSON: {
     name: 'lawson',
-    url: () => 'https://www.lawson.co.jp/recommend/new/',
-    gotoOptions: { waitUntil: 'networkidle' },
+    rootUrl: 'https://www.lawson.co.jp',
+    listUrl: () => 'https://www.lawson.co.jp/recommend/new/',
     selectors: {
       list: '.recommend ul.heightLineParent > li',
       url: 'a',
@@ -34,15 +33,9 @@ export const conbinis: Conbinis = {
   },
   SEVENELEVEN: {
     name: 'seveneleven',
-    url: (page = 1) =>
+    rootUrl: 'https://www.sej.co.jp',
+    listUrl: (page = 1) =>
       `https://www.sej.co.jp/products/a/thisweek/area/hokuriku/${page}/l100/`,
-    getPageCount: async (page: Page) => {
-      return await page.$eval('.pager_ctrl .counter', (el: HTMLElement) => {
-        const matches = el.innerText.trim().match(/^(\d+)件/)
-        const count = Number(matches?.[1] ?? '1')
-        return Math.ceil(count / 100)
-      })
-    },
     selectors: {
       list: '.pbMainArea .pbNested .pbNestedWrapper .list_inner',
       url: 'a',
