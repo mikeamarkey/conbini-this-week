@@ -1,10 +1,10 @@
-import type { ConbiniName } from '@conbini-this-week/db/types'
+import type { ConbiniName as DBConbiniName } from '@conbini-this-week/db/types'
 
-export type Conbinis = {
-  [Name in ConbiniName as Uppercase<Name>]: {
-    name: Name
-    rootUrl: string
-    listUrl: (page?: number) => string
+export type Conbini = {
+  [name in DBConbiniName]: {
+    name: name
+    baseUrl: string
+    newItemsUrl: (page?: number) => string
     selectors: {
       list: string
       url: string
@@ -18,4 +18,4 @@ export type Conbinis = {
   }
 }
 
-export type ConbiniNames = keyof Conbinis
+export type ConbiniName = keyof Conbini

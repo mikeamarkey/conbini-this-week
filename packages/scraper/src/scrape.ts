@@ -1,30 +1,29 @@
 import { Client } from '@conbini-this-week/db'
 import type { InsertItem } from '@conbini-this-week/db/types'
-import type { ConbiniNames } from './types'
+import type { ConbiniName } from './types'
 import { conbinis, supabaseKey, supabaseUrl } from './constants'
 import { JSDOM } from 'jsdom'
 
-export async function scrape(conbiniName: ConbiniNames) {
-  const items = await scrapeConbini(conbiniName)
+export async function scrape(name: ConbiniName) {
+  const items = await scrapeConbini(name)
   const client = new Client(supabaseUrl, supabaseKey)
   const count = await client.insertItem(items)
-  console.log(`${count} items from ${conbiniName} inserted`)
+  console.log(`${count} items from ${name} inserted`)
 }
 
 export async function scrapeAll() {
-  const promises = Object.keys(conbinis).map((conbiniName) => {
-    // TODO: better handling of keys/names
-    return scrape(conbiniName as ConbiniNames)
+  const promises = Object.keys(conbinis).map((name) => {
+    return scrape(name as ConbiniName)
   })
   return Promise.all(promises)
 }
 
-async function scrapeConbini(conbiniName: ConbiniNames) {
-  const conbini = conbinis[conbiniName]
+async function scrapeConbini(name: ConbiniName) {
+  const conbini = conbinis[name]
   switch (conbini.name) {
     case 'lawson': {
-      let document = (await JSDOM.fromURL(conbini.listUrl())).window.document
-        .documentElement
+      let document = (await JSDOM.fromURL(conbini.newItemsUrl())).window
+        .document.documentElement
       const redirectContent = document
         .querySelector('meta[http-equiv="Refresh"]')
         ?.getAttribute('content')
@@ -32,7 +31,7 @@ async function scrapeConbini(conbiniName: ConbiniNames) {
       if (!redirectPath) {
         throw new Error('Failed to get redirect path')
       }
-      document = (await JSDOM.fromURL(`${conbini.rootUrl}${redirectPath}`))
+      document = (await JSDOM.fromURL(`${conbini.baseUrl}${redirectPath}`))
         .window.document.documentElement
       const listItems = document.querySelectorAll(conbini.selectors.list)
       const collectedItems = await collectPageItems(listItems, conbini)
@@ -41,16 +40,16 @@ async function scrapeConbini(conbiniName: ConbiniNames) {
     }
 
     case 'familymart': {
-      const document = (await JSDOM.fromURL(conbini.listUrl())).window.document
-        .documentElement
+      const document = (await JSDOM.fromURL(conbini.newItemsUrl())).window
+        .document.documentElement
       const listItems = await document.querySelectorAll(conbini.selectors.list)
       const collectedItems = await collectPageItems(listItems, conbini)
       return collectedItems
     }
 
     case 'seveneleven': {
-      let document = (await JSDOM.fromURL(conbini.listUrl())).window.document
-        .documentElement
+      let document = (await JSDOM.fromURL(conbini.newItemsUrl())).window
+        .document.documentElement
       const counter = document.querySelector<HTMLElement>(
         '.pager_ctrl .counter'
       )
@@ -61,7 +60,7 @@ async function scrapeConbini(conbiniName: ConbiniNames) {
       const collectedItems: InsertItem[] = []
       for (let pageNum = 1; pageNum <= pageCount; pageNum++) {
         if (pageNum !== 1) {
-          document = (await JSDOM.fromURL(conbini.listUrl(pageNum))).window
+          document = (await JSDOM.fromURL(conbini.newItemsUrl(pageNum))).window
             .document.documentElement
         }
         const listItems = document.querySelectorAll(conbini.selectors.list)
