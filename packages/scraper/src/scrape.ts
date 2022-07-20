@@ -1,96 +1,110 @@
-import { chromium, Page } from 'playwright-chromium'
-
 import { Client } from '@conbini-this-week/db'
 import type { InsertItem } from '@conbini-this-week/db/types'
-import type { ConbiniNames } from './types'
+import type { ConbiniName } from './types'
 import { conbinis, supabaseKey, supabaseUrl } from './constants'
+import { JSDOM } from 'jsdom'
 
-export async function scrape(conbiniName: ConbiniNames) {
-  const browser = await chromium.launch()
-  try {
-    const page = await browser.newPage()
-    page.on('console', (message) => {
-      if (message.type() === 'error') {
-        console.error(message)
-      }
-    })
-
-    const items = await scrapeConbini(conbiniName, page)
-    const client = new Client(supabaseUrl, supabaseKey)
-    const count = await client.insertItem(items)
-    console.log(`${count} items from ${conbiniName} inserted`)
-    await browser.close()
-  } catch (e) {
-    await browser.close()
-    throw e
-  }
+export async function scrape(name: ConbiniName) {
+  const items = await scrapeConbini(name)
+  const client = new Client(supabaseUrl, supabaseKey)
+  const count = await client.insertItem(items)
+  console.log(`${count} items from ${name} inserted`)
 }
 
 export async function scrapeAll() {
-  const promises = Object.keys(conbinis).map((conbiniName) => {
-    // TODO: better handling of keys/names
-    return scrape(conbiniName as ConbiniNames)
+  const promises = Object.keys(conbinis).map((name) => {
+    return scrape(name as ConbiniName)
   })
   return Promise.all(promises)
 }
 
-async function scrapeConbini(conbiniName: ConbiniNames, page: Page) {
-  const conbini = conbinis[conbiniName]
-  const collectedItems: InsertItem[] = []
-  await page.goto(conbini.url(), { ...(conbini.gotoOptions ?? {}) })
-  const pageCount = !conbini.getPageCount ? 1 : await conbini.getPageCount(page)
-  for (let pageNum = 1; pageNum <= pageCount; pageNum++) {
-    if (pageNum !== 1) {
-      await page.goto(conbini.url(pageNum), { ...(conbini.gotoOptions ?? {}) })
+async function scrapeConbini(name: ConbiniName) {
+  const conbini = conbinis[name]
+  switch (conbini.name) {
+    case 'lawson': {
+      let document = (await JSDOM.fromURL(conbini.newItemsUrl())).window
+        .document.documentElement
+      const redirectContent = document
+        .querySelector('meta[http-equiv="Refresh"]')
+        ?.getAttribute('content')
+      const redirectPath = redirectContent?.match(/URL=(.*)/)?.[1]
+      if (!redirectPath) {
+        throw new Error('Failed to get redirect path')
+      }
+      document = (await JSDOM.fromURL(`${conbini.baseUrl}${redirectPath}`))
+        .window.document.documentElement
+      const listItems = document.querySelectorAll(conbini.selectors.list)
+      const collectedItems = await collectPageItems(listItems, conbini)
+      return collectedItems
+      return []
     }
-    const newItems = await collectPageItems(page, conbini)
-    collectedItems.push(...newItems)
+
+    case 'familymart': {
+      const document = (await JSDOM.fromURL(conbini.newItemsUrl())).window
+        .document.documentElement
+      const listItems = await document.querySelectorAll(conbini.selectors.list)
+      const collectedItems = await collectPageItems(listItems, conbini)
+      return collectedItems
+    }
+
+    case 'seveneleven': {
+      let document = (await JSDOM.fromURL(conbini.newItemsUrl())).window
+        .document.documentElement
+      const counter = document.querySelector<HTMLElement>(
+        '.pager_ctrl .counter'
+      )
+      const matches = counter?.textContent?.trim().match(/^(\d+)件/)
+      const count = Number(matches?.[1] ?? '1')
+      const pageCount = Math.ceil(count / 100)
+
+      const collectedItems: InsertItem[] = []
+      for (let pageNum = 1; pageNum <= pageCount; pageNum++) {
+        if (pageNum !== 1) {
+          document = (await JSDOM.fromURL(conbini.newItemsUrl(pageNum))).window
+            .document.documentElement
+        }
+        const listItems = document.querySelectorAll(conbini.selectors.list)
+        const newItems = await collectPageItems(listItems, conbini)
+        collectedItems.push(...newItems)
+      }
+      return collectedItems
+    }
   }
-  return collectedItems
 }
 
 async function collectPageItems(
-  page: Page,
+  listItems: NodeListOf<Element>,
   conbini: typeof conbinis[keyof typeof conbinis]
 ): Promise<InsertItem[]> {
   const { selectors } = conbini
-  const items = await page.$$eval(
-    selectors.list,
-    (els, selectors) => {
-      return els.map((el) => {
-        const url =
-          el.querySelector<HTMLAnchorElement>(selectors.url)?.href?.trim() ?? ''
-        const title =
-          el.querySelector<HTMLElement>(selectors.title)?.textContent?.trim() ??
-          ''
-        const img = selectors.imgDataName
-          ? el.querySelector<HTMLImageElement>(selectors.img)?.dataset[
-              selectors.imgDataName
-            ] ?? ''
-          : el.querySelector<HTMLImageElement>(selectors.img)?.src ?? ''
-        const priceMatches = el
-          ?.querySelector<HTMLElement>(selectors.price)
-          ?.textContent?.match(selectors.priceRegex)
-        const price = Math.ceil(
-          Number(priceMatches?.[1].replace(',', '') ?? '0')
-        )
-        const category = !selectors.category
-          ? undefined
-          : el
-              .querySelector<HTMLElement>(selectors.category)
-              ?.textContent?.trim() ?? ''
+  const items = Array.from(listItems, (el) => {
+    const url =
+      el.querySelector<HTMLAnchorElement>(selectors.url)?.href?.trim() ?? ''
+    const title =
+      el.querySelector<HTMLElement>(selectors.title)?.textContent?.trim() ?? ''
+    const img = selectors.imgDataName
+      ? el.querySelector<HTMLImageElement>(selectors.img)?.dataset[
+          selectors.imgDataName
+        ] ?? ''
+      : el.querySelector<HTMLImageElement>(selectors.img)?.src ?? ''
+    const priceMatches = el
+      ?.querySelector<HTMLElement>(selectors.price)
+      ?.textContent?.match(selectors.priceRegex)
+    const price = Math.ceil(Number(priceMatches?.[1].replace(',', '') ?? '0'))
+    const category = !selectors.category
+      ? undefined
+      : el
+          .querySelector<HTMLElement>(selectors.category)
+          ?.textContent?.trim() ?? ''
 
-        return {
-          url,
-          title,
-          category,
-          img,
-          price,
-        }
-      })
-    },
-    selectors
-  )
+    return {
+      url,
+      title,
+      category,
+      img,
+      price,
+    }
+  })
 
   return items.map((item) => {
     return {

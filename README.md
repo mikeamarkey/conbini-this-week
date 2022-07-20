@@ -18,7 +18,7 @@ See what's coming up this week at the conbini (Japanese convenience stores)
 
 ### Packages
 
-- `scraper`: a playwright scraper for gathering conbini item details
+- `scraper`: a scraper for gathering conbini item details
 - `supabase`: db tools through supabase's postgresql api
 - `web`: a nextjs webapp for displaying upcoming items
 
