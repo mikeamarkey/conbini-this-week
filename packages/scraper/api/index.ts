@@ -15,18 +15,17 @@ export default async function (req: VercelRequest, res: VercelResponse) {
     return
   }
 
-  const conbiniName = name.toUpperCase()
-  if (!isValidConbiniName(conbiniName)) {
+  if (!isValidConbiniName(name)) {
     res.status(400).send('Please provide a correct name')
     return
   }
 
   try {
-    if (conbiniName === 'ALL') {
+    if (name === 'all') {
       const result = await scrapeAll()
       res.status(200).send(`${result} items added`)
     } else {
-      const result = await scrape(conbiniName)
+      const result = await scrape(name)
       res.status(200).send(`${result} items from ${name} added`)
     }
   } catch (e) {
