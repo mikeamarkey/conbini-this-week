@@ -21,13 +21,13 @@
     "type-check": "yarn workspaces run type-check"
   },
   "devDependencies": {
-    "@types/eslint": "^8.4.1",
+    "@types/eslint": "^8.4.5",
     "@types/shell-quote": "^1.7.1",
-    "eslint": "^8.12.0",
-    "husky": "^7.0.4",
-    "lint-staged": "^12.3.7",
-    "npm-check-updates": "^12.5.4",
-    "prettier": "^2.6.1",
+    "eslint": "^8.20.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "npm-check-updates": "^15.3.4",
+    "prettier": "^2.7.1",
     "shell-quote": "^1.7.3"
   }
 }

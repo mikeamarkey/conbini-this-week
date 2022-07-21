@@ -14,11 +14,12 @@ export async function main(name: string) {
 
   try {
     if (name === 'all') {
-      await scrapeAll()
+      const result = await scrapeAll()
+      console.log(`${result} items added`)
     } else {
-      await scrape(name)
+      const result = await scrape(name)
+      console.log(`${result} items from ${name} added`)
     }
-    console.log('Done scraping :-)')
   } catch (e) {
     console.error(e)
   }
