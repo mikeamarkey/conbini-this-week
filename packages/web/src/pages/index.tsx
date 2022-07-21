@@ -3,7 +3,7 @@ import type { Item } from '@conbini-this-week/db/types'
 import { Client } from '@conbini-this-week/db'
 import { apiUrl, publicKey } from '../constants'
 import { Container } from '@nextui-org/react'
-import { Box, Content, Header } from 'components'
+import { Box, Content, Footer, Header } from 'components'
 
 type Props = {
   items: Item[]
@@ -27,8 +27,17 @@ export function Home({ items }: Props) {
         }}
       >
         <Header itemCount={items.length} />
-        <Box css={{ marginTop: '$xl' }}>
+        <Box css={{ marginTop: '$xl', paddingBottom: '$md' }}>
           <Content items={items} />
+        </Box>
+        <Box
+          css={{
+            marginTop: '$sm',
+            padding: '$md $sm',
+            borderTop: '1px solid $border',
+          }}
+        >
+          <Footer />
         </Box>
       </Container>
     </>

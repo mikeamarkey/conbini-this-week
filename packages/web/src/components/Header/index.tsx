@@ -7,17 +7,17 @@ const Wrapper = styled('div', {
 })
 
 const Title = styled('h1', {
-  fontSize: '$lg',
+  fontSize: '$xl4',
   '@sm': {
-    fontSize: '$xl',
+    fontSize: '$xl5',
   },
 })
 
 export default function Header({ itemCount }: { itemCount: number }) {
   return (
     <Wrapper>
-      <Title>{`Conbini This Week`}</Title>
-      <Text size="$sm" weight="bold">
+      <Title>Conbini This Week</Title>
+      <Text size="$xl" weight="bold">
         {itemCount} new items this week!
       </Text>
     </Wrapper>
