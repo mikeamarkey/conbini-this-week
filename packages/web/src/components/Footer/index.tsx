@@ -14,7 +14,7 @@ export default function Footer() {
           alt="Conbini This Week"
         />
       </Link>
-      <Text size="$xs" css={{ marginTop: '$xs' }}>
+      <Text size="$sm" css={{ marginTop: '$xs' }}>
         {`This project is made with ❤️ for the conbini.`}
         <br />
         {`All images and text belong to the respective companies.`}

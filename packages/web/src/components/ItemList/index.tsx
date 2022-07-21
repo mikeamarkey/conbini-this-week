@@ -22,7 +22,7 @@ export default function ItemList({ filteredItems, itemCount }: Props) {
 
   return (
     <>
-      <Text css={{ textAlign: 'center', margin: 0 }} size="sm">
+      <Text css={{ textAlign: 'center', margin: 0 }}>
         Currently showing {itemCountText} items
       </Text>
 
@@ -49,7 +49,7 @@ export default function ItemList({ filteredItems, itemCount }: Props) {
                 <Card.Footer
                   css={{ justifyContent: 'space-between', paddingTop: '$xs' }}
                 >
-                  <Text size="sm" weight="bold">
+                  <Text size="$xl" weight="bold">
                     {formatCurrency(item.price)}
                   </Text>
                   <ConbiniLogo size={24} conbiniName={item.conbini} />
