@@ -35,7 +35,7 @@ export default function ItemList({ filteredItems, itemCount }: Props) {
               rel="noopener noreferrer"
               css={{ width: '100%', height: '100%' }}
             >
-              <Card css={{ height: '100%' }} shadow hoverable>
+              <Card css={{ height: '100%' }} variant="shadow" isHoverable>
                 <Image
                   src={item.img}
                   alt={item.title}
