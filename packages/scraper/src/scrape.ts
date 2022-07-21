@@ -1,21 +1,25 @@
-import { Client } from '@conbini-this-week/db'
-import type { InsertItem } from '@conbini-this-week/db/types'
-import type { ConbiniName } from './types'
-import { conbinis, supabaseKey, supabaseUrl } from './constants'
+import { Client } from '../../../packages/supabase/src/db'
+import type { InsertItem } from '../../../packages/supabase/src/db/types'
+import { conbinis, supabaseKey, supabaseUrl } from './constant'
 import { JSDOM } from 'jsdom'
+import type { ConbiniName } from 'types'
 
 export async function scrape(name: ConbiniName) {
   const items = await scrapeConbini(name)
   const client = new Client(supabaseUrl, supabaseKey)
   const count = await client.insertItem(items)
-  console.log(`${count} items from ${name} inserted`)
+  return count
 }
 
 export async function scrapeAll() {
-  const promises = Object.keys(conbinis).map((name) => {
-    return scrape(name as ConbiniName)
+  let count = 0
+  const promises = Object.keys(conbinis).map(async (name) => {
+    const result = await scrape(name as ConbiniName)
+    count += result
+    return
   })
-  return Promise.all(promises)
+  await Promise.all(promises)
+  return count
 }
 
 async function scrapeConbini(name: ConbiniName) {

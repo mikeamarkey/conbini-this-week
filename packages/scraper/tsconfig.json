@@ -1,10 +1,16 @@
 {
   "extends": "../../tsconfig.base.json",
   "exclude": ["node_modules"],
-  "include": ["src/**/*.ts", ".eslintrc.js", "lint-staged.config.js"],
+  "include": [
+    "src/**/*.ts",
+    "api/**/*.ts",
+    ".eslintrc.js",
+    "lint-staged.config.js"
+  ],
   "compilerOptions": {
     "baseUrl": "./src",
     "incremental": true,
+    // FIXME: baseUrl and paths not currently supported by vercel node environment
     "paths": {
       "@conbini-this-week/db/*": ["../../../packages/supabase/src/db/*"],
       "@conbini-this-week/db": ["../../../packages/supabase/src/db/index"]
