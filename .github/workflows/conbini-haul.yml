@@ -1,0 +1,18 @@
+name: Conbini Haul
+env:
+  API_URL: https://conbini-this-week-scraper.vercel.app
+on:
+  schedule:
+    # 11:50 on Tuesdays (JST)
+    # waiting on timezone option:
+    # https://github.com/orgs/github-community/discussions/13454
+    - cron: '50 2 * * 2'
+jobs:
+  cron:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Picking Items
+        run: |
+          curl --request POST \
+          --url '${{ env.API_URL }}/api?name=all' \
+          --header 'Authorization: Bearer ${{ secrets.API_SECRET_KEY }}'
