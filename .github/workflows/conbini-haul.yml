@@ -2,6 +2,7 @@ name: Conbini Haul
 env:
   API_URL: https://conbini-this-week-scraper.vercel.app
 on:
+  workflow_dispatch:
   schedule:
     # 11:50 on Tuesdays (JST)
     # waiting on timezone option:
