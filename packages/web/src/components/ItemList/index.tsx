@@ -35,7 +35,7 @@ export default function ItemList({ filteredItems, itemCount }: Props) {
               rel="noopener noreferrer"
               css={{ width: '100%', height: '100%' }}
             >
-              <Card css={{ height: '100%' }} variant="shadow" isHoverable>
+              <Card css={{ height: '100%' }} isPressable variant="bordered">
                 <Image
                   src={item.img}
                   alt={item.title}
@@ -49,7 +49,7 @@ export default function ItemList({ filteredItems, itemCount }: Props) {
                 <Card.Footer
                   css={{ justifyContent: 'space-between', paddingTop: '$xs' }}
                 >
-                  <Text size="$xl" weight="bold">
+                  <Text size="$md" weight="bold">
                     {formatCurrency(item.price)}
                   </Text>
                   <ConbiniLogo size={24} conbiniName={item.conbini} />
