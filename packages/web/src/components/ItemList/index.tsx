@@ -50,41 +50,43 @@ export default function ItemList({
     <>
       <Text css={{ textAlign: 'center', margin: 0 }}>{itemCountText}</Text>
 
-      <Grid.Container gap={1} css={{ marginTop: '$sm' }}>
-        {filteredItems.map((item) => (
-          <Grid key={item.url} xs={6} sm={3} md={2.4}>
-            <Link
-              href={item.url}
-              target="__blank"
-              rel="noopener noreferrer"
-              css={{ width: '100%', height: '100%' }}
-            >
-              <Card css={{ height: '100%' }} isPressable variant="bordered">
-                <Image
-                  src={item.img}
-                  alt={item.title}
-                  width="480px"
-                  height="400px"
-                  objectFit="cover"
-                />
-                <Card.Body css={{ paddingBottom: '$xs' }}>
-                  <Text weight="bold">{item.title}</Text>
-                </Card.Body>
-                <Card.Footer
-                  css={{ justifyContent: 'space-between', paddingTop: '$xs' }}
-                >
-                  <Text size="$md" weight="bold">
-                    {formatCurrency(item.price)}
-                  </Text>
-                  <Box css={{ overflow: 'hidden', borderRadius: '$pill' }}>
-                    <ConbiniLogo size={24} conbiniName={item.conbini} />
-                  </Box>
-                </Card.Footer>
-              </Card>
-            </Link>
-          </Grid>
-        ))}
-      </Grid.Container>
+      {filteredItems.length > 0 && (
+        <Grid.Container gap={1} css={{ marginTop: '$sm' }}>
+          {filteredItems.map((item) => (
+            <Grid key={item.url} xs={6} sm={3} md={2.4}>
+              <Link
+                href={item.url}
+                target="__blank"
+                rel="noopener noreferrer"
+                css={{ width: '100%', height: '100%' }}
+              >
+                <Card css={{ height: '100%' }} isPressable variant="bordered">
+                  <Image
+                    src={item.img}
+                    alt={item.title}
+                    width="480px"
+                    height="400px"
+                    objectFit="cover"
+                  />
+                  <Card.Body css={{ paddingBottom: '$xs' }}>
+                    <Text weight="bold">{item.title}</Text>
+                  </Card.Body>
+                  <Card.Footer
+                    css={{ justifyContent: 'space-between', paddingTop: '$xs' }}
+                  >
+                    <Text size="$md" weight="bold">
+                      {formatCurrency(item.price)}
+                    </Text>
+                    <Box css={{ overflow: 'hidden', borderRadius: '$pill' }}>
+                      <ConbiniLogo size={24} conbiniName={item.conbini} />
+                    </Box>
+                  </Card.Footer>
+                </Card>
+              </Link>
+            </Grid>
+          ))}
+        </Grid.Container>
+      )}
     </>
   )
 }
