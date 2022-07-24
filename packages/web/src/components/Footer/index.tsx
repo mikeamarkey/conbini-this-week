@@ -10,7 +10,7 @@ export default function Footer() {
         <Image
           width={24}
           height={24}
-          src="github.png"
+          src="/github.png"
           alt="Conbini This Week"
         />
       </Link>
