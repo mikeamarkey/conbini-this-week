@@ -95,7 +95,7 @@ export default function Controls({ setConbiniFilter, setTextFilter }: Props) {
             onClick={() => handleConbiniClick(conbini)}
             css={activeConbini === conbini ? activeStyles : {}}
           >
-            <ConbiniLogo conbiniName={conbini} size={30} />
+            <ConbiniLogo conbiniName={conbini} size={32} />
           </ClickableDiv>
         ))}
       </Box>
