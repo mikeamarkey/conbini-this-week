@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import type { Item } from '@conbini-this-week/db/types'
 import { Client } from '@conbini-this-week/db'
-import { apiUrl, publicKey } from '../constants'
+import { apiUrl, publicKey } from 'constant'
 import { Container } from '@nextui-org/react'
 import { Box, Content, Footer, Header } from 'components'
 
