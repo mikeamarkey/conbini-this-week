@@ -12,7 +12,7 @@ export default function ConbiniLogo({ conbiniName, size }: Props) {
       containerCss={{ margin: 0, overflow: 'visible' }}
       width={`${size}px`}
       height={`${size}px`}
-      src={`/${conbiniName}.svg`}
+      src={`/${conbiniName}.png`}
       alt={conbiniName}
     />
   )
