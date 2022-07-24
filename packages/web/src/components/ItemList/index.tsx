@@ -1,6 +1,6 @@
 import { Card, Grid, Text } from '@nextui-org/react'
 import { Item } from '@conbini-this-week/db/types'
-import { ConbiniLogo, Link } from 'components'
+import { ConbiniLogo, Link, Box } from 'components'
 import { formatCurrency } from 'utils/number'
 import Image from 'next/image'
 
@@ -52,7 +52,9 @@ export default function ItemList({ filteredItems, itemCount }: Props) {
                   <Text size="$md" weight="bold">
                     {formatCurrency(item.price)}
                   </Text>
-                  <ConbiniLogo size={24} conbiniName={item.conbini} />
+                  <Box css={{ overflow: 'hidden', borderRadius: '$pill' }}>
+                    <ConbiniLogo size={24} conbiniName={item.conbini} />
+                  </Box>
                 </Card.Footer>
               </Card>
             </Link>

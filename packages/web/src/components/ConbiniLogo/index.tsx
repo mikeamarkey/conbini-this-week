@@ -9,10 +9,10 @@ type Props = {
 export default function ConbiniLogo({ conbiniName, size }: Props) {
   return (
     <Image
-      containerCss={{ margin: 0, overflow: 'visible' }}
+      containerCss={{ margin: 0 }}
       width={`${size}px`}
       height={`${size}px`}
-      src={`/${conbiniName}.png`}
+      src={`/${conbiniName}.svg`}
       alt={conbiniName}
     />
   )

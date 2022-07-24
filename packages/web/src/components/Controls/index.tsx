@@ -22,15 +22,17 @@ const Wrapper = styled('div', {
   margin: 'auto',
 })
 
-const ClickableDiv = styled('div', {
-  cursor: 'pointer',
+const LogoButton = styled('button', {
+  padding: 0,
+  backgroundColor: 'transparent',
   margin: '$xs',
-  padding: '$xs',
+  overflow: 'hidden',
   borderRadius: '$pill',
   border: '2px solid $accents2',
+  cursor: 'pointer',
 
   '&:hover': {
-    backgroundColor: '$accents1',
+    opacity: '.9',
   },
 })
 
@@ -90,13 +92,13 @@ export default function Controls({ setConbiniFilter, setTextFilter }: Props) {
         css={{ marginTop: '$xs', display: 'flex', justifyContent: 'center' }}
       >
         {conbinis.map((conbini) => (
-          <ClickableDiv
+          <LogoButton
             key={conbini}
             onClick={() => handleConbiniClick(conbini)}
             css={activeConbini === conbini ? activeStyles : {}}
           >
-            <ConbiniLogo conbiniName={conbini} size={32} />
-          </ClickableDiv>
+            <ConbiniLogo conbiniName={conbini} size={48} />
+          </LogoButton>
         ))}
       </Box>
     </Wrapper>
