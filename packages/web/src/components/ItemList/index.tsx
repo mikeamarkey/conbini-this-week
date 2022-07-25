@@ -1,30 +1,54 @@
 import { Card, Grid, Text } from '@nextui-org/react'
-import { Item } from '@conbini-this-week/db/types'
-import { ConbiniLogo, Link } from 'components'
+import { ConbiniName, Item } from '@conbini-this-week/db/types'
+import { ConbiniLogo, Link, Box } from 'components'
 import { formatCurrency } from 'utils/number'
 import Image from 'next/image'
+import { conbinis } from 'constant'
 
 type Props = {
   filteredItems: Item[]
   itemCount: number
+  conbiniFilter?: ConbiniName
 }
 
-function getItemCountText(filteredItemsCount: number, itemCount: number) {
-  if (filteredItemsCount === itemCount) {
-    return 'all'
+function getItemCountText(
+  filteredItemsCount: number,
+  itemCount: number,
+  conbiniFilter?: ConbiniName
+): string {
+  if (itemCount === 0) {
+    return 'No new items this week... check back soon!'
   }
 
-  return `${filteredItemsCount} of ${itemCount}`
+  if (filteredItemsCount === 0) {
+    return `Couldn't find anything...`
+  }
+
+  if (filteredItemsCount === itemCount) {
+    return 'Currently showing all items'
+  }
+
+  if (!conbiniFilter) {
+    return `Currently showing ${filteredItemsCount} of ${itemCount} items`
+  }
+
+  return `Currently showing ${filteredItemsCount} items from ${conbinis[conbiniFilter].name}`
 }
 
-export default function ItemList({ filteredItems, itemCount }: Props) {
-  const itemCountText = getItemCountText(filteredItems.length, itemCount)
+export default function ItemList({
+  conbiniFilter,
+  filteredItems,
+  itemCount,
+}: Props) {
+  const itemCountText = getItemCountText(
+    filteredItems.length,
+    itemCount,
+    conbiniFilter
+  )
 
   return (
     <>
-      <Text css={{ textAlign: 'center', margin: 0 }}>
-        Currently showing {itemCountText} items
-      </Text>
+      <Text css={{ textAlign: 'center', margin: 0 }}>{itemCountText}</Text>
 
       <Grid.Container gap={1} css={{ marginTop: '$sm' }}>
         {filteredItems.map((item) => (
@@ -35,7 +59,7 @@ export default function ItemList({ filteredItems, itemCount }: Props) {
               rel="noopener noreferrer"
               css={{ width: '100%', height: '100%' }}
             >
-              <Card css={{ height: '100%' }} variant="shadow" isHoverable>
+              <Card css={{ height: '100%' }} isPressable variant="bordered">
                 <Image
                   src={item.img}
                   alt={item.title}
@@ -49,10 +73,12 @@ export default function ItemList({ filteredItems, itemCount }: Props) {
                 <Card.Footer
                   css={{ justifyContent: 'space-between', paddingTop: '$xs' }}
                 >
-                  <Text size="$xl" weight="bold">
+                  <Text size="$md" weight="bold">
                     {formatCurrency(item.price)}
                   </Text>
-                  <ConbiniLogo size={24} conbiniName={item.conbini} />
+                  <Box css={{ overflow: 'hidden', borderRadius: '$pill' }}>
+                    <ConbiniLogo size={24} conbiniName={item.conbini} />
+                  </Box>
                 </Card.Footer>
               </Card>
             </Link>

@@ -36,7 +36,11 @@ export default function Content({ items }: Props) {
         setTextFilter={setTextFilter}
       />
       <Box css={{ marginTop: '$lg' }}>
-        <ItemList itemCount={items.length} filteredItems={filteredItems} />
+        <ItemList
+          itemCount={items.length}
+          conbiniFilter={conbiniFilter}
+          filteredItems={filteredItems}
+        />
       </Box>
     </>
   )

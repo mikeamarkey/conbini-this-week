@@ -1,5 +1,5 @@
-import { Box, Link } from 'components/Primitives'
-import { repoUrl } from '../../constants'
+import { Box, Link } from 'components'
+import { repoUrl } from 'constant'
 import Image from 'next/image'
 import { Text } from '@nextui-org/react'
 
