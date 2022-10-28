@@ -33,7 +33,7 @@ export function Home({ items }: Props) {
         <Box
           css={{
             marginTop: '$sm',
-            padding: '$md $sm',
+            padding: '$xl $sm $md',
             borderTop: '1px solid $border',
           }}
         >
