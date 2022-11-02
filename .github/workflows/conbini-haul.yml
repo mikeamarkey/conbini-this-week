@@ -1,7 +1,6 @@
 name: Conbini Haul
 env:
   API_URL: https://conbini-this-week-scraper.vercel.app
-  REVALIDATE_URL: https://conbini-this-week.vercel.app/api/revalidate
 on:
   workflow_dispatch:
   schedule:
@@ -17,9 +16,4 @@ jobs:
         run: |
           curl --request POST \
           --url '${{ env.API_URL }}/api?name=all' \
-          --header 'Authorization: Bearer ${{ secrets.API_SECRET_KEY }}'
-      - name: Checking Out
-        run: |
-          curl --request POST \
-          --url '${{ env.REVALIDATE_URL }}' \
           --header 'Authorization: Bearer ${{ secrets.API_SECRET_KEY }}'
