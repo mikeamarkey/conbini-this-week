@@ -1,5 +1,5 @@
-import { Client } from '../../../packages/supabase/src/db'
-import type { InsertItem } from '../../../packages/supabase/src/db/types'
+import { Client } from '../../db/src'
+import type { InsertItem } from '../../db/src/types'
 import { conbinis, supabaseKey, supabaseUrl } from './constant'
 import { JSDOM } from 'jsdom'
 import type { ConbiniName } from 'types'

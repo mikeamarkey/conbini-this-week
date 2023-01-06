@@ -12,8 +12,8 @@
     "incremental": true,
     // FIXME: baseUrl and paths not currently supported by vercel node environment
     "paths": {
-      "@conbini-this-week/db/*": ["../../../packages/supabase/src/db/*"],
-      "@conbini-this-week/db": ["../../../packages/supabase/src/db/index"]
+      "@conbini-this-week/db/*": ["../../../packages/db/src/*"],
+      "@conbini-this-week/db": ["../../../packages/db/src/index"]
     }
   }
 }
