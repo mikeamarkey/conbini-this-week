@@ -1,4 +1,4 @@
-import type { ConbiniName as DBConbiniName } from '../../supabase/src/types'
+import type { ConbiniName as DBConbiniName } from '../../db/src/types'
 
 export type Conbini = {
   [name in DBConbiniName]: {

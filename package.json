@@ -10,16 +10,16 @@
     ]
   },
   "scripts": {
-    "web": "yarn workspace conbini-this-week-web",
-    "format": "prettier --write .",
-    "lint": "yarn workspaces run lint",
-    "fix:staged-files": "yarn workspaces run fix:staged-files",
+    "db": "yarn workspace conbini-this-week-db",
     "deps:check": "npm-check-updates --deep --dep prod,dev,optional",
     "deps:update": "npm-check-updates -u --deep --dep prod,dev,optional",
+    "fix:staged-files": "yarn workspaces run fix:staged-files",
+    "format": "prettier --write .",
+    "lint": "yarn workspaces run lint",
     "prepare": "husky install",
     "scraper": "yarn workspace conbini-this-week-scraper",
-    "supabase": "yarn workspace conbini-this-week-supabase",
-    "type-check": "yarn workspaces run type-check"
+    "type-check": "yarn workspaces run type-check",
+    "web": "yarn workspace conbini-this-week-web"
   },
   "devDependencies": {
     "@types/eslint": "^8.4.5",

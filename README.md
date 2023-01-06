@@ -7,7 +7,7 @@ See what's coming up this week at the conbini (Japanese convenience stores)
 ### Prerequisites
 
 - [supabase account](https://supabase.com/) for hosting the database
-  - add the necessary tables as laid out in `supabase/src/generate/api.ts`
+  - add the necessary tables as laid out in `db/generate/api.ts`
   - hoping to automate this step ☝️ in the future
 
 ### Installing
@@ -19,7 +19,10 @@ See what's coming up this week at the conbini (Japanese convenience stores)
 ### Packages
 
 - `scraper`: a scraper for gathering conbini item details
-- `supabase`: db tools through supabase's postgresql api
+- `db`: db tools through supabase's postgresql api
+
+### Apps
+
 - `web`: a nextjs webapp for displaying upcoming items
 
 ### Acknowledgments
