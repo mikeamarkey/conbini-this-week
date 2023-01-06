@@ -1,6 +1,5 @@
-import { definitions } from './api'
+import { Database } from './api'
 
-export type Item = definitions['items']
-export type InsertItem = Omit<Item, 'id' | 'created_at'>
-
-export type ConbiniName = Item['conbini']
+export type ConbiniName = Database['public']['Enums']['conbini']
+export type Item = Database['public']['Tables']['items']['Row']
+export type InsertItem = Database['public']['Tables']['items']['Insert']

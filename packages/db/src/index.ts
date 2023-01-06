@@ -1,11 +1,12 @@
 import { SupabaseClient, createClient } from '@supabase/supabase-js'
-import type { Item, InsertItem } from './types'
+import { InsertItem } from './types'
+import { Database } from './api'
 
 export class Client {
   private client: SupabaseClient
 
   public constructor(url: string, key: string) {
-    this.client = createClient(url, key)
+    this.client = createClient<Database>(url, key)
   }
 
   private getLastWeekTimestamp = () => {
@@ -20,7 +21,7 @@ export class Client {
 
   public getItems = async () => {
     const { data, error } = await this.client
-      .from<Item>('items')
+      .from('items')
       .select()
       .gt('created_at', this.getLastWeekTimestamp())
     if (error) {
@@ -31,10 +32,11 @@ export class Client {
 
   public insertItem = async (items: InsertItem[]) => {
     const { data, error } = await this.client
-      .from<InsertItem>('items')
+      .from('items')
       .upsert(items, {
         onConflict: 'url',
       })
+      .select()
     if (error) {
       throw error
     }
