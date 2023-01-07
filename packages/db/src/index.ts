@@ -1,6 +1,6 @@
 import { SupabaseClient, createClient } from '@supabase/supabase-js'
 import { InsertItem } from './types'
-import { Database } from './api'
+import { Database } from './schema'
 
 export class Client {
   private client: SupabaseClient

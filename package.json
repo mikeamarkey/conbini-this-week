@@ -16,6 +16,7 @@
     "fix:staged-files": "yarn workspaces run fix:staged-files",
     "format": "prettier --write .",
     "lint": "yarn workspaces run lint",
+    "postinstall": "yarn db generate",
     "prepare": "husky install",
     "scraper": "yarn workspace conbini-this-week-scraper",
     "type-check": "yarn workspaces run type-check",
