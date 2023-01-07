@@ -1,3 +1,4 @@
+import { z } from 'zod'
 import { Client } from '../../db/src'
 import type { InsertItem } from '../../db/src/types'
 import { conbinis, supabaseKey, supabaseUrl } from './constant'
@@ -75,15 +76,42 @@ async function scrapeConbini(name: ConbiniName) {
     }
 
     case 'ministop': {
-      const listItems = await fetch(
+      const response = await fetch(
         'https://www.ministop.co.jp/syohin/js/recommend.json'
       )
-      console.log(listItems)
-      // console.log(document.innerHTML)
-      // const listItems = document.querySelectorAll(conbini.selectors.list)
-      // const collectedItems = await collectPageItems(listItems, conbini)
-      // console.log(collectedItems)
-      return []
+      const json = await response.json()
+      const schema = z.array(
+        z.object({
+          link: z.string(),
+          new: z.boolean(),
+          price: z.string(),
+          title: z.string(),
+          image: z.string(),
+        })
+      )
+      const result = schema.safeParse(json)
+      if (!result.success) {
+        return []
+      }
+
+      const { baseUrl, selectors, name } = conbini
+      const collectedItems = result.data
+        .filter((item) => item.new)
+        .map((item) => {
+          const priceMatches = item.price.match(selectors.priceRegex)
+          const price = Math.ceil(
+            Number(priceMatches?.[1].replace(',', '') ?? '0')
+          )
+
+          return {
+            conbini: name,
+            url: `${baseUrl}${item.link}`,
+            title: item.title,
+            img: `${baseUrl}${item.image}`,
+            price,
+          }
+        })
+      return collectedItems
     }
   }
 }

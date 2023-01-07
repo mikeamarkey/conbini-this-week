@@ -33,8 +33,8 @@ export const conbinis: Conbini = {
   },
   ministop: {
     name: 'ministop',
-    baseUrl: 'https://www.ministop.co.jp/',
-    newItemsUrl: () => 'https://www.ministop.co.jp/syohin/',
+    baseUrl: 'https://www.ministop.co.jp',
+    newItemsUrl: () => 'https://www.ministop.co.jp/syohin/js/recommend.json',
     selectors: {
       list: '#recommendAreaInner .productList li.new',
       url: 'a',
