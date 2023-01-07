@@ -31,6 +31,19 @@ export const conbinis: Conbini = {
       priceRegex: /([\d,.]+)円/,
     },
   },
+  ministop: {
+    name: 'ministop',
+    baseUrl: 'https://www.ministop.co.jp',
+    newItemsUrl: () => 'https://www.ministop.co.jp/syohin/js/recommend.json',
+    selectors: {
+      list: '#recommendAreaInner .productList li.new',
+      url: 'a',
+      title: '.name',
+      img: '.productListPhoto > img',
+      price: '.price',
+      priceRegex: /税込([\d,.]+)円/,
+    },
+  },
   seveneleven: {
     name: 'seveneleven',
     baseUrl: 'https://www.sej.co.jp',
