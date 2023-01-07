@@ -10,7 +10,12 @@ import { useDebounce } from 'react-use'
 import { ConbiniName } from '@conbini-this-week/db/types'
 import { Box, ConbiniLogo } from 'components'
 
-const conbinis: ConbiniName[] = ['lawson', 'familymart', 'seveneleven']
+const conbinis: ConbiniName[] = [
+  'familymart',
+  'lawson',
+  'ministop',
+  'seveneleven',
+]
 
 type Props = {
   setConbiniFilter: Dispatch<SetStateAction<ConbiniName | undefined>>
