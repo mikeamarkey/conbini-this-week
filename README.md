@@ -7,8 +7,7 @@ See what's coming up this week at the conbini (Japanese convenience stores)
 ### Prerequisites
 
 - [supabase account](https://supabase.com/) for hosting the database
-  - add the necessary tables as laid out in `db/generate/api.ts`
-  - hoping to automate this step ☝️ in the future
+  - add the necessary tables as laid out in `db/schema.ts`
 
 ### Installing
 
