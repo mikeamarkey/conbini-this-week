@@ -46,7 +46,7 @@ async function scrapeConbini(name: ConbiniName) {
     case 'familymart': {
       const document = (await JSDOM.fromURL(conbini.newItemsUrl())).window
         .document.documentElement
-      const listItems = await document.querySelectorAll(conbini.selectors.list)
+      const listItems = document.querySelectorAll(conbini.selectors.list)
       const collectedItems = await collectPageItems(listItems, conbini)
       return collectedItems
     }
@@ -72,6 +72,18 @@ async function scrapeConbini(name: ConbiniName) {
         collectedItems.push(...newItems)
       }
       return collectedItems
+    }
+
+    case 'ministop': {
+      const listItems = await fetch(
+        'https://www.ministop.co.jp/syohin/js/recommend.json'
+      )
+      console.log(listItems)
+      // console.log(document.innerHTML)
+      // const listItems = document.querySelectorAll(conbini.selectors.list)
+      // const collectedItems = await collectPageItems(listItems, conbini)
+      // console.log(collectedItems)
+      return []
     }
   }
 }

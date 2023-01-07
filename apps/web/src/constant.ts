@@ -12,6 +12,9 @@ export const conbinis: Conbini = {
   lawson: {
     name: 'Lawson',
   },
+  ministop: {
+    name: 'Ministop',
+  },
   seveneleven: {
     name: '7/11',
   },

@@ -11,7 +11,7 @@ export interface Database {
     Tables: {
       items: {
         Row: {
-          conbini: Database["public"]["Enums"]["conbini"]
+          conbini: Database['public']['Enums']['conbini']
           url: string
           title: string
           img: string
@@ -21,7 +21,7 @@ export interface Database {
           id: number
         }
         Insert: {
-          conbini: Database["public"]["Enums"]["conbini"]
+          conbini: Database['public']['Enums']['conbini']
           url: string
           title: string
           img: string
@@ -31,7 +31,7 @@ export interface Database {
           id?: number
         }
         Update: {
-          conbini?: Database["public"]["Enums"]["conbini"]
+          conbini?: Database['public']['Enums']['conbini']
           url?: string
           title?: string
           img?: string
@@ -49,7 +49,7 @@ export interface Database {
       [_ in never]: never
     }
     Enums: {
-      conbini: "familymart" | "lawson" | "seveneleven"
+      conbini: 'familymart' | 'lawson' | 'seveneleven' | 'ministop'
     }
   }
 }
