@@ -15,12 +15,13 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ env.NODE_VERSION }}
+          cache: 'yarn'
 
       - name: Checkout
         uses: actions/checkout@v2
 
       - name: Install Dependencies
-        run: yarn install --ignore-scripts
+        run: yarn install --ignore-scripts --prefer-offline
 
       - name: Run Checks
         run: yarn checks
