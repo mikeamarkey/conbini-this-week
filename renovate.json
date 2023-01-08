@@ -6,28 +6,28 @@
   "separateMajorMinor": false,
   "packageRules": [
     {
-      "groupName": "Top Level Dependencies",
-      "matchFiles": ["package.json"],
-      "excludePackagePatterns": ["eslint", "typescript"]
-    },
-    {
-      "groupName": "Web App Dependencies",
-      "matchFiles": ["apps/web/package.json"],
-      "excludePackagePatterns": ["eslint", "typescript"]
-    },
-    {
-      "groupName": "Scraper Package Dependencies",
-      "matchFiles": ["packages/scraper/package.json"],
-      "excludePackagePatterns": ["eslint", "typescript"]
-    },
-    {
-      "groupName": "DB Package Dependencies",
-      "matchFiles": ["packages/db/package.json"],
-      "excludePackagePatterns": ["eslint", "typescript"]
-    },
-    {
       "groupName": "Shared",
       "matchPackagePatterns": ["eslint", "typescript"]
+    },
+    {
+      "groupName": "Top Level",
+      "matchFiles": ["package.json"],
+      "excludePackagePatterns": ["@types/tsnode", "eslint", "typescript"]
+    },
+    {
+      "groupName": "Apps: Web",
+      "matchFiles": ["apps/web/package.json"],
+      "excludePackagePatterns": ["@types/tsnode", "eslint", "typescript"]
+    },
+    {
+      "groupName": "Packages: Scraper",
+      "matchFiles": ["packages/scraper/package.json"],
+      "excludePackagePatterns": ["@types/tsnode", "eslint", "typescript"]
+    },
+    {
+      "groupName": "Packages: DB",
+      "matchFiles": ["packages/db/package.json"],
+      "excludePackagePatterns": ["@types/tsnode", "eslint", "typescript"]
     }
   ]
 }
