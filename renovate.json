@@ -7,19 +7,23 @@
   "packageRules": [
     {
       "groupName": "Top Level Dependencies",
-      "matchPaths": ["package.json"]
+      "matchFiles": ["package.json"],
+      "excludePackagePatterns": ["eslint", "typescript"]
     },
     {
       "groupName": "Web App Dependencies",
-      "matchPaths": ["apps/web/package.json"]
+      "matchFiles": ["apps/web/package.json"],
+      "excludePackagePatterns": ["eslint", "typescript"]
     },
     {
       "groupName": "Scraper Package Dependencies",
-      "matchPaths": ["packages/scraper/package.json"]
+      "matchFiles": ["packages/scraper/package.json"],
+      "excludePackagePatterns": ["eslint", "typescript"]
     },
     {
       "groupName": "DB Package Dependencies",
-      "matchPaths": ["packages/db/package.json"]
+      "matchFiles": ["packages/db/package.json"],
+      "excludePackagePatterns": ["eslint", "typescript"]
     },
     {
       "groupName": "Shared",
