@@ -1,6 +1,8 @@
-node_modules
 .next
-yarn.lock
+.vercel
+node_modules
 package-lock.json
-public
 packages/db/src/schema.ts
+public
+tsconfig.tsbuildinfo
+yarn.lock
