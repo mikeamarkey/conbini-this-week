@@ -20,6 +20,10 @@
     {
       "groupName": "DB Package Dependencies",
       "matchPaths": ["packages/db/package.json"]
+    },
+    {
+      "groupName": "Shared",
+      "matchPackagePatterns": ["eslint", "typescript"]
     }
   ]
 }
