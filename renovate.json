@@ -3,6 +3,7 @@
   "extends": ["config:base"],
   "postUpdateOptions": ["yarnDedupeHighest"],
   "rangeStrategy": "pin",
+  "schedule": ["before 3am"],
   "separateMajorMinor": false,
   "packageRules": [
     {
