@@ -7,28 +7,27 @@
   "separateMajorMinor": false,
   "packageRules": [
     {
-      "groupName": "Shared",
-      "matchPackagePatterns": ["@types/node", "eslint", "typescript"]
-    },
-    {
-      "groupName": "Top Level",
-      "matchFiles": ["package.json"],
-      "excludePackagePatterns": ["@types/node", "eslint", "typescript"]
-    },
-    {
       "groupName": "Apps: Web",
+      "matchDepTypes": ["dependencies"],
       "matchFiles": ["apps/web/package.json"],
-      "excludePackagePatterns": ["@types/node", "eslint", "typescript"]
+      "rangeStrategy": "pin"
     },
     {
       "groupName": "Packages: Scraper",
+      "matchDepTypes": ["dependencies"],
       "matchFiles": ["packages/scraper/package.json"],
-      "excludePackagePatterns": ["@types/node", "eslint", "typescript"]
+      "rangeStrategy": "replace"
     },
     {
       "groupName": "Packages: DB",
+      "matchDepTypes": ["dependencies"],
       "matchFiles": ["packages/db/package.json"],
-      "excludePackagePatterns": ["@types/node", "eslint", "typescript"]
+      "rangeStrategy": "replace"
+    },
+    {
+      "groupName": "Dev Dependencies",
+      "matchDepTypes": ["devDependencies"],
+      "rangeStrategy": ["auto"]
     }
   ]
 }
