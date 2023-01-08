@@ -2,7 +2,6 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:base"],
   "postUpdateOptions": ["yarnDedupeHighest"],
-  "rangeStrategy": "pin",
   "schedule": ["before 3am"],
   "separateMajorMinor": false,
   "packageRules": [
@@ -27,7 +26,7 @@
     {
       "groupName": "Dev Dependencies",
       "matchDepTypes": ["devDependencies"],
-      "rangeStrategy": ["auto"]
+      "rangeStrategy": "auto"
     }
   ]
 }
