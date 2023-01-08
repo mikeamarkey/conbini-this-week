@@ -1,8 +1,6 @@
 name: Run Checks
 
-on:
-  push:
-  workflow_dispatch:
+on: [push, workflow_dispatch]
 env:
   NODE_VERSION: 18
 
