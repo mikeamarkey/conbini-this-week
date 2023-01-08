@@ -10,10 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'yarn'
+          cache-dependency-path: yarn.lock
 
       - name: Checkout
         uses: actions/checkout@v2
