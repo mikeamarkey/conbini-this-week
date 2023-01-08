@@ -23,9 +23,9 @@
     "web": "yarn workspace conbini-this-week-web"
   },
   "devDependencies": {
-    "@types/eslint": "8.4.5",
+    "@types/eslint": "8.4.10",
     "@types/shell-quote": "1.7.1",
-    "eslint": "8.20.0",
+    "eslint": "8.31.0",
     "husky": "8.0.1",
     "lint-staged": "13.0.3",
     "npm-check-updates": "15.3.4",
