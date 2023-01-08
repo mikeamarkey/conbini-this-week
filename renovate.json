@@ -7,27 +7,27 @@
   "packageRules": [
     {
       "groupName": "Shared",
-      "matchPackagePatterns": ["eslint", "typescript"]
+      "matchPackagePatterns": ["@types/node", "eslint", "typescript"]
     },
     {
       "groupName": "Top Level",
       "matchFiles": ["package.json"],
-      "excludePackagePatterns": ["@types/tsnode", "eslint", "typescript"]
+      "excludePackagePatterns": ["@types/node", "eslint", "typescript"]
     },
     {
       "groupName": "Apps: Web",
       "matchFiles": ["apps/web/package.json"],
-      "excludePackagePatterns": ["@types/tsnode", "eslint", "typescript"]
+      "excludePackagePatterns": ["@types/node", "eslint", "typescript"]
     },
     {
       "groupName": "Packages: Scraper",
       "matchFiles": ["packages/scraper/package.json"],
-      "excludePackagePatterns": ["@types/tsnode", "eslint", "typescript"]
+      "excludePackagePatterns": ["@types/node", "eslint", "typescript"]
     },
     {
       "groupName": "Packages: DB",
       "matchFiles": ["packages/db/package.json"],
-      "excludePackagePatterns": ["@types/tsnode", "eslint", "typescript"]
+      "excludePackagePatterns": ["@types/node", "eslint", "typescript"]
     }
   ]
 }
