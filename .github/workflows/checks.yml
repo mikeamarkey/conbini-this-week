@@ -1,0 +1,23 @@
+name: Run Checks
+
+on: [push, workflow_dispatch]
+
+jobs:
+  checks:
+    name: Run Checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'yarn'
+
+      - name: Install Dependencies
+        run: yarn install --ignore-scripts --immutable
+
+      - name: Run Checks
+        run: yarn checks

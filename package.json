@@ -11,16 +11,19 @@
   },
   "scripts": {
     "db": "yarn workspace conbini-this-week-db",
+    "scraper": "yarn workspace conbini-this-week-scraper",
+    "web": "yarn workspace conbini-this-week-web",
+    "---------------": "---------------",
     "deps:check": "npm-check-updates --deep --dep prod,dev,optional",
     "deps:update": "npm-check-updates -u --deep --dep prod,dev,optional",
+    "fix:prettier": "prettier --write .",
     "fix:staged-files": "yarn workspaces run fix:staged-files",
-    "format": "prettier --write .",
-    "lint": "yarn workspaces run lint",
+    "check:eslint": "yarn workspaces run lint",
+    "check:prettier": "prettier --check .",
+    "check:typescript": "yarn workspaces run type-check",
+    "checks": "yarn run-p check:*",
     "postinstall": "yarn db generate",
-    "prepare": "husky install",
-    "scraper": "yarn workspace conbini-this-week-scraper",
-    "type-check": "yarn workspaces run type-check",
-    "web": "yarn workspace conbini-this-week-web"
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@types/eslint": "8.4.5",
@@ -29,6 +32,7 @@
     "husky": "8.0.1",
     "lint-staged": "13.0.3",
     "npm-check-updates": "15.3.4",
+    "npm-run-all": "4.1.5",
     "prettier": "2.7.1",
     "shell-quote": "1.7.3"
   }
