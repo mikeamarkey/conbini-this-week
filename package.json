@@ -3,6 +3,7 @@
   "license": "MIT",
   "version": "0.0.0",
   "private": true,
+  "packageManager": "yarn@3.3.1",
   "workspaces": {
     "packages": [
       "packages/*",
@@ -17,11 +18,11 @@
     "deps:check": "npm-check-updates --deep --dep prod,dev,optional",
     "deps:update": "npm-check-updates -u --deep --dep prod,dev,optional",
     "fix:prettier": "prettier --write .",
-    "fix:staged-files": "yarn workspaces run fix:staged-files",
-    "check:eslint": "yarn workspaces run lint",
+    "fix:staged-files": "yarn workspaces foreach -pv run fix:staged-files",
+    "check:eslint": "yarn workspaces foreach -pv run lint",
     "check:prettier": "prettier --check .",
-    "check:typescript": "yarn workspaces run type-check",
-    "checks": "yarn run-p check:*",
+    "check:typescript": "yarn workspaces foreach -pv run type-check",
+    "checks": "yarn run-p 'check:*'",
     "postinstall": "yarn db generate",
     "prepare": "husky install"
   },
