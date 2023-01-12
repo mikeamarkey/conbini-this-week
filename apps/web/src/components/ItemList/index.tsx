@@ -2,7 +2,7 @@ import { Card, Grid, Text } from '@nextui-org/react'
 import { ConbiniName, Item } from '@conbini-this-week/db/types'
 import { ConbiniLogo, Link, Box } from 'components'
 import { formatCurrency } from 'utils/number'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 import { conbinis } from 'constant'
 
 type Props = {
@@ -64,8 +64,8 @@ export default function ItemList({
                   <Image
                     src={item.img}
                     alt={item.title}
-                    width="480px"
-                    height="400px"
+                    width={480}
+                    height={400}
                     objectFit="cover"
                   />
                   <Card.Body css={{ paddingBottom: '$xs' }}>
