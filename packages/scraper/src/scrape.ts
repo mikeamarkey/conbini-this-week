@@ -118,7 +118,7 @@ async function scrapeConbini(name: ConbiniName) {
 
 async function collectPageItems(
   listItems: NodeListOf<Element>,
-  conbini: typeof conbinis[keyof typeof conbinis]
+  conbini: (typeof conbinis)[keyof typeof conbinis]
 ): Promise<InsertItem[]> {
   const { selectors } = conbini
   const items = Array.from(listItems, (el) => {
