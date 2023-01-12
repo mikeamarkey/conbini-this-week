@@ -64,8 +64,8 @@ export default function ItemList({
                   <Image
                     src={item.img}
                     alt={item.title}
-                    width="480px"
-                    height="400px"
+                    width={480}
+                    height={400}
                     objectFit="cover"
                   />
                   <Card.Body css={{ paddingBottom: '$xs' }}>
