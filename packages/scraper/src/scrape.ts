@@ -12,6 +12,12 @@ export async function scrape(name: ConbiniName) {
   return count
 }
 
+export async function scrapeDry(name: ConbiniName) {
+  const items = await scrapeConbini(name)
+  console.log(items)
+  return items.length
+}
+
 export async function scrapeAll() {
   let count = 0
   const promises = Object.keys(conbinis).map(async (name) => {
