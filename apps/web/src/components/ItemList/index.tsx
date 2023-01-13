@@ -4,6 +4,7 @@ import { ConbiniLogo, Link, Box } from 'components'
 import { formatCurrency } from 'utils/number'
 import Image from 'next/image'
 import { conbinis } from 'constant'
+import { ComponentProps, useState } from 'react'
 
 type Props = {
   filteredItems: Item[]
@@ -35,6 +36,23 @@ function getItemCountText(
   return `Currently showing ${filteredItemsCount} items from ${conbinis[conbiniFilter].name}`
 }
 
+const ImageWithFallback = ({
+  src: originalSrc,
+  alt,
+  ...props
+}: ComponentProps<typeof Image>) => {
+  const [src, setSrc] = useState(originalSrc)
+
+  return (
+    <Image
+      {...props}
+      onError={() => setSrc('/not-found.jpg')}
+      alt={alt}
+      src={src}
+    />
+  )
+}
+
 export default function ItemList({
   conbiniFilter,
   filteredItems,
@@ -61,13 +79,20 @@ export default function ItemList({
                 css={{ width: '100%', height: '100%' }}
               >
                 <Card css={{ height: '100%' }} isPressable variant="bordered">
-                  <Image
-                    src={item.img}
-                    alt={item.title}
-                    width="480px"
-                    height="400px"
-                    objectFit="cover"
-                  />
+                  <Box
+                    css={{
+                      position: 'relative',
+                      aspectRatio: '6 / 5',
+                    }}
+                  >
+                    <ImageWithFallback
+                      src={item.img}
+                      alt={item.title}
+                      fill
+                      style={{ objectFit: 'cover' }}
+                      sizes="480px"
+                    />
+                  </Box>
                   <Card.Body css={{ paddingBottom: '$xs' }}>
                     <Text weight="bold">{item.title}</Text>
                   </Card.Body>
