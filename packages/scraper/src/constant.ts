@@ -4,6 +4,18 @@ export const supabaseKey = process.env.SUPABASE_PRIVATE_KEY ?? ''
 export const supabaseUrl = process.env.SUPABASE_API_URL ?? ''
 
 export const conbinis: Conbini = {
+  dailyyamazaki: {
+    name: 'dailyyamazaki',
+    baseUrl: 'https://www.daily-yamazaki.jp',
+    newItemsUrl: () => 'https://www.daily-yamazaki.jp/new/',
+    selectors: {
+      list: '.boxShinsyohin > div:first-of-type ul.boxRow > li',
+      title: '.boxInner02 > h4',
+      img: '.boxInner01 > img',
+      price: '.price.taxed',
+      priceRegex: /税込([\d,.]+)円/,
+    },
+  },
   familymart: {
     name: 'familymart',
     baseUrl: 'https://www.family.co.jp',

@@ -11,6 +11,7 @@ import { ConbiniName } from '@conbini-this-week/db/types'
 import { Box, ConbiniLogo } from 'components'
 
 const conbinis: ConbiniName[] = [
+  'dailyyamazaki',
   'familymart',
   'lawson',
   'ministop',
@@ -94,7 +95,13 @@ export default function Controls({ setConbiniFilter, setTextFilter }: Props) {
         placeholder="Search for items..."
       />
       <Box
-        css={{ marginTop: '$xs', display: 'flex', justifyContent: 'center' }}
+        css={{
+          marginTop: '$xs',
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
       >
         {conbinis.map((conbini) => (
           <LogoButton
