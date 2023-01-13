@@ -89,6 +89,7 @@ export default function ItemList({
                       src={item.img}
                       alt={item.title}
                       fill
+                      style={{ objectFit: 'cover' }}
                       sizes="480px"
                     />
                   </Box>
