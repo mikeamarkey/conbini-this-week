@@ -7,9 +7,9 @@ const Wrapper = styled('div', {
 })
 
 const Title = styled('h1', {
-  fontSize: '$xl4',
+  fontSize: '$4xl',
   '@sm': {
-    fontSize: '$xl5',
+    fontSize: '$5xl',
   },
 })
 
