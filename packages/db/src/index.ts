@@ -30,11 +30,11 @@ export class Client {
     return data
   }
 
-  public insertItem = async (items: InsertItem[]) => {
+  public insertItem = async (items: Omit<InsertItem, 'id'>[]) => {
     const { data, error } = await this.client
       .from('items')
       .upsert(items, {
-        onConflict: 'url',
+        onConflict: 'img',
       })
       .select()
     if (error) {

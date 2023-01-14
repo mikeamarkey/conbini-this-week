@@ -7,7 +7,7 @@ export type Conbini = {
     newItemsUrl: (page?: number) => string
     selectors: {
       list: string
-      url: string
+      url?: string
       title: string
       img: string
       imgDataName?: string

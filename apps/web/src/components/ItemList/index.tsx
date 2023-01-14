@@ -71,7 +71,7 @@ export default function ItemList({
       {filteredItems.length > 0 && (
         <Grid.Container gap={1} css={{ marginTop: '$sm' }}>
           {filteredItems.map((item) => (
-            <Grid key={item.url} xs={6} sm={3} md={2.4}>
+            <Grid key={item.img} xs={6} sm={3} md={2.4}>
               <Link
                 href={item.url}
                 target="__blank"

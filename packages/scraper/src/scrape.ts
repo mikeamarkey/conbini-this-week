@@ -12,6 +12,12 @@ export async function scrape(name: ConbiniName) {
   return count
 }
 
+export async function scrapeDry(name: ConbiniName) {
+  const items = await scrapeConbini(name)
+  console.log(items)
+  return items.length
+}
+
 export async function scrapeAll() {
   let count = 0
   const promises = Object.keys(conbinis).map(async (name) => {
@@ -26,6 +32,14 @@ export async function scrapeAll() {
 async function scrapeConbini(name: ConbiniName) {
   const conbini = conbinis[name]
   switch (conbini.name) {
+    case 'dailyyamazaki':
+    case 'familymart': {
+      const document = (await JSDOM.fromURL(conbini.newItemsUrl())).window
+        .document.documentElement
+      const listItems = document.querySelectorAll(conbini.selectors.list)
+      const collectedItems = await collectPageItems(listItems, conbini)
+      return collectedItems
+    }
     case 'lawson': {
       let document = (await JSDOM.fromURL(conbini.newItemsUrl())).window
         .document.documentElement
@@ -40,38 +54,6 @@ async function scrapeConbini(name: ConbiniName) {
         .window.document.documentElement
       const listItems = document.querySelectorAll(conbini.selectors.list)
       const collectedItems = await collectPageItems(listItems, conbini)
-      return collectedItems
-      return []
-    }
-
-    case 'familymart': {
-      const document = (await JSDOM.fromURL(conbini.newItemsUrl())).window
-        .document.documentElement
-      const listItems = document.querySelectorAll(conbini.selectors.list)
-      const collectedItems = await collectPageItems(listItems, conbini)
-      return collectedItems
-    }
-
-    case 'seveneleven': {
-      let document = (await JSDOM.fromURL(conbini.newItemsUrl())).window
-        .document.documentElement
-      const counter = document.querySelector<HTMLElement>(
-        '.pager_ctrl .counter'
-      )
-      const matches = counter?.textContent?.trim().match(/^(\d+)件/)
-      const count = Number(matches?.[1] ?? '1')
-      const pageCount = Math.ceil(count / 100)
-
-      const collectedItems: InsertItem[] = []
-      for (let pageNum = 1; pageNum <= pageCount; pageNum++) {
-        if (pageNum !== 1) {
-          document = (await JSDOM.fromURL(conbini.newItemsUrl(pageNum))).window
-            .document.documentElement
-        }
-        const listItems = document.querySelectorAll(conbini.selectors.list)
-        const newItems = await collectPageItems(listItems, conbini)
-        collectedItems.push(...newItems)
-      }
       return collectedItems
     }
 
@@ -113,6 +95,29 @@ async function scrapeConbini(name: ConbiniName) {
         })
       return collectedItems
     }
+
+    case 'seveneleven': {
+      let document = (await JSDOM.fromURL(conbini.newItemsUrl())).window
+        .document.documentElement
+      const counter = document.querySelector<HTMLElement>(
+        '.pager_ctrl .counter'
+      )
+      const matches = counter?.textContent?.trim().match(/^(\d+)件/)
+      const count = Number(matches?.[1] ?? '1')
+      const pageCount = Math.ceil(count / 100)
+
+      const collectedItems: InsertItem[] = []
+      for (let pageNum = 1; pageNum <= pageCount; pageNum++) {
+        if (pageNum !== 1) {
+          document = (await JSDOM.fromURL(conbini.newItemsUrl(pageNum))).window
+            .document.documentElement
+        }
+        const listItems = document.querySelectorAll(conbini.selectors.list)
+        const newItems = await collectPageItems(listItems, conbini)
+        collectedItems.push(...newItems)
+      }
+      return collectedItems
+    }
   }
 }
 
@@ -122,8 +127,9 @@ async function collectPageItems(
 ): Promise<InsertItem[]> {
   const { selectors } = conbini
   const items = Array.from(listItems, (el) => {
-    const url =
-      el.querySelector<HTMLAnchorElement>(selectors.url)?.href?.trim() ?? ''
+    const url = !selectors.url
+      ? conbini.newItemsUrl()
+      : el.querySelector<HTMLAnchorElement>(selectors.url)?.href?.trim() ?? ''
     const title =
       el.querySelector<HTMLElement>(selectors.title)?.textContent?.trim() ?? ''
     const img = selectors.imgDataName

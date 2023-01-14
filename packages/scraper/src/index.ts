@@ -1,10 +1,11 @@
 import 'dotenv/config'
 
-import { scrape, scrapeAll } from './scrape'
+import { scrape, scrapeAll, scrapeDry } from './scrape'
 import { isValidConbiniName } from './utils'
 
 const args = process.argv.slice(2)
 const nameArg = args[0]
+const dryArg = args[1] === '--dry'
 
 export async function main(name: string) {
   if (!isValidConbiniName(name)) {
@@ -17,7 +18,7 @@ export async function main(name: string) {
       const result = await scrapeAll()
       console.log(`${result} items added`)
     } else {
-      const result = await scrape(name)
+      const result = await (dryArg ? scrapeDry(name) : scrape(name))
       console.log(`${result} items from ${name} added`)
     }
   } catch (e) {

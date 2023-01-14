@@ -9,13 +9,9 @@ import { FormElement, Input, styled } from '@nextui-org/react'
 import { useDebounce } from 'react-use'
 import { ConbiniName } from '@conbini-this-week/db/types'
 import { Box, ConbiniLogo } from 'components'
+import { conbinis } from 'constant'
 
-const conbinis: ConbiniName[] = [
-  'familymart',
-  'lawson',
-  'ministop',
-  'seveneleven',
-]
+const conbiniKeys = Object.keys(conbinis) as [keyof typeof conbinis]
 
 type Props = {
   setConbiniFilter: Dispatch<SetStateAction<ConbiniName | undefined>>
@@ -94,9 +90,15 @@ export default function Controls({ setConbiniFilter, setTextFilter }: Props) {
         placeholder="Search for items..."
       />
       <Box
-        css={{ marginTop: '$xs', display: 'flex', justifyContent: 'center' }}
+        css={{
+          marginTop: '$xs',
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
       >
-        {conbinis.map((conbini) => (
+        {conbiniKeys.map((conbini) => (
           <LogoButton
             key={conbini}
             onClick={() => handleConbiniClick(conbini)}

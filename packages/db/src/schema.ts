@@ -49,7 +49,12 @@ export interface Database {
       [_ in never]: never
     }
     Enums: {
-      conbini: "familymart" | "lawson" | "seveneleven" | "ministop"
+      conbini:
+        | "familymart"
+        | "lawson"
+        | "seveneleven"
+        | "ministop"
+        | "dailyyamazaki"
     }
   }
 }
