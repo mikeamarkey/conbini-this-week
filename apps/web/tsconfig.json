@@ -6,20 +6,19 @@
     "module": "esnext",
     "jsx": "preserve",
     "allowJs": true,
-    "incremental": true,
     "paths": {
       "@conbini-this-week/db/*": ["../../../packages/db/src/*"],
       "@conbini-this-week/db": ["../../../packages/db/src/index"]
     }
   },
   "include": [
-    "next-env.d.ts",
-    ".eslintrc.js",
-    "**/*.ts",
-    "**/*.tsx",
     "**/*.js",
     "**/*.jsx",
-    "**/*.json"
+    "**/*.json",
+    "**/*.ts",
+    "**/*.tsx",
+    ".eslintrc.js",
+    "next-env.d.ts"
   ],
   "exclude": ["node_modules", ".next", "out"]
 }
