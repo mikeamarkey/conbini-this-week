@@ -1,15 +1,17 @@
 import Head from 'next/head'
-import type { Item } from '@conbini-this-week/db/types'
 import { Client } from '@conbini-this-week/db'
 import { apiUrl, publicKey } from 'constant'
 import { Container } from '@nextui-org/react'
 import { Box, Content, Footer, Header } from 'components'
+import { ContentProps } from 'components/Content'
+import { GetStaticProps } from 'next'
+import { resolveItems } from 'resolvers/item'
 
-type Props = {
-  items: Item[]
+export type HomeProps = {
+  items: ContentProps['items']
 }
 
-export function Home({ items }: Props) {
+export function Home({ items }: HomeProps) {
   return (
     <>
       <Head>
@@ -44,12 +46,13 @@ export function Home({ items }: Props) {
   )
 }
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const client = new Client(apiUrl, publicKey)
   const items = await client.getItems()
+  const resolvedItems = resolveItems(items)
 
   return {
-    props: { items },
+    props: { items: resolvedItems },
     revalidate: 360,
   }
 }

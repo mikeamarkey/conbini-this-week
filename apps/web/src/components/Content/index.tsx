@@ -1,27 +1,28 @@
-import type { ConbiniName, Item } from '@conbini-this-week/db/types'
+import type { ConbiniName } from '@conbini-this-week/shops'
 import { Box, Controls, ItemList } from 'components'
+import { ItemListProps } from 'components/ItemList'
 import { useMemo, useState } from 'react'
 
-type Props = {
-  items: Item[]
+export type ContentProps = {
+  items: ItemListProps['items']
 }
 
-export default function Content({ items }: Props) {
+export default function Content({ items }: ContentProps) {
   const [conbiniFilter, setConbiniFilter] = useState<ConbiniName | undefined>(
     undefined
   )
   const [textFilter, setTextFilter] = useState('')
 
   const filteredItems = useMemo(() => {
-    return items.filter(({ title, conbini }) => {
-      if (conbiniFilter && conbini !== conbiniFilter) {
+    return items.filter(({ title, conbiniName }) => {
+      if (conbiniFilter && conbiniName !== conbiniFilter) {
         return false
       }
 
       if (textFilter) {
         return (
           title.toLowerCase().includes(textFilter.toLowerCase()) ||
-          conbini.toLowerCase().includes(textFilter.toLowerCase())
+          conbiniName.toLowerCase().includes(textFilter.toLowerCase())
         )
       }
 
@@ -39,7 +40,7 @@ export default function Content({ items }: Props) {
         <ItemList
           itemCount={items.length}
           conbiniFilter={conbiniFilter}
-          filteredItems={filteredItems}
+          items={filteredItems}
         />
       </Box>
     </>

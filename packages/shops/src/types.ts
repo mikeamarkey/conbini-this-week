@@ -1,4 +1,4 @@
-import { ConbiniName as DBConbiniName } from '@conbini-this-week/db/types'
+import { ConbiniName as DBConbiniName } from '@conbini-this-week/db'
 
 export type ConbiniName = DBConbiniName
 

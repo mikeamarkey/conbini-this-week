@@ -5,8 +5,7 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "@conbini-this-week/db/*": ["../../../packages/db/src/*"],
-      "@conbini-this-week/db": ["../../../packages/db/src/index"]
+      "@conbini-this-week/db": ["../../../packages/db/src"]
     }
   }
 }

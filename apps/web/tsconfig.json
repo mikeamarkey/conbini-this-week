@@ -7,8 +7,8 @@
     "jsx": "preserve",
     "allowJs": true,
     "paths": {
-      "@conbini-this-week/db/*": ["../../../packages/db/src/*"],
-      "@conbini-this-week/db": ["../../../packages/db/src/index"]
+      "@conbini-this-week/db": ["../../../packages/db/src"],
+      "@conbini-this-week/shops": ["../../../packages/shops/src"]
     }
   },
   "include": [
