@@ -3,10 +3,10 @@ import { InsertItem } from './types'
 import { Database } from './schema'
 
 export class Client {
-  private client: SupabaseClient
+  private client: SupabaseClient<Database>
 
   public constructor(url: string, key: string) {
-    this.client = createClient<Database>(url, key)
+    this.client = createClient(url, key)
   }
 
   private getLastWeekTimestamp = () => {
