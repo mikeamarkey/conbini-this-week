@@ -3,6 +3,9 @@
   "exclude": ["node_modules"],
   "include": ["**/*.ts", ".eslintrc.js", "lint-staged.config.js"],
   "compilerOptions": {
-    "baseUrl": "./src"
+    "baseUrl": "./src",
+    "paths": {
+      "@conbini-this-week/db": ["../../../packages/db/src"]
+    }
   }
 }

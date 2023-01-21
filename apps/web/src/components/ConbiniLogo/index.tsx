@@ -1,12 +1,12 @@
-import type { ConbiniName } from '@conbini-this-week/db/types'
 import { Image } from '@nextui-org/react'
+import type { ConbiniName } from '@conbini-this-week/core'
 
-type Props = {
+export type ConbiniLogoProps = {
   conbiniName: ConbiniName
   size: number
 }
 
-export default function ConbiniLogo({ conbiniName, size }: Props) {
+export default function ConbiniLogo({ conbiniName, size }: ConbiniLogoProps) {
   return (
     <Image
       containerCss={{ margin: 0 }}

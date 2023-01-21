@@ -7,13 +7,10 @@ import {
 } from 'react'
 import { FormElement, Input, styled } from '@nextui-org/react'
 import { useDebounce } from 'react-use'
-import { ConbiniName } from '@conbini-this-week/db/types'
+import { ConbiniName, conbiniNames } from '@conbini-this-week/core'
 import { Box, ConbiniLogo } from 'components'
-import { conbinis } from 'constant'
 
-const conbiniKeys = Object.keys(conbinis) as [keyof typeof conbinis]
-
-type Props = {
+export type ControlsProps = {
   setConbiniFilter: Dispatch<SetStateAction<ConbiniName | undefined>>
   setTextFilter: Dispatch<SetStateAction<string>>
 }
@@ -41,7 +38,10 @@ const activeStyles = {
   borderColor: '$pink500',
 }
 
-export default function Controls({ setConbiniFilter, setTextFilter }: Props) {
+export default function Controls({
+  setConbiniFilter,
+  setTextFilter,
+}: ControlsProps) {
   const [search, setSearch] = useState('')
   const [activeConbini, setActiveConbini] = useState<ConbiniName | undefined>(
     undefined
@@ -98,13 +98,13 @@ export default function Controls({ setConbiniFilter, setTextFilter }: Props) {
           alignItems: 'center',
         }}
       >
-        {conbiniKeys.map((conbini) => (
+        {conbiniNames.map((conbiniName) => (
           <LogoButton
-            key={conbini}
-            onClick={() => handleConbiniClick(conbini)}
-            css={activeConbini === conbini ? activeStyles : {}}
+            key={conbiniName}
+            onClick={() => handleConbiniClick(conbiniName)}
+            css={activeConbini === conbiniName ? activeStyles : {}}
           >
-            <ConbiniLogo conbiniName={conbini} size={48} />
+            <ConbiniLogo conbiniName={conbiniName} size={48} />
           </LogoButton>
         ))}
       </Box>

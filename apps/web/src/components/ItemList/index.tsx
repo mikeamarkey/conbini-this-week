@@ -1,15 +1,21 @@
 import { Card, Grid, Text } from '@nextui-org/react'
-import { ConbiniName, Item } from '@conbini-this-week/db/types'
+import { ConbiniName, conbinisMap } from '@conbini-this-week/core'
 import { ConbiniLogo, Link, Box } from 'components'
 import { formatCurrency } from 'utils/number'
 import Image from 'next/image'
-import { conbinis } from 'constant'
 import { ComponentProps, useState } from 'react'
 
-type Props = {
-  filteredItems: Item[]
-  itemCount: number
+export type ItemListProps = {
   conbiniFilter?: ConbiniName
+  itemCount: number
+  items: {
+    conbiniName: ConbiniName
+    id: number
+    img: string
+    price: number
+    title: string
+    url: string
+  }[]
 }
 
 function getItemCountText(
@@ -33,7 +39,7 @@ function getItemCountText(
     return `Currently showing ${filteredItemsCount} of ${itemCount} items`
   }
 
-  return `Currently showing ${filteredItemsCount} items from ${conbinis[conbiniFilter].name}`
+  return `Currently showing ${filteredItemsCount} items from ${conbinisMap[conbiniFilter].name}`
 }
 
 const ImageWithFallback = ({
@@ -55,23 +61,19 @@ const ImageWithFallback = ({
 
 export default function ItemList({
   conbiniFilter,
-  filteredItems,
+  items,
   itemCount,
-}: Props) {
-  const itemCountText = getItemCountText(
-    filteredItems.length,
-    itemCount,
-    conbiniFilter
-  )
+}: ItemListProps) {
+  const itemCountText = getItemCountText(items.length, itemCount, conbiniFilter)
 
   return (
     <>
       <Text css={{ textAlign: 'center', margin: 0 }}>{itemCountText}</Text>
 
-      {filteredItems.length > 0 && (
+      {items.length > 0 && (
         <Grid.Container gap={1} css={{ marginTop: '$sm' }}>
-          {filteredItems.map((item) => (
-            <Grid key={item.img} xs={6} sm={3} md={2.4}>
+          {items.map((item) => (
+            <Grid key={item.id} xs={6} sm={3} md={2.4}>
               <Link
                 href={item.url}
                 target="__blank"
@@ -103,7 +105,7 @@ export default function ItemList({
                       {formatCurrency(item.price)}
                     </Text>
                     <Box css={{ overflow: 'hidden', borderRadius: '$pill' }}>
-                      <ConbiniLogo size={24} conbiniName={item.conbini} />
+                      <ConbiniLogo size={24} conbiniName={item.conbiniName} />
                     </Box>
                   </Card.Footer>
                 </Card>

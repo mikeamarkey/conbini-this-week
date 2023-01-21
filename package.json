@@ -10,6 +10,7 @@
     ]
   },
   "scripts": {
+    "core": "yarn workspace conbini-this-week-core",
     "db": "yarn workspace conbini-this-week-db",
     "scraper": "yarn workspace conbini-this-week-scraper",
     "web": "yarn workspace conbini-this-week-web",
