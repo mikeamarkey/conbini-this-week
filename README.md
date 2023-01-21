@@ -17,8 +17,9 @@ See what's coming up this week at the conbini (Japanese convenience stores)
 
 ### Packages
 
-- `scraper`: a scraper for gathering conbini item details
+- `core`: general constants and types related to conbinis
 - `db`: db tools through supabase's postgresql api
+- `scraper`: a scraper for gathering conbini item details
 
 ### Apps
 
