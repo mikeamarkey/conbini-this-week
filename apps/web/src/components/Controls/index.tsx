@@ -7,7 +7,7 @@ import {
 } from 'react'
 import { FormElement, Input, styled } from '@nextui-org/react'
 import { useDebounce } from 'react-use'
-import { ConbiniName, conbiniNames } from '@conbini-this-week/shops'
+import { ConbiniName, conbiniNames } from '@conbini-this-week/core'
 import { Box, ConbiniLogo } from 'components'
 
 export type ControlsProps = {

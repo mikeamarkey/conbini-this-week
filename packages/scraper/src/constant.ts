@@ -1,5 +1,5 @@
 import type { ConbiniConfig } from './types'
-import { conbinisMap } from '@conbini-this-week/shops'
+import { conbinisMap } from '@conbini-this-week/core'
 
 export const supabaseKey = process.env.SUPABASE_PRIVATE_KEY ?? ''
 export const supabaseUrl = process.env.SUPABASE_API_URL ?? ''

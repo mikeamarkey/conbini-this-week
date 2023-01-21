@@ -1,5 +1,5 @@
 import 'dotenv/config'
-import { conbinisMap } from '@conbini-this-week/shops'
+import { conbinisMap } from '@conbini-this-week/core'
 
 import { scrape, scrapeAll, scrapeAllDry, scrapeDry } from './scrape'
 import { isValidConbiniName } from './utils'

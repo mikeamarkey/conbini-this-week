@@ -6,7 +6,7 @@
     "baseUrl": "./src",
     "paths": {
       "@conbini-this-week/db": ["../../../packages/db/src"],
-      "@conbini-this-week/shops": ["../../../packages/shops/src"]
+      "@conbini-this-week/core": ["../../../packages/core/src"]
     }
   }
 }

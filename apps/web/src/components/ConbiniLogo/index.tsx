@@ -1,5 +1,5 @@
 import { Image } from '@nextui-org/react'
-import type { ConbiniName } from '@conbini-this-week/shops'
+import type { ConbiniName } from '@conbini-this-week/core'
 
 export type ConbiniLogoProps = {
   conbiniName: ConbiniName

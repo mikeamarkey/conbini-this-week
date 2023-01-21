@@ -1,5 +1,5 @@
 import { Card, Grid, Text } from '@nextui-org/react'
-import { ConbiniName, conbinisMap } from '@conbini-this-week/shops'
+import { ConbiniName, conbinisMap } from '@conbini-this-week/core'
 import { ConbiniLogo, Link, Box } from 'components'
 import { formatCurrency } from 'utils/number'
 import Image from 'next/image'

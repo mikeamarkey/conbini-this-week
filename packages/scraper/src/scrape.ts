@@ -2,7 +2,7 @@ import { z } from 'zod'
 import { Client } from '../../db/src'
 import type { InsertItem } from '../../db/src/types'
 import { supabaseKey, supabaseUrl, conbinisConfig } from './constant'
-import { ConbiniName, conbiniNames } from '@conbini-this-week/shops'
+import { ConbiniName, conbiniNames } from '@conbini-this-week/core'
 import { JSDOM } from 'jsdom'
 
 export async function scrape(name: ConbiniName) {
