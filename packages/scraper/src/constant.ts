@@ -1,13 +1,12 @@
-import type { Conbini } from './types'
+import type { ConbiniConfig } from './types'
+import { conbinisMap } from '@conbini-this-week/shops'
 
 export const supabaseKey = process.env.SUPABASE_PRIVATE_KEY ?? ''
 export const supabaseUrl = process.env.SUPABASE_API_URL ?? ''
 
-export const conbinis: Conbini = {
+export const conbinisConfig: ConbiniConfig = {
   dailyyamazaki: {
-    name: 'dailyyamazaki',
-    baseUrl: 'https://www.daily-yamazaki.jp',
-    newItemsUrl: () => 'https://www.daily-yamazaki.jp/new/',
+    ...conbinisMap.dailyyamazaki,
     selectors: {
       list: '.boxShinsyohin > div:first-of-type ul.boxRow > li',
       title: '.boxInner02 > h4',
@@ -17,9 +16,7 @@ export const conbinis: Conbini = {
     },
   },
   familymart: {
-    name: 'familymart',
-    baseUrl: 'https://www.family.co.jp',
-    newItemsUrl: () => 'https://www.family.co.jp/goods/newgoods.html',
+    ...conbinisMap.familymart,
     selectors: {
       list: '.ly-goods-list-area .ly-mod-layout-clm',
       url: '.ly-mod-infoset4-link',
@@ -31,9 +28,7 @@ export const conbinis: Conbini = {
     },
   },
   lawson: {
-    name: 'lawson',
-    baseUrl: 'https://www.lawson.co.jp',
-    newItemsUrl: () => 'https://www.lawson.co.jp/recommend/new/',
+    ...conbinisMap.lawson,
     selectors: {
       list: '.recommend ul.heightLineParent > li',
       url: 'a',
@@ -44,9 +39,7 @@ export const conbinis: Conbini = {
     },
   },
   ministop: {
-    name: 'ministop',
-    baseUrl: 'https://www.ministop.co.jp',
-    newItemsUrl: () => 'https://www.ministop.co.jp/syohin/js/recommend.json',
+    ...conbinisMap.ministop,
     selectors: {
       list: '#recommendAreaInner .productList li.new',
       url: 'a',
@@ -57,10 +50,7 @@ export const conbinis: Conbini = {
     },
   },
   seveneleven: {
-    name: 'seveneleven',
-    baseUrl: 'https://www.sej.co.jp',
-    newItemsUrl: (page = 1) =>
-      `https://www.sej.co.jp/products/a/thisweek/area/hokuriku/${page}/l100/`,
+    ...conbinisMap.seveneleven,
     selectors: {
       list: '.pbMainArea .pbNested .pbNestedWrapper .list_inner',
       url: 'a',

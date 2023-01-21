@@ -4,9 +4,9 @@
   "include": ["**/*.ts", ".eslintrc.js", "lint-staged.config.js"],
   "compilerOptions": {
     "baseUrl": "./src",
-    // FIXME: baseUrl and paths not currently supported by vercel node environment
     "paths": {
-      "@conbini-this-week/db": ["../../../packages/db/src"]
+      "@conbini-this-week/db": ["../../../packages/db/src"],
+      "@conbini-this-week/shops": ["../../../packages/shops/src"]
     }
   }
 }

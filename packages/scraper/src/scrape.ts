@@ -1,9 +1,9 @@
 import { z } from 'zod'
 import { Client } from '../../db/src'
 import type { InsertItem } from '../../db/src/types'
-import { conbinis, supabaseKey, supabaseUrl } from './constant'
+import { supabaseKey, supabaseUrl, conbinisConfig } from './constant'
+import { ConbiniName, conbiniNames } from '@conbini-this-week/shops'
 import { JSDOM } from 'jsdom'
-import type { ConbiniName } from 'types'
 
 export async function scrape(name: ConbiniName) {
   const items = await scrapeConbini(name)
@@ -12,16 +12,18 @@ export async function scrape(name: ConbiniName) {
   return count
 }
 
-export async function scrapeDry(name: ConbiniName) {
+export async function scrapeDry(name: ConbiniName, verbose = true) {
   const items = await scrapeConbini(name)
-  console.log(items)
+  if (verbose) {
+    console.log(items)
+  }
   return items.length
 }
 
 export async function scrapeAll() {
   let count = 0
-  const promises = Object.keys(conbinis).map(async (name) => {
-    const result = await scrape(name as ConbiniName)
+  const promises = conbiniNames.map(async (name) => {
+    const result = await scrape(name)
     count += result
     return
   })
@@ -29,15 +31,26 @@ export async function scrapeAll() {
   return count
 }
 
+export async function scrapeAllDry() {
+  let count = 0
+  const promises = conbiniNames.map(async (name) => {
+    const result = await scrapeDry(name, false)
+    console.log(`${conbinisConfig[name].displayName}: result items ${result}`)
+    count += result
+  })
+  await Promise.all(promises)
+  return count
+}
+
 async function scrapeConbini(name: ConbiniName) {
-  const conbini = conbinis[name]
+  const conbini = conbinisConfig[name]
   switch (conbini.name) {
     case 'dailyyamazaki':
     case 'familymart': {
       const document = (await JSDOM.fromURL(conbini.newItemsUrl())).window
         .document.documentElement
       const listItems = document.querySelectorAll(conbini.selectors.list)
-      const collectedItems = await collectPageItems(listItems, conbini)
+      const collectedItems = await collectPageItems(listItems, name)
       return collectedItems
     }
     case 'lawson': {
@@ -50,10 +63,10 @@ async function scrapeConbini(name: ConbiniName) {
       if (!redirectPath) {
         throw new Error('Failed to get redirect path')
       }
-      document = (await JSDOM.fromURL(`${conbini.baseUrl}${redirectPath}`))
+      document = (await JSDOM.fromURL(`${conbini.baseurl}${redirectPath}`))
         .window.document.documentElement
       const listItems = document.querySelectorAll(conbini.selectors.list)
-      const collectedItems = await collectPageItems(listItems, conbini)
+      const collectedItems = await collectPageItems(listItems, name)
       return collectedItems
     }
 
@@ -76,7 +89,7 @@ async function scrapeConbini(name: ConbiniName) {
         return []
       }
 
-      const { baseUrl, selectors, name } = conbini
+      const { baseurl, selectors, name } = conbini
       const collectedItems = result.data
         .filter((item) => item.new)
         .map((item) => {
@@ -87,9 +100,9 @@ async function scrapeConbini(name: ConbiniName) {
 
           return {
             conbini: name,
-            url: `${baseUrl}${item.link}`,
+            url: `${baseurl}${item.link}`,
             title: item.title,
-            img: `${baseUrl}${item.image}`,
+            img: `${baseurl}${item.image}`,
             price,
           }
         })
@@ -113,7 +126,7 @@ async function scrapeConbini(name: ConbiniName) {
             .document.documentElement
         }
         const listItems = document.querySelectorAll(conbini.selectors.list)
-        const newItems = await collectPageItems(listItems, conbini)
+        const newItems = await collectPageItems(listItems, name)
         collectedItems.push(...newItems)
       }
       return collectedItems
@@ -123,12 +136,12 @@ async function scrapeConbini(name: ConbiniName) {
 
 async function collectPageItems(
   listItems: NodeListOf<Element>,
-  conbini: (typeof conbinis)[keyof typeof conbinis]
+  conbiniName: ConbiniName
 ): Promise<InsertItem[]> {
-  const { selectors } = conbini
+  const { newItemsUrl, selectors } = conbinisConfig[conbiniName]
   const items = Array.from(listItems, (el) => {
     const url = !selectors.url
-      ? conbini.newItemsUrl()
+      ? newItemsUrl()
       : el.querySelector<HTMLAnchorElement>(selectors.url)?.href?.trim() ?? ''
     const title =
       el.querySelector<HTMLElement>(selectors.title)?.textContent?.trim() ?? ''
@@ -159,7 +172,7 @@ async function collectPageItems(
   return items.map((item) => {
     return {
       ...item,
-      conbini: conbini.name,
+      conbini: conbiniName,
     }
   })
 }
