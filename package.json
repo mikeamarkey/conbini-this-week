@@ -13,6 +13,7 @@
     "core": "yarn workspace conbini-this-week-core",
     "db": "yarn workspace conbini-this-week-db",
     "scraper": "yarn workspace conbini-this-week-scraper",
+    "scraper-api": "yarn workspace conbini-this-week-scraper-api",
     "web": "yarn workspace conbini-this-week-web",
     "---------------": "---------------",
     "deps:check": "npm-check-updates --deep --dep prod,dev,optional",

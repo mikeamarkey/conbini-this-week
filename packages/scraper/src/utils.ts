@@ -1,4 +1,4 @@
-import { ConbiniName, conbinisMap } from '@conbini-this-week/core'
+import { ConbiniName, conbinisMap } from '../../core/src'
 
 export const isValidConbiniName = (
   name: string
