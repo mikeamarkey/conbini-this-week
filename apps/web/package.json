@@ -5,6 +5,8 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
+    "checks:lint": "eslint . --ext ts --ext tsx --ext js",
+    "fix:lint": "yarn lint --fix",
     "fix:staged-files": "lint-staged --allow-empty",
     "lint": "eslint . --ext ts --ext tsx --ext js",
     "start": "next start",

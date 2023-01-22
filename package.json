@@ -20,7 +20,7 @@
     "deps:update": "npm-check-updates -u --deep --dep prod,dev,optional",
     "fix:prettier": "prettier --write .",
     "fix:staged-files": "yarn workspaces run fix:staged-files",
-    "check:eslint": "yarn workspaces run lint",
+    "checks:lint": "yarn workspaces run checks:lint",
     "check:prettier": "prettier --check .",
     "check:typescript": "yarn workspaces run type-check",
     "checks": "yarn run-p check:*",

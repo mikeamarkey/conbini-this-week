@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "checks:lint": "eslint . --ext ts",
+    "fix:lint": "yarn checks:lint --fix",
     "fix:staged-files": "lint-staged --allow-empty",
-    "lint": "eslint . --ext ts",
     "type-check": "tsc --pretty --noEmit"
   },
   "devDependencies": {

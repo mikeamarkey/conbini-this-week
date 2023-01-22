@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "lint": "eslint . --ext ts",
+    "checks:lint": "eslint . --ext ts",
+    "fix:lint": "yarn checks:lint --fix",
     "fix:staged-files": "lint-staged --allow-empty",
     "generate": "source .env && supabase gen types typescript --project-id \"$SUPABASE_PROJECT_ID\" > src/schema.ts",
     "type-check": "tsc --pretty --noEmit"
