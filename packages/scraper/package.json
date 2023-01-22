@@ -6,7 +6,7 @@
     "checks:lint": "eslint . --ext ts",
     "checks:tsc": "tsc --pretty --noEmit",
     "fix:lint": "yarn checks:lint --fix",
-    "fix:staged-files": "lint-staged --allow-empty",
+    "fix:staged": "lint-staged --allow-empty",
     "scrape": "ts-node -r tsconfig-paths/register src/index.ts"
   },
   "dependencies": {

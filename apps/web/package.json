@@ -8,7 +8,7 @@
     "checks:lint": "eslint . --ext ts --ext tsx --ext js",
     "checks:tsc": "tsc --pretty --noEmit",
     "fix:lint": "yarn lint --fix",
-    "fix:staged-files": "lint-staged --allow-empty",
+    "fix:staged": "lint-staged --allow-empty",
     "start": "next start",
     "test": "jest"
   },
