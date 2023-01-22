@@ -18,14 +18,15 @@
     "---------------": "---------------",
     "deps:check": "npm-check-updates --deep --dep prod,dev,optional",
     "deps:update": "npm-check-updates -u --deep --dep prod,dev,optional",
+    "fix:lint": "yarn workspaces run fix:lint",
     "fix:prettier": "prettier --write .",
-    "fix:staged": "yarn workspaces run fix:staged",
+    "checks": "yarn run-p checks:*",
     "checks:lint": "yarn workspaces run checks:lint",
     "checks:prettier": "prettier --check .",
     "checks:tsc": "yarn workspaces run checks:tsc",
-    "checks": "yarn run-p checks:*",
     "postinstall": "yarn db generate",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "staged": "yarn workspaces run staged"
   },
   "devDependencies": {
     "@types/eslint": "8.4.10",
