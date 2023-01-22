@@ -6,6 +6,7 @@
     "checks": "yarn run-p checks:*",
     "checks:lint": "eslint . --ext ts",
     "checks:tsc": "tsc --pretty --noEmit",
+    "fix": "yarn run-p fix:*",
     "fix:lint": "yarn checks:lint --fix",
     "scrape": "ts-node -r tsconfig-paths/register src/index.ts",
     "staged": "lint-staged --allow-empty"

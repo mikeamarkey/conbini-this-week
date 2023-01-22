@@ -18,6 +18,7 @@
     "---------------": "---------------",
     "deps:check": "npm-check-updates --deep --dep prod,dev,optional",
     "deps:update": "npm-check-updates -u --deep --dep prod,dev,optional",
+    "fix": "yarn run-p fix:*",
     "fix:lint": "yarn workspaces run fix:lint",
     "fix:prettier": "prettier --write .",
     "checks": "yarn run-p checks:*",
