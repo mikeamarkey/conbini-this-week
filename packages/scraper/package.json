@@ -3,10 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "fix:staged-files": "lint-staged --allow-empty",
-    "lint": "eslint . --ext ts",
+    "checks": "yarn run-p checks:*",
+    "checks:lint": "eslint . --ext ts",
+    "checks:tsc": "tsc --pretty --noEmit",
+    "fix": "yarn run-p fix:*",
+    "fix:lint": "yarn checks:lint --fix",
     "scrape": "ts-node -r tsconfig-paths/register src/index.ts",
-    "type-check": "tsc --pretty --noEmit"
+    "staged": "lint-staged --allow-empty"
   },
   "dependencies": {
     "jsdom": "^21.0.0",
@@ -22,6 +25,7 @@
     "eslint-config-prettier": "8.6.0",
     "eslint-import-resolver-typescript": "3.5.3",
     "eslint-plugin-import": "2.27.4",
+    "npm-run-all": "4.1.5",
     "ts-node": "10.9.1",
     "tsconfig-paths": "4.1.2",
     "typescript": "4.9.4"
