@@ -1,4 +1,4 @@
-import { ConbiniMap } from '../../core/src'
+import { type ConbiniMap } from '@conbini-this-week/core'
 
 export type SelectorMap = {
   category?: string
