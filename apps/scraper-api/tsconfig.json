@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "exclude": ["node_modules"],
+  "include": ["**/*.ts", ".eslintrc.js", "lint-staged.config.js"],
+  "compilerOptions": {
+    "baseUrl": "./api",
+    "paths": {
+      "@conbini-this-week/db": ["../../../packages/db/src"],
+      "@conbini-this-week/core": ["../../../packages/core/src"]
+    }
+  }
+}
