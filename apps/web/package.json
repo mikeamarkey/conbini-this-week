@@ -6,12 +6,11 @@
     "build": "next build",
     "dev": "next dev",
     "checks:lint": "eslint . --ext ts --ext tsx --ext js",
+    "checks:tsc": "tsc --pretty --noEmit",
     "fix:lint": "yarn lint --fix",
     "fix:staged-files": "lint-staged --allow-empty",
-    "lint": "eslint . --ext ts --ext tsx --ext js",
     "start": "next start",
-    "test": "jest",
-    "type-check": "tsc --pretty --noEmit"
+    "test": "jest"
   },
   "dependencies": {
     "@nextui-org/react": "1.0.0-beta.12",

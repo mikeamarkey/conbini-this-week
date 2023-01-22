@@ -22,7 +22,7 @@
     "fix:staged-files": "yarn workspaces run fix:staged-files",
     "checks:lint": "yarn workspaces run checks:lint",
     "checks:prettier": "prettier --check .",
-    "check:typescript": "yarn workspaces run type-check",
+    "checks:tsc": "yarn workspaces run checks:tsc",
     "checks": "yarn run-p check:*",
     "postinstall": "yarn db generate",
     "prepare": "husky install"

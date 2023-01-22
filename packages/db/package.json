@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "checks:lint": "eslint . --ext ts",
+    "checks:tsc": "tsc --pretty --noEmit",
     "fix:lint": "yarn checks:lint --fix",
     "fix:staged-files": "lint-staged --allow-empty",
-    "generate": "source .env && supabase gen types typescript --project-id \"$SUPABASE_PROJECT_ID\" > src/schema.ts",
-    "type-check": "tsc --pretty --noEmit"
+    "generate": "source .env && supabase gen types typescript --project-id \"$SUPABASE_PROJECT_ID\" > src/schema.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.2.3"
