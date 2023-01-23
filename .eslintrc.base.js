@@ -38,6 +38,10 @@ module.exports = {
       'error',
       { alphabetize: { order: 'asc', caseInsensitive: true } },
     ],
+    '@typescript-eslint/consistent-type-imports': [
+      'error',
+      { fixStyle: 'inline-type-imports' },
+    ],
     '@typescript-eslint/explicit-module-boundary-types': 0,
     '@typescript-eslint/explicit-function-return-type': 0,
     '@typescript-eslint/explicit-member-accessibility': 0,

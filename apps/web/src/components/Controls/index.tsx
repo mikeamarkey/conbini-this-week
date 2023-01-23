@@ -1,13 +1,13 @@
-import { FormElement, Input, styled } from '@nextui-org/react'
+import { type FormElement, Input, styled } from '@nextui-org/react'
 import {
-  ChangeEvent,
-  Dispatch,
-  SetStateAction,
+  type ChangeEvent,
+  type Dispatch,
+  type SetStateAction,
   useCallback,
   useState,
 } from 'react'
 import { useDebounce } from 'react-use'
-import { ConbiniName, conbiniNames } from '~/core'
+import { type ConbiniName, conbiniNames } from '~/core'
 import { Box, ConbiniLogo } from 'components'
 
 export type ControlsProps = {

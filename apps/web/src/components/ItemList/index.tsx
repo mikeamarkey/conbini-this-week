@@ -1,7 +1,7 @@
 import { Card, Grid, Text } from '@nextui-org/react'
 import Image from 'next/image'
-import { ComponentProps, useState } from 'react'
-import { ConbiniName, conbinisMap } from '~/core'
+import { type ComponentProps, useState } from 'react'
+import { type ConbiniName, conbinisMap } from '~/core'
 import { Box, ConbiniLogo, Link } from 'components'
 import { formatCurrency } from 'utils/number'
 
