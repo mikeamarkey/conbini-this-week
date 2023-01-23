@@ -1,9 +1,9 @@
 import { Card, Grid, Text } from '@nextui-org/react'
-import { ConbiniName, conbinisMap } from '@conbini-this-week/core'
-import { ConbiniLogo, Link, Box } from 'components'
-import { formatCurrency } from 'utils/number'
 import Image from 'next/image'
-import { ComponentProps, useState } from 'react'
+import { type ComponentProps, useState } from 'react'
+import { type ConbiniName, conbinisMap } from '~/core'
+import { Box, ConbiniLogo, Link } from 'components'
+import { formatCurrency } from 'utils/number'
 
 export type ItemListProps = {
   conbiniFilter?: ConbiniName

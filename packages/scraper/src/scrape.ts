@@ -1,9 +1,9 @@
+import { JSDOM } from 'jsdom'
 import { z } from 'zod'
+import { type ConbiniName, conbiniNames } from '../../core/src'
 import { Client } from '../../db/src'
 import type { InsertItem } from '../../db/src/types'
-import { supabaseKey, supabaseUrl, conbinisConfig } from './constant'
-import { ConbiniName, conbiniNames } from '../../core/src'
-import { JSDOM } from 'jsdom'
+import { conbinisConfig, supabaseKey, supabaseUrl } from './constant'
 
 export async function scrape(name: ConbiniName) {
   const items = await scrapeConbini(name)

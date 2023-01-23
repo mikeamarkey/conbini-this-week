@@ -20,6 +20,28 @@ module.exports = {
   },
   ignorePatterns: ['**/node_modules', '**/dist', '**/build'],
   rules: {
+    'no-console': [
+      2,
+      {
+        allow: ['warn', 'error'],
+      },
+    ],
+    'sort-imports': [
+      'error',
+      {
+        allowSeparatedGroups: true,
+        ignoreCase: true,
+        ignoreDeclarationSort: true,
+      },
+    ],
+    'import/order': [
+      'error',
+      { alphabetize: { order: 'asc', caseInsensitive: true } },
+    ],
+    '@typescript-eslint/consistent-type-imports': [
+      'error',
+      { fixStyle: 'inline-type-imports' },
+    ],
     '@typescript-eslint/explicit-module-boundary-types': 0,
     '@typescript-eslint/explicit-function-return-type': 0,
     '@typescript-eslint/explicit-member-accessibility': 0,
@@ -32,12 +54,6 @@ module.exports = {
       2,
       {
         argsIgnorePattern: '^_',
-      },
-    ],
-    'no-console': [
-      2,
-      {
-        allow: ['warn', 'error'],
       },
     ],
   },

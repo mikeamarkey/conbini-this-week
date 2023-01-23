@@ -1,4 +1,4 @@
-import { Database } from './schema'
+import { type Database } from './schema'
 
 export type ConbiniName = Database['public']['Enums']['conbini']
 export type Item = Database['public']['Tables']['items']['Row']

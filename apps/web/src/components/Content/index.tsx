@@ -1,7 +1,7 @@
-import type { ConbiniName } from '@conbini-this-week/core'
-import { Box, Controls, ItemList } from 'components'
-import { ItemListProps } from 'components/ItemList'
 import { useMemo, useState } from 'react'
+import type { ConbiniName } from '~/core'
+import { Box, Controls, ItemList } from 'components'
+import type { ItemListProps } from 'components/ItemList'
 
 export type ContentProps = {
   items: ItemListProps['items']

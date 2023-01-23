@@ -1,7 +1,9 @@
+import { Text } from '@nextui-org/react'
+import Image from 'next/image'
 import { Box, Link } from 'components'
 import { repoUrl } from 'constant'
-import Image from 'next/image'
-import { Text } from '@nextui-org/react'
+
+export type FooterProps = never
 
 export default function Footer() {
   return (

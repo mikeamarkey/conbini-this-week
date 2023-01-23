@@ -1,10 +1,10 @@
-import Head from 'next/head'
-import { Client } from '@conbini-this-week/db'
-import { apiUrl, publicKey } from 'constant'
 import { Container } from '@nextui-org/react'
+import { type GetStaticProps } from 'next'
+import Head from 'next/head'
+import { Client } from '~/db'
 import { Box, Content, Footer, Header } from 'components'
-import { ContentProps } from 'components/Content'
-import { GetStaticProps } from 'next'
+import { type ContentProps } from 'components/Content'
+import { apiUrl, publicKey } from 'constant'
 import { resolveItems } from 'resolvers/item'
 
 export type HomeProps = {
