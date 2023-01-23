@@ -3,6 +3,8 @@ import Image from 'next/image'
 import { Box, Link } from 'components'
 import { repoUrl } from 'constant'
 
+export type FooterProps = never
+
 export default function Footer() {
   return (
     <Box css={{ textAlign: 'center' }}>

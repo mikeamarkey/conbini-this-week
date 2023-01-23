@@ -13,7 +13,11 @@ const Title = styled('h1', {
   },
 })
 
-export default function Header({ itemCount }: { itemCount: number }) {
+export type HeaderProps = {
+  itemCount: number
+}
+
+export default function Header({ itemCount }: HeaderProps) {
   return (
     <Wrapper>
       <Title>Conbini This Week</Title>
