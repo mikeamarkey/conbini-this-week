@@ -24,6 +24,14 @@ module.exports = {
       'error',
       { alphabetize: { order: 'asc', caseInsensitive: true } },
     ],
+    'sort-imports': [
+      'error',
+      {
+        allowSeparatedGroups: true,
+        ignoreCase: true,
+        ignoreDeclarationSort: true,
+      },
+    ],
     '@typescript-eslint/explicit-module-boundary-types': 0,
     '@typescript-eslint/explicit-function-return-type': 0,
     '@typescript-eslint/explicit-member-accessibility': 0,
