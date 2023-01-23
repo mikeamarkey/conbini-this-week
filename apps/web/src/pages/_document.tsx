@@ -1,4 +1,4 @@
-import React from 'react'
+import { CssBaseline } from '@nextui-org/react'
 import Document, {
   Html,
   Head,
@@ -7,7 +7,7 @@ import Document, {
   DocumentContext,
   DocumentInitialProps,
 } from 'next/document'
-import { CssBaseline } from '@nextui-org/react'
+import React from 'react'
 
 export default class MyDocument extends Document {
   static async getInitialProps(

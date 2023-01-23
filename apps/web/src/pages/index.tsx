@@ -1,10 +1,10 @@
+import { Container } from '@nextui-org/react'
+import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import { Client } from '~/db'
-import { apiUrl, publicKey } from 'constant'
-import { Container } from '@nextui-org/react'
 import { Box, Content, Footer, Header } from 'components'
 import { ContentProps } from 'components/Content'
-import { GetStaticProps } from 'next'
+import { apiUrl, publicKey } from 'constant'
 import { resolveItems } from 'resolvers/item'
 
 export type HomeProps = {
