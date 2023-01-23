@@ -20,9 +20,11 @@ module.exports = {
   },
   ignorePatterns: ['**/node_modules', '**/dist', '**/build'],
   rules: {
-    'import/order': [
-      'error',
-      { alphabetize: { order: 'asc', caseInsensitive: true } },
+    'no-console': [
+      2,
+      {
+        allow: ['warn', 'error'],
+      },
     ],
     'sort-imports': [
       'error',
@@ -31,6 +33,10 @@ module.exports = {
         ignoreCase: true,
         ignoreDeclarationSort: true,
       },
+    ],
+    'import/order': [
+      'error',
+      { alphabetize: { order: 'asc', caseInsensitive: true } },
     ],
     '@typescript-eslint/explicit-module-boundary-types': 0,
     '@typescript-eslint/explicit-function-return-type': 0,
@@ -44,12 +50,6 @@ module.exports = {
       2,
       {
         argsIgnorePattern: '^_',
-      },
-    ],
-    'no-console': [
-      2,
-      {
-        allow: ['warn', 'error'],
       },
     ],
   },
