@@ -1,4 +1,4 @@
-import type { ConbiniName } from '@conbini-this-week/core'
+import type { ConbiniName } from '~/core'
 import { Box, Controls, ItemList } from 'components'
 import { ItemListProps } from 'components/ItemList'
 import { useMemo, useState } from 'react'

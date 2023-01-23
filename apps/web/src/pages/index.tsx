@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { Client } from '@conbini-this-week/db'
+import { Client } from '~/db'
 import { apiUrl, publicKey } from 'constant'
 import { Container } from '@nextui-org/react'
 import { Box, Content, Footer, Header } from 'components'

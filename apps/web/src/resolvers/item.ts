@@ -1,4 +1,4 @@
-import { Item } from '@conbini-this-week/db'
+import { Item } from '~/db'
 import { ItemListProps } from 'components/ItemList'
 
 export const resolveItem = (item: Item): ItemListProps['items'][number] => {
