@@ -5,10 +5,10 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "checks": "pnpm --stream /checks:.*/",
+    "checks": "pnpm /checks:.*/",
     "checks:lint": "eslint . --ext ts --ext tsx --ext js",
     "checks:tsc": "tsc --pretty --noEmit",
-    "fix": "pnpm --stream /fix:.*/",
+    "fix": "pnpm /fix:.*/",
     "fix:lint": "pnpm checks:lint --fix",
     "staged": "lint-staged --allow-empty",
     "start": "next start",

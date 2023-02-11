@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "checks": "pnpm --stream /checks:.*/",
+    "checks": "pnpm /checks:.*/",
     "checks:lint": "eslint . --ext ts",
     "checks:tsc": "tsc --pretty --noEmit",
-    "fix": "pnpm --stream /fix:.*/",
+    "fix": "pnpm /fix:.*/",
     "fix:lint": "pnpm checks:lint --fix",
     "staged": "lint-staged --allow-empty"
   },
@@ -19,7 +19,6 @@
     "eslint-config-prettier": "8.6.0",
     "eslint-import-resolver-typescript": "3.5.3",
     "eslint-plugin-import": "2.27.4",
-    "npm-run-all": "4.1.5",
     "typescript": "4.9.4"
   }
 }
