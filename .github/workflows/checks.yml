@@ -16,6 +16,13 @@ jobs:
           node-version: 18
           cache: 'pnpm'
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        id: pnpm-install
+        with:
+          version: 7
+          run_install: false
+
       - name: Install Dependencies
         run: pnpm install --ignore-scripts --frozen-lockfile
 
