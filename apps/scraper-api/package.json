@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "checks": "yarn run-p checks:*",
+    "checks": "pnpm --stream /checks:.*/",
     "checks:lint": "eslint . --ext ts",
     "checks:tsc": "tsc --pretty --noEmit",
-    "fix": "yarn run-p fix:*",
-    "fix:lint": "yarn checks:lint --fix",
+    "fix": "pnpm --stream /fix:.*/",
+    "fix:lint": "pnpm checks:lint --fix",
     "staged": "lint-staged --allow-empty"
   },
   "devDependencies": {

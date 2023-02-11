@@ -3,6 +3,8 @@
 node_modules
 package-lock.json
 packages/db/src/schema.ts
+pnpm-lock.yaml
+pnpm-workspace.yaml
 public
 tsconfig.tsbuildinfo
 yarn.lock

@@ -1,7 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:base"],
-  "postUpdateOptions": ["yarnDedupeHighest"],
   "schedule": ["before 3am"],
   "separateMajorMinor": false,
   "packageRules": [

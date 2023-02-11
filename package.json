@@ -3,31 +3,25 @@
   "license": "MIT",
   "version": "0.0.0",
   "private": true,
-  "workspaces": {
-    "packages": [
-      "packages/*",
-      "apps/*"
-    ]
-  },
   "scripts": {
-    "core": "yarn workspace conbini-this-week-core",
-    "db": "yarn workspace conbini-this-week-db",
-    "scraper": "yarn workspace conbini-this-week-scraper",
-    "scraper-api": "yarn workspace conbini-this-week-scraper-api",
-    "web": "yarn workspace conbini-this-week-web",
+    "core": "pnpm --filter conbini-this-week-core",
+    "db": "pnpm --filter conbini-this-week-db",
+    "scraper": "pnpm --filter conbini-this-week-scraper",
+    "scraper-api": "pnpm --filter conbini-this-week-scraper-api",
+    "web": "pnpm --filter conbini-this-week-web",
     "---------------": "---------------",
     "deps:check": "npm-check-updates --deep --dep prod,dev,optional",
     "deps:update": "npm-check-updates -u --deep --dep prod,dev,optional",
-    "fix": "yarn run-p fix:*",
-    "fix:lint": "yarn workspaces run fix:lint",
+    "fix": "pnpm --parallel --aggregate-output -r fix",
+    "fix:lint": "pnpm --parallel -r fix:lint",
     "fix:prettier": "prettier --write .",
-    "checks": "yarn run-p checks:*",
-    "checks:lint": "yarn workspaces run checks:lint",
+    "checks": "pnpm --parallel --aggregate-output -r checks",
+    "checks:lint": "pnpm --parallel -r checks:lint",
     "checks:prettier": "prettier --check .",
-    "checks:tsc": "yarn workspaces run checks:tsc",
-    "postinstall": "yarn db generate",
+    "checks:tsc": "pnpm --parallel -r checks:tsc",
+    "postinstall": "pnpm db generate",
     "prepare": "husky install",
-    "staged": "yarn workspaces run staged"
+    "staged": "pnpm -r staged"
   },
   "devDependencies": {
     "@types/eslint": "8.4.10",
@@ -39,9 +33,5 @@
     "npm-run-all": "4.1.5",
     "prettier": "2.8.2",
     "shell-quote": "1.7.4"
-  },
-  "resolutions": {
-    "**/ts-node": "10.9.1",
-    "**/typescript": "4.9.4"
   }
 }

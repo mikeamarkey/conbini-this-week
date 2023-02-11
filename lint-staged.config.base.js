@@ -33,7 +33,7 @@ const rules = {
         .join(' ')}`,
     ]
   },
-  '**/*.{json,md,mdx,css,html,yml,yaml,scss}': (filenames) => {
+  '**/*.{json,md,mdx,css,html,scss}': (filenames) => {
     return [`prettier --write ${escapeFileNamesForPrettier(filenames)}`]
   },
 }

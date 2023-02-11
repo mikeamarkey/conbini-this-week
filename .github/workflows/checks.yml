@@ -14,10 +14,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'yarn'
+          cache: 'pnpm'
 
       - name: Install Dependencies
-        run: yarn install --ignore-scripts --immutable
+        run: pnpm install --ignore-scripts --frozen-lockfile
 
       - name: Run Checks
-        run: yarn checks
+        run: pnpm checks
