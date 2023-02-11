@@ -17,7 +17,6 @@
     "fix": "pnpm /fix:.*/",
     "fix:lint": "pnpm --parallel -r fix:lint",
     "fix:prettier": "prettier --write .",
-    "postinstall": "pnpm db generate",
     "prepare": "husky install",
     "staged": "pnpm -r --workspace-concurrency=1 staged"
   },
