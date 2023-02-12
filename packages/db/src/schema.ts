@@ -50,11 +50,14 @@ export interface Database {
     }
     Enums: {
       conbini:
+        | "dailyyamazaki"
         | "familymart"
         | "lawson"
-        | "seveneleven"
         | "ministop"
-        | "dailyyamazaki"
+        | "seveneleven"
+    }
+    CompositeTypes: {
+      [_ in never]: never
     }
   }
 }
