@@ -9,7 +9,12 @@
     "paths": {
       "~/db": ["../../../packages/db/src"],
       "~/core": ["../../../packages/core/src"]
-    }
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "**/*.js",
@@ -18,7 +23,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".eslintrc.js",
-    "next-env.d.ts"
+    "next-env.d.ts",
+    ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules", ".next", "out"]
 }

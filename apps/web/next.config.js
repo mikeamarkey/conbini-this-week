@@ -5,6 +5,7 @@
  **/
 const nextConfig = {
   experimental: {
+    appDir: true,
     externalDir: true,
   },
   images: {
