@@ -27,7 +27,7 @@ const rules = {
     return [
       // react-hooks/exhaustive-deps must be kept off, a change made here can
       // potentially break your code
-      `pnpm lint:fix --rule 'react-hooks/exhaustive-deps: off' --max-warnings=25 ${filenames
+      `pnpm fix:lint --rule 'react-hooks/exhaustive-deps: off' --max-warnings=25 ${filenames
         .filter((file) => !cli.isPathIgnored(file))
         .map((f) => `"${f}"`)
         .join(' ')}`,
