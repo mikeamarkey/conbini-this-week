@@ -39,7 +39,7 @@ function getItemCountText(
     return `Currently showing ${filteredItemsCount} of ${itemCount} items`
   }
 
-  return `Currently showing ${filteredItemsCount} items from ${conbinisMap[conbiniFilter].name}`
+  return `Currently showing ${filteredItemsCount} items from ${conbinisMap[conbiniFilter].displayName}`
 }
 
 const ImageWithFallback = ({

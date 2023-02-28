@@ -19,10 +19,11 @@ See what's coming up this week at the conbini (Japanese convenience stores)
 
 - `core`: general constants and types related to conbinis
 - `db`: db tools through supabase's postgresql api
-- `scraper`: a scraper for gathering conbini item details
+- `scraper`: base scraper functionality for gathering conbini item details
 
 ### Apps
 
+- `scraper-api`: a vercel node serverless function for running scraper
 - `web`: a nextjs webapp for displaying upcoming items
 
 ### Acknowledgments
