@@ -3,6 +3,7 @@
   "license": "MIT",
   "version": "0.0.0",
   "private": true,
+  "packageManager": "pnpm@7.29.1",
   "scripts": {
     "core": "pnpm --filter conbini-this-week-core",
     "db": "pnpm --filter conbini-this-week-db",
@@ -12,11 +13,13 @@
     "---------------": "---------------",
     "checks": "pnpm /checks:.*/",
     "checks:lint": "pnpm -r checks:lint",
-    "checks:prettier": "prettier --check .",
+    "checks:prettier": "pnpm -r checks:prettier",
+    "checks:prettier-root": "prettier --check . '!apps/web'",
     "checks:tsc": "pnpm -r checks:tsc",
     "fix": "pnpm /fix:.*/",
     "fix:lint": "pnpm -r fix:lint",
-    "fix:prettier": "prettier --write .",
+    "fix:prettier": "pnpm -r fix:prettier",
+    "fix:prettier-root": "prettier --write .  '!apps/web'",
     "prepare": "husky install",
     "staged": "pnpm -r --workspace-concurrency=1 staged"
   },

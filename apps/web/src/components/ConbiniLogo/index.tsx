@@ -1,4 +1,4 @@
-import { Image } from '@nextui-org/react'
+import Image from 'next/image'
 import type { ConbiniName } from '~/core'
 
 export type ConbiniLogoProps = {
@@ -9,9 +9,8 @@ export type ConbiniLogoProps = {
 export default function ConbiniLogo({ conbiniName, size }: ConbiniLogoProps) {
   return (
     <Image
-      containerCss={{ margin: 0 }}
-      width={`${size}px`}
-      height={`${size}px`}
+      width={size}
+      height={size}
       src={`/${conbiniName}.svg`}
       alt={conbiniName}
     />

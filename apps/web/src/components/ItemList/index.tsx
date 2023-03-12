@@ -1,8 +1,5 @@
-import { Card, Grid, Text } from '@nextui-org/react'
-import Image from 'next/image'
-import { type ComponentProps, useState } from 'react'
 import { type ConbiniName, conbinisMap } from '~/core'
-import { Box, ConbiniLogo, Link } from 'components'
+import { ConbiniLogo, ImageWithFallback, Link } from 'components'
 import { formatCurrency } from 'utils/number'
 
 export type ItemListProps = {
@@ -42,23 +39,6 @@ function getItemCountText(
   return `Currently showing ${filteredItemsCount} items from ${conbinisMap[conbiniFilter].displayName}`
 }
 
-const ImageWithFallback = ({
-  src: originalSrc,
-  alt,
-  ...props
-}: ComponentProps<typeof Image>) => {
-  const [src, setSrc] = useState(originalSrc)
-
-  return (
-    <Image
-      {...props}
-      onError={() => setSrc('/not-found.jpg')}
-      alt={alt}
-      src={src}
-    />
-  )
-}
-
 export default function ItemList({
   conbiniFilter,
   items,
@@ -68,51 +48,42 @@ export default function ItemList({
 
   return (
     <>
-      <Text css={{ textAlign: 'center', margin: 0 }}>{itemCountText}</Text>
+      <p className="text-center">{itemCountText}</p>
 
       {items.length > 0 && (
-        <Grid.Container gap={1} css={{ marginTop: '$sm' }}>
+        <div className="mx-auto mt-6 grid max-w-screen-xl grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {items.map((item) => (
-            <Grid key={item.id} xs={6} sm={3} md={2.4}>
-              <Link
-                href={item.url}
-                target="__blank"
-                rel="noopener noreferrer"
-                css={{ width: '100%', height: '100%' }}
-              >
-                <Card css={{ height: '100%' }} isPressable variant="bordered">
-                  <Box
-                    css={{
-                      position: 'relative',
-                      aspectRatio: '6 / 5',
-                    }}
-                  >
-                    <ImageWithFallback
-                      src={item.img}
-                      alt={item.title}
-                      fill
-                      style={{ objectFit: 'cover' }}
-                      sizes="480px"
-                    />
-                  </Box>
-                  <Card.Body css={{ paddingBottom: '$xs' }}>
-                    <Text weight="bold">{item.title}</Text>
-                  </Card.Body>
-                  <Card.Footer
-                    css={{ justifyContent: 'space-between', paddingTop: '$xs' }}
-                  >
-                    <Text size="$md" weight="bold">
-                      {formatCurrency(item.price)}
-                    </Text>
-                    <Box css={{ overflow: 'hidden', borderRadius: '$pill' }}>
-                      <ConbiniLogo size={24} conbiniName={item.conbiniName} />
-                    </Box>
-                  </Card.Footer>
-                </Card>
-              </Link>
-            </Grid>
+            <Link
+              className="cursor-pointer overflow-hidden rounded-2xl border-2 border-gray-300 outline-0 transition-colors hover:border-gray-900 focus:border-gray-900 active:border-gray-900"
+              key={item.id}
+              href={item.url}
+              target="__blank"
+              rel="noopener noreferrer"
+            >
+              <div className="flex h-full w-full flex-col">
+                <div className="relative aspect-6/5">
+                  <ImageWithFallback
+                    src={item.img}
+                    alt={item.title}
+                    fill
+                    className="object-cover"
+                    sizes="480px"
+                  />
+                </div>
+                <p className="flex flex-grow flex-col px-3 pt-5 pb-2 font-bold">
+                  {item.title}
+                </p>
+                <div className="flex items-center justify-between px-3 pt-2 pb-3">
+                  <p className="font-bold">{formatCurrency(item.price)}</p>
+
+                  <div className="overflow-hidden rounded-full">
+                    <ConbiniLogo size={24} conbiniName={item.conbiniName} />
+                  </div>
+                </div>
+              </div>
+            </Link>
           ))}
-        </Grid.Container>
+        </div>
       )}
     </>
   )

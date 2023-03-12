@@ -1,4 +1,5 @@
-import { type FormElement, Input, styled } from '@nextui-org/react'
+'use client'
+
 import {
   type ChangeEvent,
   type Dispatch,
@@ -8,34 +9,11 @@ import {
 } from 'react'
 import { useDebounce } from 'react-use'
 import { type ConbiniName, conbiniNames } from '~/core'
-import { Box, ConbiniLogo } from 'components'
+import { ConbiniLogo } from 'components'
 
 export type ControlsProps = {
   setConbiniFilter: Dispatch<SetStateAction<ConbiniName | undefined>>
   setTextFilter: Dispatch<SetStateAction<string>>
-}
-
-const Wrapper = styled('div', {
-  maxWidth: '480px',
-  margin: 'auto',
-})
-
-const LogoButton = styled('button', {
-  padding: 0,
-  backgroundColor: 'transparent',
-  margin: '$xs',
-  overflow: 'hidden',
-  borderRadius: '$pill',
-  border: '2px solid $accents2',
-  cursor: 'pointer',
-
-  '&:hover': {
-    opacity: '.9',
-  },
-})
-
-const activeStyles = {
-  borderColor: '$pink500',
 }
 
 export default function Controls({
@@ -47,7 +25,7 @@ export default function Controls({
     undefined
   )
 
-  const handleSearchChange = useCallback((e: ChangeEvent<FormElement>) => {
+  const handleSearchChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value)
   }, [])
 
@@ -79,35 +57,29 @@ export default function Controls({
   )
 
   return (
-    <Wrapper>
-      <Input
+    <div className="m-auto max-w-lg">
+      <input
+        className="w-full rounded-xl border-2 border-gray-300 py-2 px-4 outline-none transition-colors hover:border-gray-900 focus:border-gray-900 active:border-gray-900"
+        type="search"
         aria-label="search"
         onChange={handleSearchChange}
-        clearable
-        fullWidth
-        bordered
-        size="lg"
         placeholder="Search for items..."
       />
-      <Box
-        css={{
-          marginTop: '$xs',
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
+      <div className="mt-2 flex flex-wrap items-center justify-center">
         {conbiniNames.map((conbiniName) => (
-          <LogoButton
+          <button
+            className={`m-2 overflow-hidden rounded-full border-4 bg-transparent p-0 hover:opacity-90 ${
+              activeConbini === conbiniName
+                ? 'border-pink-500'
+                : 'border-gray-300'
+            }`}
             key={conbiniName}
             onClick={() => handleConbiniClick(conbiniName)}
-            css={activeConbini === conbiniName ? activeStyles : {}}
           >
             <ConbiniLogo conbiniName={conbiniName} size={48} />
-          </LogoButton>
+          </button>
         ))}
-      </Box>
-    </Wrapper>
+      </div>
+    </div>
   )
 }
