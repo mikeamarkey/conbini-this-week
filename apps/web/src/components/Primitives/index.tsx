@@ -1,5 +1,10 @@
 import { type AnchorHTMLAttributes } from 'react'
 
 export const Link = (props: AnchorHTMLAttributes<HTMLAnchorElement>) => {
-  return <a className="text-inherit no-underline w-full h-full" {...props} />
+  return (
+    <a
+      className="h-full w-full text-start text-inherit no-underline"
+      {...props}
+    />
+  )
 }

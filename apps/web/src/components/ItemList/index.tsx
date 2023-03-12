@@ -51,16 +51,16 @@ export default function ItemList({
       <p className="text-center">{itemCountText}</p>
 
       {items.length > 0 && (
-        <div className="grid gap-3 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-6 mx-auto max-w-screen-xl">
+        <div className="mx-auto mt-6 grid max-w-screen-xl grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {items.map((item) => (
             <Link
-              className="rounded-2xl border border-gray-300 cursor-pointer overflow-hidden active:border-gray-900 focus:border-gray-900 hover:border-gray-900 transition-colors outline-0"
+              className="cursor-pointer overflow-hidden rounded-2xl border border-gray-300 outline-0 transition-colors hover:border-gray-900 focus:border-gray-900 active:border-gray-900"
               key={item.id}
               href={item.url}
               target="__blank"
               rel="noopener noreferrer"
             >
-              <div className="flex flex-col w-full h-full">
+              <div className="flex h-full w-full flex-col">
                 <div className="relative aspect-6/5">
                   <ImageWithFallback
                     src={item.img}
@@ -70,10 +70,10 @@ export default function ItemList({
                     sizes="480px"
                   />
                 </div>
-                <p className="flex flex-col flex-grow pt-5 px-3 pb-2 font-bold">
+                <p className="flex flex-grow flex-col px-3 pt-5 pb-2 font-bold">
                   {item.title}
                 </p>
-                <div className="flex items-center justify-between pt-2 px-3 pb-3">
+                <div className="flex items-center justify-between px-3 pt-2 pb-3">
                   <p className="font-bold">{formatCurrency(item.price)}</p>
 
                   <div className="overflow-hidden rounded-full">

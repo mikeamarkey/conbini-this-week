@@ -20,7 +20,7 @@ export default async function Page() {
       <div className="mt-9 pb-3">
         <Content items={items} />
       </div>
-      <div className="mt-3 pt-9 px-3 pb-4 border-t border-gray-300">
+      <div className="mt-3 border-t border-gray-300 px-3 pt-9 pb-4">
         <Footer />
       </div>
     </div>

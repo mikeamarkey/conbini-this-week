@@ -1,5 +1,4 @@
 .vercel
-apps/web
 node_modules
 packages/db/src/schema.ts
 pnpm-lock.yaml

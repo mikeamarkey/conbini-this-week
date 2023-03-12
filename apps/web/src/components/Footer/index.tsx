@@ -15,7 +15,7 @@ export default function Footer() {
           alt="Conbini This Week"
         />
       </Link>
-      <p className="text-sm mt-1 leading-relaxed">
+      <p className="mt-1 text-sm leading-relaxed">
         {`This project is made with ❤️ for the conbini.`}
         <br />
         {`All images and text belong to the respective companies.`}
