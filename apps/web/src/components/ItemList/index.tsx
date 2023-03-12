@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 import { type ComponentProps, useState } from 'react'
 import { type ConbiniName, conbinisMap } from '~/core'
