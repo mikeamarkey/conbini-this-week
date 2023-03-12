@@ -1,8 +1,7 @@
-import { Card, Grid, Text } from '@nextui-org/react'
 import Image from 'next/image'
 import { type ComponentProps, useState } from 'react'
 import { type ConbiniName, conbinisMap } from '~/core'
-import { Box, ConbiniLogo, Link } from 'components'
+import { ConbiniLogo, Link } from 'components'
 import { formatCurrency } from 'utils/number'
 
 export type ItemListProps = {
@@ -68,51 +67,41 @@ export default function ItemList({
 
   return (
     <>
-      <Text css={{ textAlign: 'center', margin: 0 }}>{itemCountText}</Text>
+      <p className="text-center">{itemCountText}</p>
 
       {items.length > 0 && (
-        <Grid.Container gap={1} css={{ marginTop: '$sm' }}>
+        <div className="grid gap-3 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-6 mx-auto max-w-screen-xl">
           {items.map((item) => (
-            <Grid key={item.id} xs={6} sm={3} md={2.4}>
-              <Link
-                href={item.url}
-                target="__blank"
-                rel="noopener noreferrer"
-                css={{ width: '100%', height: '100%' }}
-              >
-                <Card css={{ height: '100%' }} isPressable variant="bordered">
-                  <Box
-                    css={{
-                      position: 'relative',
-                      aspectRatio: '6 / 5',
-                    }}
-                  >
-                    <ImageWithFallback
-                      src={item.img}
-                      alt={item.title}
-                      fill
-                      style={{ objectFit: 'cover' }}
-                      sizes="480px"
-                    />
-                  </Box>
-                  <Card.Body css={{ paddingBottom: '$xs' }}>
-                    <Text weight="bold">{item.title}</Text>
-                  </Card.Body>
-                  <Card.Footer
-                    css={{ justifyContent: 'space-between', paddingTop: '$xs' }}
-                  >
-                    <Text size="$md" weight="bold">
-                      {formatCurrency(item.price)}
-                    </Text>
-                    <Box css={{ overflow: 'hidden', borderRadius: '$pill' }}>
-                      <ConbiniLogo size={24} conbiniName={item.conbiniName} />
-                    </Box>
-                  </Card.Footer>
-                </Card>
-              </Link>
-            </Grid>
+            <Link
+              key={item.id}
+              href={item.url}
+              target="__blank"
+              rel="noopener noreferrer"
+            >
+              <div className="flex flex-col w-full h-full rounded-2xl border border-slate-300 cursor-pointer overflow-hidden">
+                <div className="relative aspect-6/5">
+                  <ImageWithFallback
+                    src={item.img}
+                    alt={item.title}
+                    fill
+                    className="object-cover"
+                    sizes="480px"
+                  />
+                </div>
+                <p className="flex flex-col flex-grow pt-5 px-3 pb-2 font-bold">
+                  {item.title}
+                </p>
+                <div className="flex items-center justify-between pt-2 px-3 pb-3">
+                  <p className="font-bold">{formatCurrency(item.price)}</p>
+
+                  <div className="overflow-hidden rounded-full">
+                    <ConbiniLogo size={24} conbiniName={item.conbiniName} />
+                  </div>
+                </div>
+              </div>
+            </Link>
           ))}
-        </Grid.Container>
+        </div>
       )}
     </>
   )
