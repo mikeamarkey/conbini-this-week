@@ -1,9 +1,5 @@
-'use client'
-
-import Image from 'next/image'
-import { type ComponentProps, useState } from 'react'
 import { type ConbiniName, conbinisMap } from '~/core'
-import { ConbiniLogo, Link } from 'components'
+import { ConbiniLogo, ImageWithFallback, Link } from 'components'
 import { formatCurrency } from 'utils/number'
 
 export type ItemListProps = {
@@ -41,23 +37,6 @@ function getItemCountText(
   }
 
   return `Currently showing ${filteredItemsCount} items from ${conbinisMap[conbiniFilter].displayName}`
-}
-
-const ImageWithFallback = ({
-  src: originalSrc,
-  alt,
-  ...props
-}: ComponentProps<typeof Image>) => {
-  const [src, setSrc] = useState(originalSrc)
-
-  return (
-    <Image
-      {...props}
-      onError={() => setSrc('/not-found.jpg')}
-      alt={alt}
-      src={src}
-    />
-  )
 }
 
 export default function ItemList({
