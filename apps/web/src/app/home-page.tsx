@@ -12,7 +12,7 @@ export default function HomePage({ items }: HomePageProps) {
       <div className="mt-9 pb-3">
         <Content items={items} />
       </div>
-      <div className="mt-3 pt-9 px-3 pb-4">
+      <div className="mt-3 pt-9 px-3 pb-4 border-t border-slate-300">
         <Footer />
       </div>
     </div>
