@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from 'react'
 import type { ConbiniName } from '~/core'
-import { Box, Controls, ItemList } from 'components'
+import { Controls, ItemList } from 'components'
 import type { ItemListProps } from 'components/ItemList'
 
 export type ContentProps = {
@@ -38,13 +38,13 @@ export default function Content({ items }: ContentProps) {
         setConbiniFilter={setConbiniFilter}
         setTextFilter={setTextFilter}
       />
-      <Box css={{ marginTop: '$lg' }}>
+      <div className="mt-5">
         <ItemList
           itemCount={items.length}
           conbiniFilter={conbiniFilter}
           items={filteredItems}
         />
-      </Box>
+      </div>
     </>
   )
 }
