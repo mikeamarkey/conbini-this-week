@@ -59,7 +59,8 @@ export default function Controls({
   return (
     <div className="m-auto max-w-lg">
       <input
-        className="w-full rounded-xl border-2 border-gray-300 py-2 px-4 outline-none transition-colors hover:border-gray-900 focus:border-gray-900 active:border-gray-900"
+        // setting arbitrary z-index for safari mobile border-radius issue
+        className="z-[1] w-full rounded-xl border-2 border-gray-300 py-2 px-4 outline-none transition-colors hover:border-gray-900 focus:border-gray-900 active:border-gray-900"
         type="search"
         aria-label="search"
         onChange={handleSearchChange}
