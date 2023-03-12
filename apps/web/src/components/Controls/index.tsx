@@ -1,4 +1,3 @@
-import { type FormElement, Input, styled } from '@nextui-org/react'
 import {
   type ChangeEvent,
   type Dispatch,
@@ -8,34 +7,11 @@ import {
 } from 'react'
 import { useDebounce } from 'react-use'
 import { type ConbiniName, conbiniNames } from '~/core'
-import { Box, ConbiniLogo } from 'components'
+import { ConbiniLogo } from 'components'
 
 export type ControlsProps = {
   setConbiniFilter: Dispatch<SetStateAction<ConbiniName | undefined>>
   setTextFilter: Dispatch<SetStateAction<string>>
-}
-
-const Wrapper = styled('div', {
-  maxWidth: '480px',
-  margin: 'auto',
-})
-
-const LogoButton = styled('button', {
-  padding: 0,
-  backgroundColor: 'transparent',
-  margin: '$xs',
-  overflow: 'hidden',
-  borderRadius: '$pill',
-  border: '2px solid $accents2',
-  cursor: 'pointer',
-
-  '&:hover': {
-    opacity: '.9',
-  },
-})
-
-const activeStyles = {
-  borderColor: '$pink500',
 }
 
 export default function Controls({
@@ -47,7 +23,7 @@ export default function Controls({
     undefined
   )
 
-  const handleSearchChange = useCallback((e: ChangeEvent<FormElement>) => {
+  const handleSearchChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value)
   }, [])
 
@@ -79,35 +55,29 @@ export default function Controls({
   )
 
   return (
-    <Wrapper>
-      <Input
+    <div className="max-w-sm m-auto">
+      <input
+        className="w-full py-2 px-4 border-2 rounded-xl border-slate-300"
+        type="search"
         aria-label="search"
         onChange={handleSearchChange}
-        clearable
-        fullWidth
-        bordered
-        size="lg"
         placeholder="Search for items..."
       />
-      <Box
-        css={{
-          marginTop: '$xs',
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
+      <div className="mt-2 flex flex-wrap justify-center items-center">
         {conbiniNames.map((conbiniName) => (
-          <LogoButton
+          <button
+            className={`p-0 bg-transparent m-2 overflow-hidden rounded-full border-2 hover:opacity-90 ${
+              activeConbini === conbiniName
+                ? 'border-pink-500'
+                : 'border-transparent'
+            }`}
             key={conbiniName}
             onClick={() => handleConbiniClick(conbiniName)}
-            css={activeConbini === conbiniName ? activeStyles : {}}
           >
             <ConbiniLogo conbiniName={conbiniName} size={48} />
-          </LogoButton>
+          </button>
         ))}
-      </Box>
-    </Wrapper>
+      </div>
+    </div>
   )
 }
