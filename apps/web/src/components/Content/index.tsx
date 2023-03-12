@@ -1,3 +1,5 @@
+'use client'
+
 import { useMemo, useState } from 'react'
 import type { ConbiniName } from '~/core'
 import { Box, Controls, ItemList } from 'components'

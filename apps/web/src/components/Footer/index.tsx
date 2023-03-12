@@ -1,13 +1,12 @@
-import { Text } from '@nextui-org/react'
 import Image from 'next/image'
-import { Box, Link } from 'components'
+import { Link } from 'components'
 import { repoUrl } from 'constant'
 
 export type FooterProps = never
 
 export default function Footer() {
   return (
-    <Box css={{ textAlign: 'center' }}>
+    <div className="text-center">
       <Link href={repoUrl}>
         <Image
           width={24}
@@ -16,13 +15,13 @@ export default function Footer() {
           alt="Conbini This Week"
         />
       </Link>
-      <Text size="$sm" css={{ marginTop: '$xs' }}>
+      <p className="text-sm mt-1">
         {`This project is made with ❤️ for the conbini.`}
         <br />
         {`All images and text belong to the respective companies.`}
         <br />
         {`(Please don't copyright strike this 🙏)`}
-      </Text>
-    </Box>
+      </p>
+    </div>
   )
 }

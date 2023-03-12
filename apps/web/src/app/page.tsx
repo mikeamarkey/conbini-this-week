@@ -6,7 +6,7 @@ import { resolveItems } from 'resolvers/item'
 async function getItems() {
   const client = new Client(apiUrl, publicKey)
   const items = await client.getItems()
-  const resolvedItems = resolveItems(items).slice(0, 5)
+  const resolvedItems = resolveItems(items).slice(0, 10)
   return resolvedItems
 }
 

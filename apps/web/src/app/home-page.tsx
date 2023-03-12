@@ -1,7 +1,4 @@
-'use client'
-
-import { Container } from '@nextui-org/react'
-import { Box, Content, Footer, Header } from 'components'
+import { Content, Footer, Header } from 'components'
 import { type ContentProps } from 'components/Content'
 
 export type HomePageProps = {
@@ -10,29 +7,14 @@ export type HomePageProps = {
 
 export default function HomePage({ items }: HomePageProps) {
   return (
-    <Container
-      fluid
-      css={{
-        padding: '$xl $xs',
-        '@xs': {
-          // reset to default padding
-          padding: '$xl calc(2 * $sm)',
-        },
-      }}
-    >
+    <div className="py-9 px-2 sm:px-6">
       <Header itemCount={items.length} />
-      <Box css={{ marginTop: '$xl', paddingBottom: '$md' }}>
+      <div className="mt-9 pb-3">
         <Content items={items} />
-      </Box>
-      <Box
-        css={{
-          marginTop: '$sm',
-          padding: '$xl $sm $md',
-          borderTop: '1px solid $border',
-        }}
-      >
+      </div>
+      <div className="mt-3 pt-9 px-3 pb-4">
         <Footer />
-      </Box>
-    </Container>
+      </div>
+    </div>
   )
 }
