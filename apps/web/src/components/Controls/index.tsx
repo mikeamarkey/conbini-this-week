@@ -59,7 +59,7 @@ export default function Controls({
   return (
     <div className="m-auto max-w-lg">
       <input
-        className="w-full rounded-xl border-2 border-gray-300 py-2 px-4 transition-colors hover:border-gray-900 focus:border-gray-900 active:border-gray-900"
+        className="w-full rounded-xl border-2 border-gray-300 py-2 px-4 outline-none transition-colors hover:border-gray-900 focus:border-gray-900 active:border-gray-900"
         type="search"
         aria-label="search"
         onChange={handleSearchChange}
@@ -68,10 +68,10 @@ export default function Controls({
       <div className="mt-2 flex flex-wrap items-center justify-center">
         {conbiniNames.map((conbiniName) => (
           <button
-            className={`m-2 overflow-hidden rounded-full border-2 bg-transparent p-0 hover:opacity-90 ${
+            className={`m-2 overflow-hidden rounded-full border-4 bg-transparent p-0 hover:opacity-90 ${
               activeConbini === conbiniName
                 ? 'border-pink-500'
-                : 'border-transparent'
+                : 'border-gray-300'
             }`}
             key={conbiniName}
             onClick={() => handleConbiniClick(conbiniName)}

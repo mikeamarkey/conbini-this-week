@@ -54,7 +54,7 @@ export default function ItemList({
         <div className="mx-auto mt-6 grid max-w-screen-xl grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {items.map((item) => (
             <Link
-              className="cursor-pointer overflow-hidden rounded-2xl border border-gray-300 outline-0 transition-colors hover:border-gray-900 focus:border-gray-900 active:border-gray-900"
+              className="cursor-pointer overflow-hidden rounded-2xl border-2 border-gray-300 outline-0 transition-colors hover:border-gray-900 focus:border-gray-900 active:border-gray-900"
               key={item.id}
               href={item.url}
               target="__blank"
