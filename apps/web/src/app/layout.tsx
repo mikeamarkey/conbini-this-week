@@ -1,4 +1,3 @@
-import Providers from './providers'
 import './globals.css'
 
 export const metadata = {
@@ -16,9 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja-jp">
-      <body>
-        <Providers>{children}</Providers>
-      </body>
+      <body>{children}</body>
     </html>
   )
 }

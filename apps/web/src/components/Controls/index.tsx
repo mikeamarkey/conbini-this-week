@@ -55,9 +55,9 @@ export default function Controls({
   )
 
   return (
-    <div className="max-w-sm m-auto">
+    <div className="max-w-lg m-auto">
       <input
-        className="w-full py-2 px-4 border-2 rounded-xl border-slate-300"
+        className="w-full py-2 px-4 border-2 rounded-xl border-gray-300 active:border-gray-900 focus:border-gray-900 hover:border-gray-900 transition-colors"
         type="search"
         aria-label="search"
         onChange={handleSearchChange}

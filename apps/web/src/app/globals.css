@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    @apply antialiased;
+    @apply tracking-tighter;
+    @apply text-gray-900;
+  }
+
+  h1 {
+    @apply tracking-tighter;
+    @apply leading-normal;
+  }
+}

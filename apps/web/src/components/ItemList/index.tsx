@@ -73,12 +73,13 @@ export default function ItemList({
         <div className="grid gap-3 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-6 mx-auto max-w-screen-xl">
           {items.map((item) => (
             <Link
+              className="rounded-2xl border border-gray-300 cursor-pointer overflow-hidden active:border-gray-900 focus:border-gray-900 hover:border-gray-900 transition-colors outline-0"
               key={item.id}
               href={item.url}
               target="__blank"
               rel="noopener noreferrer"
             >
-              <div className="flex flex-col w-full h-full rounded-2xl border border-slate-300 cursor-pointer overflow-hidden">
+              <div className="flex flex-col w-full h-full">
                 <div className="relative aspect-6/5">
                   <ImageWithFallback
                     src={item.img}
