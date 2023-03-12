@@ -1,10 +1,9 @@
-.next
 .vercel
+apps/web
 node_modules
-package-lock.json
 packages/db/src/schema.ts
 pnpm-lock.yaml
 pnpm-workspace.yaml
+prettier.config.js
 public
 tsconfig.tsbuildinfo
-yarn.lock

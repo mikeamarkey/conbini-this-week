@@ -1,0 +1,6 @@
+.vercel
+.next
+node_modules
+prettier.config.js
+public
+tsconfig.tsbuildinfo

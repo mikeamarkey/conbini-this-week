@@ -7,9 +7,11 @@
     "dev": "next dev",
     "checks": "pnpm /checks:.*/",
     "checks:lint": "eslint . --ext ts --ext tsx --ext js",
+    "checks:prettier": "prettier --check .",
     "checks:tsc": "tsc --pretty --noEmit",
     "fix": "pnpm /fix:.*/",
     "fix:lint": "pnpm checks:lint --fix",
+    "fix:prettier": "prettier --write .",
     "staged": "lint-staged --allow-empty",
     "start": "next start",
     "test": "jest"
@@ -30,6 +32,8 @@
     "eslint-config-next": "13.1.6",
     "eslint-config-prettier": "8.6.0",
     "postcss": "^8.4.21",
+    "prettier": "^2.8.4",
+    "prettier-plugin-tailwindcss": "^0.2.4",
     "tailwindcss": "^3.2.7",
     "typescript": "4.9.4"
   }
