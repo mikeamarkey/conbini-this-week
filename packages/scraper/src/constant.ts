@@ -8,10 +8,10 @@ export const conbinisConfig: ConbiniConfig = {
   dailyyamazaki: {
     ...conbinisMap.dailyyamazaki,
     selectors: {
-      list: '.boxShinsyohin > div:first-of-type ul.boxRow > li',
-      title: '.boxInner02 > h4',
-      img: '.boxInner01 > img',
-      price: '.price.taxed',
+      list: '.c-new-products__inner > div:first-of-type .c-products-list-sec',
+      title: '.ttl',
+      img: '.pic img',
+      price: '.price .tax',
       priceRegex: /税込([\d,.]+)円/,
     },
   },
