@@ -13,6 +13,7 @@ export type ItemListProps = {
     title: string
     url: string
   }[]
+  visibleItemCount: number
 }
 
 function getItemCountText(
@@ -43,16 +44,19 @@ export default function ItemList({
   conbiniFilter,
   items,
   itemCount,
+  visibleItemCount,
 }: ItemListProps) {
   const itemCountText = getItemCountText(items.length, itemCount, conbiniFilter)
+
+  const visibleItems = items.slice(0, visibleItemCount)
 
   return (
     <>
       <p className="text-center">{itemCountText}</p>
 
-      {items.length > 0 && (
-        <div className="mx-auto mt-6 grid max-w-screen-xl grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-          {items.map((item) => (
+      {visibleItems.length > 0 && (
+        <div className="mx-auto mt-6 grid max-w-screen-xl grid-cols-2 gap-3 overflow-anchor-none md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+          {visibleItems.map((item) => (
             <Link
               className="cursor-pointer overflow-hidden rounded-2xl border-2 border-gray-300 outline-0 transition-colors hover:border-gray-900 focus:border-gray-900 active:border-gray-900"
               key={item.id}
