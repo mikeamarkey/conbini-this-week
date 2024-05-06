@@ -74,10 +74,10 @@ export default function ItemList({
                     sizes="480px"
                   />
                 </div>
-                <p className="flex flex-grow flex-col px-3 pt-5 pb-2 font-bold">
+                <p className="flex flex-grow flex-col px-3 pb-2 pt-5 font-bold">
                   {item.title}
                 </p>
-                <div className="flex items-center justify-between px-3 pt-2 pb-3">
+                <div className="flex items-center justify-between px-3 pb-3 pt-2">
                   <p className="font-bold">{formatCurrency(item.price)}</p>
 
                   <div className="overflow-hidden rounded-full">
