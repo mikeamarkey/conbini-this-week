@@ -36,8 +36,8 @@ importers:
   apps/scraper-api:
     devDependencies:
       '@types/node':
-        specifier: 20.12.0
-        version: 20.12.0
+        specifier: 20.12.10
+        version: 20.12.10
       '@typescript-eslint/eslint-plugin':
         specifier: 5.48.1
         version: 5.48.1(@typescript-eslint/parser@5.48.1(eslint@8.31.0)(typescript@4.9.4))(eslint@8.31.0)(typescript@4.9.4)
@@ -79,8 +79,8 @@ importers:
         version: 17.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     devDependencies:
       '@types/node':
-        specifier: 20.12.0
-        version: 20.12.0
+        specifier: 20.12.10
+        version: 20.12.10
       '@types/react':
         specifier: 18.3.1
         version: 18.3.1
@@ -113,7 +113,7 @@ importers:
         version: 0.2.8(prettier@2.8.8)
       tailwindcss:
         specifier: ^3.2.7
-        version: 3.4.3(ts-node@10.9.1(@types/node@20.12.0)(typescript@4.9.4))
+        version: 3.4.3(ts-node@10.9.1(@types/node@20.12.10)(typescript@4.9.4))
       typescript:
         specifier: 4.9.4
         version: 4.9.4
@@ -121,8 +121,8 @@ importers:
   packages/core:
     devDependencies:
       '@types/node':
-        specifier: 20.12.0
-        version: 20.12.0
+        specifier: 20.12.10
+        version: 20.12.10
       '@typescript-eslint/eslint-plugin':
         specifier: 5.48.1
         version: 5.48.1(@typescript-eslint/parser@5.48.1(eslint@8.31.0)(typescript@4.9.4))(eslint@8.31.0)(typescript@4.9.4)
@@ -152,8 +152,8 @@ importers:
         version: 2.43.1
     devDependencies:
       '@types/node':
-        specifier: 20.12.0
-        version: 20.12.0
+        specifier: 20.12.10
+        version: 20.12.10
       '@typescript-eslint/eslint-plugin':
         specifier: 5.48.1
         version: 5.48.1(@typescript-eslint/parser@5.48.1(eslint@8.31.0)(typescript@4.9.4))(eslint@8.31.0)(typescript@4.9.4)
@@ -192,8 +192,8 @@ importers:
         specifier: 20.0.1
         version: 20.0.1
       '@types/node':
-        specifier: 20.12.0
-        version: 20.12.0
+        specifier: 20.12.10
+        version: 20.12.10
       '@typescript-eslint/eslint-plugin':
         specifier: 5.48.1
         version: 5.48.1(@typescript-eslint/parser@5.48.1(eslint@8.31.0)(typescript@4.9.4))(eslint@8.31.0)(typescript@4.9.4)
@@ -217,7 +217,7 @@ importers:
         version: 2.27.4(@typescript-eslint/parser@5.48.1(eslint@8.31.0)(typescript@4.9.4))(eslint-import-resolver-typescript@3.5.3)(eslint@8.31.0)
       ts-node:
         specifier: 10.9.1
-        version: 10.9.1(@types/node@20.12.0)(typescript@4.9.4)
+        version: 10.9.1(@types/node@20.12.10)(typescript@4.9.4)
       tsconfig-paths:
         specifier: 4.1.2
         version: 4.1.2
@@ -499,8 +499,8 @@ packages:
   '@types/node@14.18.33':
     resolution: {integrity: sha512-qelS/Ra6sacc4loe/3MSjXNL1dNQ/GjxNHVzuChwMfmk7HuycRLVQN2qNY3XahK+fZc5E2szqQSKUyAF0E+2bg==}
 
-  '@types/node@20.12.0':
-    resolution: {integrity: sha512-jVC7fWX1Did5TNn8mmGsE81mdyv+7a+nHNlUiNVys8G392CfNfhqAVRd+cuY0+OBU2vN6GzpiRX/MgJ9b3rtpQ==}
+  '@types/node@20.12.10':
+    resolution: {integrity: sha512-Eem5pH9pmWBHoGAT8Dr5fdc5rYA+4NAovdM4EktRPVAAiJhmWWfQrA0cFhAbOsQdSfIHjAud6YdkbL69+zSKjw==}
 
   '@types/phoenix@1.6.4':
     resolution: {integrity: sha512-B34A7uot1Cv0XtaHRYDATltAdKx0BvVKNgYNqE4WjtPUa4VQJM7kxeXcVKaH+KS+kCmZ+6w+QaUdcljiheiBJA==}
@@ -3690,7 +3690,7 @@ snapshots:
 
   '@types/jsdom@20.0.1':
     dependencies:
-      '@types/node': 20.12.0
+      '@types/node': 20.12.10
       '@types/tough-cookie': 4.0.5
       parse5: 7.1.2
 
@@ -3700,7 +3700,7 @@ snapshots:
 
   '@types/node@14.18.33': {}
 
-  '@types/node@20.12.0':
+  '@types/node@20.12.10':
     dependencies:
       undici-types: 5.26.5
 
@@ -3721,7 +3721,7 @@ snapshots:
 
   '@types/ws@8.5.10':
     dependencies:
-      '@types/node': 20.12.0
+      '@types/node': 20.12.10
 
   '@typescript-eslint/eslint-plugin@5.48.1(@typescript-eslint/parser@5.48.1(eslint@8.31.0)(typescript@4.9.4))(eslint@8.31.0)(typescript@4.9.4)':
     dependencies:
@@ -6036,13 +6036,13 @@ snapshots:
       camelcase-css: 2.0.1
       postcss: 8.4.38
 
-  postcss-load-config@4.0.2(postcss@8.4.38)(ts-node@10.9.1(@types/node@20.12.0)(typescript@4.9.4)):
+  postcss-load-config@4.0.2(postcss@8.4.38)(ts-node@10.9.1(@types/node@20.12.10)(typescript@4.9.4)):
     dependencies:
       lilconfig: 3.1.1
       yaml: 2.4.2
     optionalDependencies:
       postcss: 8.4.38
-      ts-node: 10.9.1(@types/node@20.12.0)(typescript@4.9.4)
+      ts-node: 10.9.1(@types/node@20.12.10)(typescript@4.9.4)
 
   postcss-nested@6.0.1(postcss@8.4.38):
     dependencies:
@@ -6568,7 +6568,7 @@ snapshots:
       '@pkgr/core': 0.1.1
       tslib: 2.6.2
 
-  tailwindcss@3.4.3(ts-node@10.9.1(@types/node@20.12.0)(typescript@4.9.4)):
+  tailwindcss@3.4.3(ts-node@10.9.1(@types/node@20.12.10)(typescript@4.9.4)):
     dependencies:
       '@alloc/quick-lru': 5.2.0
       arg: 5.0.2
@@ -6587,7 +6587,7 @@ snapshots:
       postcss: 8.4.38
       postcss-import: 15.1.0(postcss@8.4.38)
       postcss-js: 4.0.1(postcss@8.4.38)
-      postcss-load-config: 4.0.2(postcss@8.4.38)(ts-node@10.9.1(@types/node@20.12.0)(typescript@4.9.4))
+      postcss-load-config: 4.0.2(postcss@8.4.38)(ts-node@10.9.1(@types/node@20.12.10)(typescript@4.9.4))
       postcss-nested: 6.0.1(postcss@8.4.38)
       postcss-selector-parser: 6.0.16
       resolve: 1.22.8
@@ -6679,14 +6679,14 @@ snapshots:
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
 
-  ts-node@10.9.1(@types/node@20.12.0)(typescript@4.9.4):
+  ts-node@10.9.1(@types/node@20.12.10)(typescript@4.9.4):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node10': 1.0.11
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
-      '@types/node': 20.12.0
+      '@types/node': 20.12.10
       acorn: 8.11.3
       acorn-walk: 8.3.2
       arg: 4.1.3
