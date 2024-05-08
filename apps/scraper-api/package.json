@@ -11,7 +11,7 @@
     "staged": "lint-staged --allow-empty"
   },
   "devDependencies": {
-    "@types/node": "20.12.2",
+    "@types/node": "20.13.0",
     "@typescript-eslint/eslint-plugin": "5.48.1",
     "@typescript-eslint/parser": "5.48.1",
     "@vercel/node": "2.8.15",
