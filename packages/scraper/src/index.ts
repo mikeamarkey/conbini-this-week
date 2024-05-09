@@ -6,12 +6,15 @@ import { isValidConbiniName } from './utils'
 
 const args = process.argv.slice(2)
 const nameArg = args[0]
-const dryArg = args[1] === '--dry'
+const dryArg = args[1]
 
 export async function main(name: string) {
   if (!isValidConbiniName(name)) {
-    console.log('Please provide a proper conbini name')
-    return
+    throw new Error('Please provide a proper conbini name')
+  }
+
+  if (dryArg && dryArg !== '--dry') {
+    throw new Error('Accepted flags are: --dry')
   }
 
   try {
