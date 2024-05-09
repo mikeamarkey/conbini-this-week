@@ -35,7 +35,7 @@ export async function scrapeAllDry() {
   let count = 0
   const promises = conbiniNames.map(async (name) => {
     const result = await scrapeDry(name, false)
-    console.log(`${conbinisConfig[name].displayName}: result items ${result}`)
+    console.log(`${conbinisConfig[name].displayName}: items ${result}`)
     count += result
   })
   await Promise.all(promises)
