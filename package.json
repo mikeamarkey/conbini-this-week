@@ -27,6 +27,7 @@
     "staged": "pnpm -r --workspace-concurrency=1 staged"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.7.3",
     "@types/eslint": "8.4.10",
     "@types/shell-quote": "1.7.1",
     "eslint": "8.31.0",
