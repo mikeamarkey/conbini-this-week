@@ -1,0 +1,33 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.7.3/schema.json",
+  "files": {
+    "ignore": [
+      "packages/db/src/schema.ts",
+      "**/node_modules",
+      "**/.vercel",
+      "**/.next",
+      "**/out",
+      "**/build",
+      "**/pnpm-lock.yaml",
+      "**/pnpm-workspace.yaml",
+      "**/public",
+      "**/tsconfig.tsbuildinfo"
+    ]
+  },
+  "formatter": {
+    "indentStyle": "space"
+  },
+  "linter": {
+    "enabled": false
+  },
+  "javascript": {
+    "formatter": {
+      "trailingComma": "es5",
+      "semicolons": "asNeeded",
+      "quoteStyle": "single"
+    }
+  },
+  "organizeImports": {
+    "enabled": false
+  }
+}
