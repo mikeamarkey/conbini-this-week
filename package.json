@@ -32,6 +32,7 @@
     "@biomejs/biome": "1.7.3",
     "@types/eslint": "8.4.10",
     "@types/shell-quote": "1.7.1",
+    "@types/node": "20.12.12",
     "eslint": "8.31.0",
     "husky": "8.0.3",
     "lint-staged": "13.1.0",

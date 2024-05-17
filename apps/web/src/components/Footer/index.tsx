@@ -16,9 +16,9 @@ export default function Footer() {
         />
       </Link>
       <p className="mt-1 text-sm leading-relaxed">
-        {`This project is made with ❤️ for the conbini.`}
+        {'This project is made with ❤️ for the conbini.'}
         <br />
-        {`All images and text belong to the respective companies.`}
+        {'All images and text belong to the respective companies.'}
         <br />
         {`(Please don't copyright strike this 🙏)`}
       </p>

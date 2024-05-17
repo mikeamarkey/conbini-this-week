@@ -74,6 +74,7 @@ export default function Controls({
                 : 'border-gray-300'
             }`}
             key={conbiniName}
+            type="button"
             onClick={() => handleConbiniClick(conbiniName)}
           >
             <ConbiniLogo conbiniName={conbiniName} size={48} />

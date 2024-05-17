@@ -14,20 +14,13 @@
       "**/tsconfig.tsbuildinfo"
     ]
   },
-  "formatter": {
-    "indentStyle": "space"
-  },
-  "linter": {
-    "enabled": false
-  },
+  "formatter": { "indentStyle": "space" },
+  "organizeImports": { "enabled": false },
   "javascript": {
     "formatter": {
       "trailingComma": "es5",
       "semicolons": "asNeeded",
       "quoteStyle": "single"
     }
-  },
-  "organizeImports": {
-    "enabled": false
   }
 }

@@ -31,7 +31,7 @@ export default async function (req: VercelRequest, res: VercelResponse) {
   try {
     if (name === 'all') {
       const result = await (dryArg ? scrapeAllDry() : scrapeAll())
-      res.status(200).send(`${result} items added${dryArg ? ` (dry)` : ''}`)
+      res.status(200).send(`${result} items added${dryArg ? ' (dry)' : ''}`)
     } else {
       const conbini = conbinisMap[name]
       const result = await (dryArg ? scrapeDry(name, true) : scrape(name))
@@ -39,7 +39,7 @@ export default async function (req: VercelRequest, res: VercelResponse) {
         .status(200)
         .send(
           `${result} items from ${conbini.displayName} added${
-            dryArg ? ` (dry)` : ''
+            dryArg ? ' (dry)' : ''
           }`
         )
     }
