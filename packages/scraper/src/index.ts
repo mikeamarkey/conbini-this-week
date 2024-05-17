@@ -20,13 +20,13 @@ export async function main(name: string) {
   try {
     if (name === 'all') {
       const result = await (dryArg ? scrapeAllDry() : scrapeAll())
-      console.log(`${result} items added${dryArg ? ` (dry)` : ''}`)
+      console.log(`${result} items added${dryArg ? ' (dry)' : ''}`)
     } else {
       const conbini = conbinisMap[name]
       const result = await (dryArg ? scrapeDry(name, true) : scrape(name))
       console.log(
         `${result} items from ${conbini.displayName} added${
-          dryArg ? ` (dry)` : ''
+          dryArg ? ' (dry)' : ''
         }`
       )
     }

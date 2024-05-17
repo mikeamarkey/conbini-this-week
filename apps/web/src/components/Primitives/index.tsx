@@ -1,4 +1,4 @@
-import { type AnchorHTMLAttributes } from 'react'
+import type { AnchorHTMLAttributes } from 'react'
 
 export const Link = (props: AnchorHTMLAttributes<HTMLAnchorElement>) => {
   return (

@@ -15,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ja-jp">
+    <html lang="ja">
       <body>{children}</body>
       <Analytics />
     </html>

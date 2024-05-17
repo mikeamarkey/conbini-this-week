@@ -5,7 +5,7 @@
  * like the ones uses for nextjs dynamic routes (ie: [id].tsx...)
  * @link https://github.com/okonet/lint-staged/issues/676
  */
-const escape = require('shell-quote').quote
+const escaper = require('shell-quote').quote
 const { ESLint } = require('eslint')
 
 const cli = new ESLint()
@@ -16,7 +16,7 @@ const isWin = process.platform === 'win32'
  */
 const escapeFileNamesForPrettier = (filenames) =>
   filenames
-    .map((filename) => `"${isWin ? filename : escape([filename])}"`)
+    .map((filename) => `"${isWin ? filename : escaper([filename])}"`)
     .join(' ')
 
 /**

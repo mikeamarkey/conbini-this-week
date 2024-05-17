@@ -1,4 +1,4 @@
-import { type ConbiniMap, type ConbiniName } from './types'
+import type { ConbiniMap, ConbiniName } from './types'
 
 export const conbiniNames: ConbiniName[] = [
   'dailyyamazaki',
