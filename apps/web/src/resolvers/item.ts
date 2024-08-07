@@ -1,5 +1,5 @@
-import { type Item } from '~/db'
-import { type ItemListProps } from 'components/ItemList'
+import type { Item } from '~/db'
+import type { ItemListProps } from 'components/ItemList'
 
 export const resolveItem = (item: Item): ItemListProps['items'][number] => {
   const { conbini, ...restItem } = item

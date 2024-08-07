@@ -1,4 +1,4 @@
-import { type ConbiniName as DBConbiniName } from '~/db'
+import type { ConbiniName as DBConbiniName } from '~/db'
 
 export type ConbiniName = DBConbiniName
 
