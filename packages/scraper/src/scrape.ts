@@ -109,6 +109,54 @@ async function scrapeConbini(name: ConbiniName) {
       return collectedItems
     }
 
+    case 'newdays': {
+      const response = await fetch(
+        'https://retail.jr-cross.co.jp/newdays/lib/js/mt_generate/product/data_allproductlist.json'
+      )
+      const json = await response.json()
+      const schema = z.object({
+        product: z.array(
+          z.object({
+            categoryItemList: z.array(
+              z.object({
+                itemList: z.array(
+                  z.object({
+                    name: z.string(),
+                    linkUrl: z.string(),
+                    imgPath: z.string(),
+                    price: z.string(),
+                    isNewProduct: z.boolean(),
+                  })
+                ),
+              })
+            ),
+          })
+        ),
+      })
+
+      const result = schema.safeParse(json)
+      if (!result.success) {
+        console.log(result.error)
+        return []
+      }
+
+      const { baseurl, name } = conbini
+      const collectedItems = result.data.product[0].categoryItemList[0].itemList
+        .filter((item) => item.isNewProduct)
+        .map((item) => {
+          const price = Math.ceil(Number(item.price?.replace(',', '') ?? '0'))
+
+          return {
+            conbini: name,
+            url: `${baseurl}${item.linkUrl}`,
+            title: item.name,
+            img: `${baseurl}${item.imgPath}`,
+            price,
+          }
+        })
+      return collectedItems
+    }
+
     case 'seveneleven': {
       let document = (await JSDOM.fromURL(conbini.newItemsUrl())).window
         .document.documentElement

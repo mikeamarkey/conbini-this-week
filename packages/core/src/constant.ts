@@ -5,6 +5,7 @@ export const conbiniNames: ConbiniName[] = [
   'familymart',
   'lawson',
   'ministop',
+  'newdays',
   'seveneleven',
 ]
 
@@ -36,6 +37,13 @@ export const conbinisMap: ConbiniMap = {
     hostname: 'ministop.co.jp',
     name: 'ministop',
     newItemsUrl: () => 'https://www.ministop.co.jp/syohin/js/recommend.json',
+  },
+  newdays: {
+    baseurl: 'https://retail.jr-cross.co.jp',
+    displayName: 'NewDays',
+    hostname: 'retail.jr-cross.co.jp',
+    name: 'newdays',
+    newItemsUrl: () => 'https://retail.jr-cross.co.jp/newdays/product/',
   },
   seveneleven: {
     baseurl: 'https://www.sej.co.jp',

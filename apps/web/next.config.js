@@ -13,6 +13,7 @@ const nextConfig = {
       { hostname: '**.family.co.jp' },
       { hostname: '**.lawson.co.jp' },
       { hostname: '**.ministop.co.jp' },
+      { hostname: '**.jr-cross.co.jp' },
       { hostname: '**.sej.co.jp' },
     ],
   },
