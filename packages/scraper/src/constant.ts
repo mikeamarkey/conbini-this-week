@@ -49,6 +49,17 @@ export const conbinisConfig: ConbiniConfig = {
       priceRegex: /税込([\d,.]+)円/,
     },
   },
+  newdays: {
+    ...conbinisMap.newdays,
+    selectors: {
+      list: '#goods1 .category1',
+      url: 'a',
+      title: '.name',
+      img: 'img',
+      price: '.price',
+      priceRegex: /([\d,.]+)円/,
+    },
+  },
   seveneleven: {
     ...conbinisMap.seveneleven,
     selectors: {
