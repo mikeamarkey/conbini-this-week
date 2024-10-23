@@ -29,14 +29,14 @@
     "staged": "pnpm -r --workspace-concurrency=1 staged"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.7.3",
-    "@types/eslint": "8.4.10",
-    "@types/shell-quote": "1.7.1",
-    "@types/node": "20.13.0",
-    "eslint": "8.31.0",
-    "husky": "8.0.3",
-    "lint-staged": "13.1.0",
-    "prettier": "2.8.2",
-    "shell-quote": "1.7.4"
+    "@biomejs/biome": "1.9.4",
+    "@types/eslint": "9.6.1",
+    "@types/shell-quote": "1.7.5",
+    "@types/node": "20.17.0",
+    "eslint": "9.13.0",
+    "husky": "9.1.6",
+    "lint-staged": "15.2.10",
+    "prettier": "3.3.3",
+    "shell-quote": "1.8.1"
   }
 }
