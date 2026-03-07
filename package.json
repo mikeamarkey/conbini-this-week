@@ -21,22 +21,27 @@
     "checks:prettier-root": "prettier --check . '!apps/web'",
     "checks:tsc": "pnpm -r checks:tsc",
     "fix": "pnpm /fix:.*/",
-    "fix:biome": "pnpm biome check --apply .",
+    "fix:biome": "pnpm biome check --write .",
     "fix:lint": "pnpm -r fix:lint",
     "fix:prettier": "pnpm -r fix:prettier",
     "fix:prettier-root": "prettier --write .  '!apps/web'",
-    "prepare": "husky install",
+    "prepare": "husky",
     "staged": "pnpm -r --workspace-concurrency=1 staged"
   },
+  "pnpm": {
+    "neverBuiltDependencies": [
+      "supabase"
+    ]
+  },
   "devDependencies": {
-    "@biomejs/biome": "1.7.3",
-    "@types/eslint": "8.4.10",
-    "@types/shell-quote": "1.7.1",
-    "@types/node": "20.13.0",
-    "eslint": "8.31.0",
-    "husky": "8.0.3",
-    "lint-staged": "13.1.0",
-    "prettier": "2.8.2",
-    "shell-quote": "1.7.4"
+    "@biomejs/biome": "^2.4.6",
+    "@types/eslint": "^8.56.0",
+    "@types/shell-quote": "^1.7.5",
+    "@types/node": "^20",
+    "eslint": "^8.57.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.3.2",
+    "prettier": "^3.8.1",
+    "shell-quote": "^1.8.3"
   }
 }

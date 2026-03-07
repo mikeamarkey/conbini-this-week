@@ -190,23 +190,23 @@ async function collectPageItems(
   const items = Array.from(listItems, (el) => {
     const url = !selectors.url
       ? newItemsUrl()
-      : el.querySelector<HTMLAnchorElement>(selectors.url)?.href?.trim() ?? ''
+      : (el.querySelector<HTMLAnchorElement>(selectors.url)?.href?.trim() ?? '')
     const title =
       el.querySelector<HTMLElement>(selectors.title)?.textContent?.trim() ?? ''
     const img = selectors.imgDataName
-      ? el.querySelector<HTMLImageElement>(selectors.img)?.dataset[
+      ? (el.querySelector<HTMLImageElement>(selectors.img)?.dataset[
           selectors.imgDataName
-        ] ?? ''
-      : el.querySelector<HTMLImageElement>(selectors.img)?.src ?? ''
+        ] ?? '')
+      : (el.querySelector<HTMLImageElement>(selectors.img)?.src ?? '')
     const priceMatches = el
       ?.querySelector<HTMLElement>(selectors.price)
       ?.textContent?.match(selectors.priceRegex)
     const price = Math.ceil(Number(priceMatches?.[1].replace(',', '') ?? '0'))
     const category = !selectors.category
       ? undefined
-      : el
+      : (el
           .querySelector<HTMLElement>(selectors.category)
-          ?.textContent?.trim() ?? ''
+          ?.textContent?.trim() ?? '')
 
     return {
       url,

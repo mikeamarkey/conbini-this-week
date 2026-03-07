@@ -1,5 +1,9 @@
 module.exports = {
   root: true,
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    project: ['./tsconfig.json'],
+  },
   extends: ['../../.eslintrc.base.js', 'next/core-web-vitals', 'prettier'],
   env: {
     es6: true,
