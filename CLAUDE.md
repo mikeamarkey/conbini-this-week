@@ -30,25 +30,25 @@ conbini-this-week/
 - **Web:** Next.js 14, React 18, TailwindCSS 3
 - **Scraper:** jsdom, Zod (schema validation)
 - **Database:** Supabase (PostgreSQL) via `@supabase/supabase-js`
-- **TypeScript:** 4.9.4, strict mode
+- **TypeScript:** 5.x, strict mode
 
 ## Development Commands
 
 Run from the repo root:
 
-| Command | Purpose |
-|---------|---------|
-| `pnpm checks` | Run all checks (lint + prettier + tsc) |
-| `pnpm fix` | Auto-fix lint and format issues |
-| `pnpm checks:lint` / `pnpm fix:lint` | ESLint only |
-| `pnpm checks:prettier` / `pnpm fix:prettier` | Prettier only |
-| `pnpm checks:biome` / `pnpm fix:biome` | Biome only |
-| `pnpm checks:tsc` | TypeScript type check across all workspaces |
-| `pnpm web dev` | Start Next.js dev server |
-| `pnpm web build` | Build the web app |
-| `pnpm web test` | Run web app tests (Jest) |
-| `pnpm scraper scrape` | Run the scraper manually |
-| `pnpm db generate` | Regenerate Supabase TypeScript types |
+| Command                                      | Purpose                                     |
+| -------------------------------------------- | ------------------------------------------- |
+| `pnpm checks`                                | Run all checks (lint + prettier + tsc)      |
+| `pnpm fix`                                   | Auto-fix lint and format issues             |
+| `pnpm checks:lint` / `pnpm fix:lint`         | ESLint only                                 |
+| `pnpm checks:prettier` / `pnpm fix:prettier` | Prettier only                               |
+| `pnpm checks:biome` / `pnpm fix:biome`       | Biome only                                  |
+| `pnpm checks:tsc`                            | TypeScript type check across all workspaces |
+| `pnpm web dev`                               | Start Next.js dev server                    |
+| `pnpm web build`                             | Build the web app                           |
+| `pnpm web test`                              | Run web app tests (Jest)                    |
+| `pnpm scraper scrape`                        | Run the scraper manually                    |
+| `pnpm db generate`                           | Regenerate Supabase TypeScript types        |
 
 ## Code Conventions
 
@@ -83,3 +83,9 @@ Husky runs `pnpm staged` (lint-staged) on pre-commit. Staged `.ts`/`.tsx` files 
 
 - **`.github/workflows/checks.yml`** — Runs `pnpm checks` on every push.
 - **`.github/workflows/conbini-haul.yml`** — Scheduled scraper, runs Tuesdays at 11:50 JST (02:50 UTC).
+
+## Known Workarounds
+
+- **`biome.json` — `noUnknownAtRules: off`**: Biome 2 doesn't recognise Tailwind 3's `@tailwind base/components/utilities` directives. This rule is disabled globally until Tailwind is upgraded to v4, which removes those directives in favour of `@import "tailwindcss"`.
+- **`package.json` — `pnpm.neverBuiltDependencies: ["supabase"]`**: The `supabase` CLI v1 postinstall downloads a binary from GitHub Releases, which fails in network-restricted environments. The binary isn't needed for local dev (only for `pnpm db generate`).
+- **`apps/web/prettier.config.mjs`**: Uses ESM (`.mjs`) instead of CommonJS because `prettier-plugin-tailwindcss` 0.6+ is ESM-only. Formatting options must be kept manually in sync with the root `prettier.config.js`.
