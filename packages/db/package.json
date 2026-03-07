@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "checks": "pnpm /checks:.*/",
-    "checks:lint": "eslint . --ext ts",
+    "checks:lint": "eslint .",
     "checks:tsc": "tsc --pretty --noEmit",
     "fix": "pnpm /fix:.*/",
-    "fix:lint": "pnpm checks:lint --fix",
+    "fix:lint": "eslint . --fix",
     "generate": "source .env && supabase gen types typescript --project-id \"$SUPABASE_PROJECT_ID\" > src/schema.ts",
     "staged": "lint-staged --allow-empty"
   },
@@ -18,9 +18,9 @@
     "@types/node": "^20",
     "@typescript-eslint/eslint-plugin": "^8.56.1",
     "@typescript-eslint/parser": "^8.56.1",
-    "eslint": "^8.57.1",
+    "eslint": "^9.0.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-import-resolver-typescript": "^3.5.3",
+    "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-import": "^2.32.0",
     "supabase": "1.31.1",
     "typescript": "^5.9.3"

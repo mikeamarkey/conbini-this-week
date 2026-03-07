@@ -22,9 +22,15 @@
     "**/*.json",
     "**/*.ts",
     "**/*.tsx",
-    ".eslintrc.js",
     "next-env.d.ts",
     ".next/types/**/*.ts"
   ],
-  "exclude": ["node_modules", ".next", "out"]
+  "exclude": [
+    "node_modules",
+    ".next",
+    "out",
+    "eslint.config.js",
+    "postcss.config.js",
+    "lint-staged.config.js"
+  ]
 }
