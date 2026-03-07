@@ -12,7 +12,7 @@
     "staged": "lint-staged --allow-empty"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.2.3"
+    "@supabase/supabase-js": "^2.98.0"
   },
   "devDependencies": {
     "@types/node": "^20",
