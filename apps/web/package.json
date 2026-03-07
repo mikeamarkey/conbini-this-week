@@ -18,24 +18,25 @@
   },
   "dependencies": {
     "@vercel/analytics": "1.6.1",
-    "next": "14.2.5",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
+    "next": "16.1.6",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
     "react-use": "17.6.0"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.1",
     "@types/node": "^20",
-    "@types/react": "^18",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
     "@typescript-eslint/eslint-plugin": "^8.56.1",
     "@typescript-eslint/parser": "^8.56.1",
-    "autoprefixer": "^10.4.13",
     "eslint": "^8.57.1",
-    "eslint-config-next": "14.2.3",
+    "eslint-config-next": "15.5.12",
     "eslint-config-prettier": "^10.1.8",
     "postcss": "^8.4.21",
     "prettier": "^3.8.1",
-    "prettier-plugin-tailwindcss": "^0.6.0",
-    "tailwindcss": "^3.2.7",
+    "prettier-plugin-tailwindcss": "^0.7.2",
+    "tailwindcss": "^4.2.1",
     "typescript": "^5.9.3"
   }
 }

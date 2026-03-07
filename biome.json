@@ -1,15 +1,11 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.4.6/schema.json",
   "css": {
+    "formatter": {
+      "quoteStyle": "single"
+    },
     "parser": {
       "tailwindDirectives": true
-    }
-  },
-  "linter": {
-    "rules": {
-      "suspicious": {
-        "noUnknownAtRules": "off"
-      }
     }
   },
   "files": {

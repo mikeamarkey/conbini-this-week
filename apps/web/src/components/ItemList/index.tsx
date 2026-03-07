@@ -55,7 +55,7 @@ export default function ItemList({
       <p className="text-center">{itemCountText}</p>
 
       {visibleItems.length > 0 && (
-        <div className="mx-auto mt-6 grid max-w-screen-xl grid-cols-2 gap-3 overflow-anchor-none md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        <div className="overflow-anchor-none mx-auto mt-6 grid max-w-screen-xl grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {visibleItems.map((item) => (
             <Link
               className="cursor-pointer overflow-hidden rounded-2xl border-2 border-gray-300 outline-0 transition-colors hover:border-gray-900"
@@ -74,10 +74,10 @@ export default function ItemList({
                     sizes="480px"
                   />
                 </div>
-                <p className="flex flex-grow flex-col px-3 pb-2 pt-5 font-bold">
+                <p className="flex flex-grow flex-col px-3 pt-5 pb-2 font-bold">
                   {item.title}
                 </p>
-                <div className="flex items-center justify-between px-3 pb-3 pt-2">
+                <div className="flex items-center justify-between px-3 pt-2 pb-3">
                   <p className="font-bold">{formatCurrency(item.price)}</p>
 
                   <div className="overflow-hidden rounded-full">

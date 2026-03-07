@@ -4,9 +4,6 @@
  * @type {import('next').NextConfig}
  **/
 const nextConfig = {
-  experimental: {
-    externalDir: true,
-  },
   images: {
     remotePatterns: [
       { hostname: '**.daily-yamazaki.jp' },
