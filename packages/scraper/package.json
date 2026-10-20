@@ -12,7 +12,7 @@
     "staged": "lint-staged --allow-empty"
   },
   "dependencies": {
-    "jsdom": "^28.1.0",
+    "jsdom": "^30.0.0",
     "zod": "^4.3.6"
   },
   "devDependencies": {
